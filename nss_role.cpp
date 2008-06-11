@@ -1,77 +1,18 @@
 #include <nss.h>
 #include <grp.h>
 
+#include <pthread.h>
+
 #include <sys/types.h>
 #include <errno.h>
 
-#include <map>
-#include <set>
-#include <vector>
-#include <string>
-#include <fstream>
 #include <stdexcept>
 //#include <iostream>
 
-#include <boost/spirit/core.hpp>
+#include "lock.h"
+#include "role.h"
 
-typedef std::set<gid_t> Groups;
-typedef std::vector<gid_t> Privs;
-typedef std::map<gid_t, Privs> Roles;
-typedef std::pair<gid_t, Privs> Role;
-
-class RoleParser
-{
-protected:
-	std::string filename;
-	std::ifstream in;
-	bool Parse(char const* str, gid_t &role_id, Privs &privs);
-public:
-	RoleParser (const std::string &filename = "/etc/role"):
-		filename(filename) {}
-	bool Update(Roles &roles);
-};
-
-using boost::spirit::parse;
-using boost::spirit::uint_p;
-using boost::spirit::space_p;
-using boost::spirit::assign;
-using boost::spirit::push_back_a;
-
-bool RoleParser::Parse(char const* str, gid_t &role_id, Privs &privs)
-{
-	return parse(str,
-	(
-	 uint_p[assign(role_id)] >>
-	 ':' >>
-	 uint_p[push_back_a(privs)] >>
-	 *(',' >> uint_p[push_back_a(privs)])),
-	 space_p).full;
-}
-
-bool RoleParser::Update(Roles &roles)
-{
-	in.open(filename.c_str());
-	if (!in)
-		return false;
-
-	roles.clear();
-	while (in && !in.eof())
-	{
-		Privs privs;
-		gid_t role_id;
-		std::string rbuf;
-
-		getline (in, rbuf);
-		if (rbuf.length() == 0)
-			continue;
-		if (!Parse(rbuf.c_str(), role_id, privs))
-			continue;
-
-		roles.insert(Role(role_id, privs));
-	}
-
-	return true;
-}
+static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static bool realloc_groups (long int **size, gid_t ***groups, long int limit)
 {
@@ -113,6 +54,8 @@ extern "C" {
 enum nss_status _nss_role_initgroups_dyn (char *user, gid_t main_group, long int *start, long int *size, gid_t **groups, long int limit, int *errnop)
 {
 	nss_status ret = NSS_STATUS_SUCCESS;
+	
+	Lock lock(&mutex);
 
 //	std::cerr << "_nss_role_initgroups start" << std::endl;
 

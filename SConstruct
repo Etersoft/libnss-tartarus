@@ -11,7 +11,7 @@ env["CCFLAGS"] = '-O2'
 env["SHLIBSUFFIX"] = [SUFFIX + '.0.0']
 env["LINKFLAGS"] = ['-Wl,-soname,' + SONAME]
 
-so = env.SharedLibrary(NAME, ['nss_role.cpp'])
+so = env.SharedLibrary(NAME, ['nss_role.cpp', 'role.cpp'])
 
 i = env.Install('$DESTDIR/lib', so)
 env.Alias('install', i)
