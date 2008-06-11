@@ -3,7 +3,7 @@ opts.Add('DESTDIR', 'Directory to install', '')
 env = Environment(options=opts)
 Help(opts.GenerateHelpText(env))
 
-NAME = "libnss_role"
+NAME = "libnss_tartarus"
 SUFFIX = ".so.2"
 SONAME = NAME + SUFFIX
 
@@ -11,7 +11,7 @@ env["CCFLAGS"] = '-O2'
 env["SHLIBSUFFIX"] = [SUFFIX + '.0.0']
 env["LINKFLAGS"] = ['-Wl,-soname,' + SONAME]
 
-so = env.SharedLibrary(NAME, ['nss_role.cpp', 'role.cpp'])
+so = env.SharedLibrary(NAME, ['nss_tartarus.cpp'])
 
 i = env.Install('$DESTDIR/lib', so)
 env.Alias('install', i)
