@@ -1,98 +1,56 @@
-#include <nss.h>
-#include <grp.h>
+#include "nss_tartarus.h"
 
-#include <sys/types.h>
-#include <errno.h>
-
-#include <stdexcept>
-#include <iostream>
-
-#include "lock.h"
-
-static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
-
-static bool realloc_groups (long int **size, gid_t ***groups, long int limit)
+char *allocate_mem (char **buf, size_t *buflen, size_t len)
 {
-	long int new_size;
-	gid_t *new_groups;
+	char *next;
 
-	new_size = 2 * (**size);
-	if (limit > 0) {
-		if (**size == limit)
-			return false;
+	if (!buf || !buflen || (*buflen < len))
+		return NULL;
 
-		if (new_size > limit)
-			new_size = limit;
-	}
-
-	new_groups = (gid_t *)
-		realloc((**groups),
-			new_size * sizeof(***groups));
-	if (!new_groups)
-		return false;
-
-	**groups = new_groups;
-	**size = new_size;
-
-	return true;
+	next = *buf;
+	*buf += len;
+	*buflen -= len;
+	return next;
 }
 
-extern "C" {
-
-nss_status _nss_tartarus_setgrent (int)
+const Ice::CommunicatorPtr& getIceCommunicator()
 {
-	return NSS_STATUS_SUCCESS;
-}
-nss_status _nss_tartarus_endgrent (void)
-{
-	return NSS_STATUS_SUCCESS;
-}
-nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *grp, char *buffer, size_t buflen, int *errnop)
-{
-	return NSS_STATUS_NOTFOUND;
-}
-nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *grp, char *buffer, size_t buflen, int *errnop)
-{
-	return NSS_STATUS_NOTFOUND;
-}
-nss_status _nss_tartarus_getgrent_r (struct group *result, char *buffer, size_t buflen, int *errnop)
-{
-	return NSS_STATUS_NOTFOUND;
-}
-nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int *start, long int *size, gid_t **groups, long int limit, int *errnop)
-{
-	nss_status ret = NSS_STATUS_SUCCESS;
+	static Ice::CommunicatorPtr ic = 0;
 	
-	Lock lock(&mutex);
-
-	std::cerr << "_nss_tartarus_initgroups start" << std::endl;
-
-	try {
-//		for (Groups::iterator i = add_groups.begin(); i != add_groups.end(); i++) {
-//			if (*start == *size) {
-//				if (!realloc_groups (&size, &groups, limit))
-//					break;
-//			}
-//			(*groups)[(*start)++] = *i;
-//		}
-	} catch (std::bad_alloc error) {
-//		std::cerr << "_nss_tartarus_initgroups memory_allocate_error: " << error.what() << std::endl;
-		*errnop = ENOMEM;
-		ret = NSS_STATUS_NOTFOUND;
-	} catch (std::runtime_error error) {
-//		std::cerr << "_nss_tartarus_initgroups runtime_error: " << error.what() << std::endl;
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-//		std::cerr << "_nss_tartarus_initgroups logic_error:" << error.what() << std::endl;; 
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (...) {
-//		std::cerr << "_nss_tartarus_initgroups!!!\n"; 
-		ret = NSS_STATUS_UNAVAIL;
-	}
-
-	std::cerr << "_nss_tartarus_initgroups end" << std::endl;
-
-	return ret;
+	if (!ic)
+		ic = Ice::initialize();
+		
+	return ic;
 }
 
-} // extern "C"
+const SysDB::UserManagerPrx& getUserManager()
+{
+	static SysDB::UserManagerPrx prx;
+
+	if (!prx) {
+		Ice::ObjectPrx base = getIceCommunicator()->stringToProxy("UserManager:ssl -p 12345");
+		if (!base)
+			throw "Could not create proxy";
+		prx = SysDB::UserManagerPrx::checkedCast(base);
+		if (!prx)
+			throw "Invalid proxy";
+	}
+	
+	return prx;
+}
+
+const SysDB::GroupManagerPrx& getGroupManager()
+{
+	static SysDB::GroupManagerPrx prx;
+
+	if (!prx) {
+		Ice::ObjectPrx base = getIceCommunicator()->stringToProxy("GroupManager:ssl -p 12345");
+		if (!base)
+			throw "Could not create proxy";
+		prx = SysDB::GroupManagerPrx::checkedCast(base);
+		if (!prx)
+			throw "Invalid proxy";
+	}
+	
+	return prx;
+}

@@ -1,5 +1,5 @@
-#ifndef LIBNSS_ROLE_LOCK_H_
-#define LIBNSS_ROLE_LOCK_H_
+#ifndef LIBNSS_TARTARUS_LOCK_H_
+#define LIBNSS_TARTARUS_LOCK_H_
 
 #include <pthread.h>
 
@@ -15,4 +15,4 @@ public:
 	}
 };
 
-#endif /*LIBNSS_ROLE_LOCK_H_*/
+#endif /*LIBNSS_TARTARUS_LOCK_H_*/
