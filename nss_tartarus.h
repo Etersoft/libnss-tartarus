@@ -16,7 +16,7 @@ inline char *fill_record (char **buffer, size_t *buflen, const std::string &valu
 	return result;
 }
 
-const SysDB::UserManagerPrx& getUserManager();
-const SysDB::GroupManagerPrx& getGroupManager();
+const SysDB::UserManagerPrx& getUserReader();
+const SysDB::GroupManagerPrx& getGroupReader();
 
 #endif /*LIBNSS_TARTARUS_H_*/

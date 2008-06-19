@@ -22,16 +22,12 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static nss_status fill_user (struct passwd *ent, const SysDB::UserRecord& user, char **buffer, size_t *buflen)
 {
-	const std::string passwd("x");
-	std::string home("/home/");
-	home.append(user.name);
-
 	ent->pw_name = fill_record (buffer, buflen, user.name);
 	if (ent->pw_name == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
 
-	ent->pw_passwd = fill_record (buffer, buflen, passwd);
+	ent->pw_passwd = fill_record (buffer, buflen, user.passwd);
 	if (ent->pw_passwd == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
@@ -41,7 +37,7 @@ static nss_status fill_user (struct passwd *ent, const SysDB::UserRecord& user, 
 		return NSS_STATUS_TRYAGAIN;
 	}
 
-	ent->pw_dir = fill_record (buffer, buflen, home);
+	ent->pw_dir = fill_record (buffer, buflen, user.home);
 	if (ent->pw_dir == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
@@ -66,7 +62,7 @@ nss_status _nss_tartarus_setpwent(void)
 	Lock lock(&mutex);
 
 	try {
-		SysDB::UserManagerPrx prx = getUserManager();
+		SysDB::UserManagerPrx prx = getUserReader();
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
 		std::cerr << "_nss_tartarus_setpwent memory_allocate_error: " << error << std::endl;
@@ -89,7 +85,7 @@ nss_status _nss_tartarus_setpwent(void)
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_setpwent logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_setpwent message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
@@ -114,7 +110,7 @@ nss_status _nss_tartarus_getpwuid_r(uid_t uid, struct passwd *result, char *buff
 	Lock lock(&mutex);
 
 	try {
-		ret = fill_user (result, getUserManager()->getById(uid), &buffer, &buflen);
+		ret = fill_user (result, getUserReader()->getById(uid), &buffer, &buflen);
 
 		if (ret == NSS_STATUS_TRYAGAIN)
 			*errnop = errno = ERANGE;
@@ -143,7 +139,7 @@ nss_status _nss_tartarus_getpwuid_r(uid_t uid, struct passwd *result, char *buff
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getpwuid_r logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_getpwuid_r message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
@@ -163,7 +159,7 @@ nss_status _nss_tartarus_getpwnam_r(const char *name, struct passwd *result, cha
 	Lock lock(&mutex);
 
 	try {
-		ret = fill_user (result, getUserManager()->getByName(name), &buffer, &buflen);
+		ret = fill_user (result, getUserReader()->getByName(name), &buffer, &buflen);
 
 		if (ret == NSS_STATUS_TRYAGAIN)
 			*errnop = errno = ERANGE;
@@ -192,7 +188,7 @@ nss_status _nss_tartarus_getpwnam_r(const char *name, struct passwd *result, cha
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getpwnam_r logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_getpwnam_r message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {

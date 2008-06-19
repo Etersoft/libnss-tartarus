@@ -1,4 +1,5 @@
 #include "nss_tartarus.h"
+#include <TartarusNSCDInit.h>
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len)
 {
@@ -13,22 +14,22 @@ char *allocate_mem (char **buf, size_t *buflen, size_t len)
 	return next;
 }
 
-const Ice::CommunicatorPtr& getIceCommunicator()
+static const Ice::CommunicatorPtr& getIceCommunicator()
 {
 	static Ice::CommunicatorPtr ic = 0;
 	
 	if (!ic)
-		ic = Ice::initialize();
+		ic = Ice::initialize(Tartarus::NSCDInitialize(false));
 		
 	return ic;
 }
 
-const SysDB::UserManagerPrx& getUserManager()
+const SysDB::UserManagerPrx& getUserReader()
 {
 	static SysDB::UserManagerPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->stringToProxy("UserManager:ssl -p 12345");
+		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("TartarusNSCD.UserReaderPrx");
 		if (!base)
 			throw "Could not create proxy";
 		prx = SysDB::UserManagerPrx::checkedCast(base);
@@ -39,12 +40,12 @@ const SysDB::UserManagerPrx& getUserManager()
 	return prx;
 }
 
-const SysDB::GroupManagerPrx& getGroupManager()
+const SysDB::GroupManagerPrx& getGroupReader()
 {
 	static SysDB::GroupManagerPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->stringToProxy("GroupManager:ssl -p 12345");
+		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("TartarusNSCD.GrouprReaderPrx");
 		if (!base)
 			throw "Could not create proxy";
 		prx = SysDB::GroupManagerPrx::checkedCast(base);

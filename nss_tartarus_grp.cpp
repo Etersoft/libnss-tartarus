@@ -80,8 +80,8 @@ static nss_status fill_group (struct group *ent, const SysDB::GroupRecord& group
 	if (ent->gr_passwd == NULL)
 		return NSS_STATUS_TRYAGAIN;
 
-	const SysDB::Ids ids = getGroupManager()->getUsers(group.gid);
-	const SysDB::Users users = getUserManager()->getUsers(ids);
+	const SysDB::Ids ids = getGroupReader()->getUsers(group.gid);
+	const SysDB::Users users = getUserReader()->getUsers(ids);
 
 	char *member_list_tst;
 	size_t align = (unsigned long)(*buffer) % sizeof(char*);
@@ -122,7 +122,7 @@ nss_status _nss_tartarus_setgrent (int)
 	Lock lock(&mutex);
 
 	try {
-		SysDB::GroupManagerPrx prx = getGroupManager();
+		SysDB::GroupManagerPrx prx = getGroupReader();
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
 		std::cerr << "_nss_tartarus_setgrent memory_allocate_error: " << error << std::endl;
@@ -145,7 +145,7 @@ nss_status _nss_tartarus_setgrent (int)
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_setgrent logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_setgrent message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
@@ -168,7 +168,7 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 	Lock lock(&mutex);
 
 	try {
-		ret = fill_group (result, getGroupManager()->getById(gid), &buffer, &buflen);
+		ret = fill_group (result, getGroupReader()->getById(gid), &buffer, &buflen);
 
 		if (ret == NSS_STATUS_TRYAGAIN)
 			*errnop = errno = ERANGE;
@@ -197,7 +197,7 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getgrgid_r logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_getgrgid_r message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
@@ -216,7 +216,7 @@ nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, cha
 	Lock lock(&mutex);
 
 	try {
-		ret = fill_group (result, getGroupManager()->getByName(name), &buffer, &buflen);
+		ret = fill_group (result, getGroupReader()->getByName(name), &buffer, &buflen);
 
 		if (ret == NSS_STATUS_TRYAGAIN)
 			*errnop = errno = ERANGE;
@@ -245,7 +245,7 @@ nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, cha
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (const char* msg) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getgrnam_r logic_error:" << error.what() << std::endl;; 
+		std::cerr << "_nss_tartarus_getgrnam_r message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
@@ -272,8 +272,8 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 #endif
 
 	try {
-		SysDB::Ids ids = getUserManager()->getGroupsByName(user);
-		SysDB::Groups groupRecords = getGroupManager()->getGroups(ids);
+		SysDB::Ids ids = getUserReader()->getGroupsByName(user);
+		SysDB::Groups groupRecords = getGroupReader()->getGroups(ids);
 
 		for (SysDB::Groups::iterator i = groupRecords.begin(); i != groupRecords.end(); i++) {
 			if (*start == *size) {
@@ -301,6 +301,11 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 	} catch (std::logic_error error) {
 #ifdef DEBUG
 		std::cerr << "_nss_tartarus_initgroups logic_error:" << error.what() << std::endl;; 
+#endif
+		ret = NSS_STATUS_UNAVAIL;
+	} catch (const char* msg) {
+#ifdef DEBUG
+		std::cerr << "_nss_tartarus_initgroups message_error:" << msg << std::endl;; 
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {

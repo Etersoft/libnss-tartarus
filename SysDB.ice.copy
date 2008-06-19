@@ -1,0 +1,117 @@
+
+module Tartarus { module iface {
+
+module SysDB
+{
+
+struct UserRecord
+{
+    long uid;
+    long gid;
+    string name;
+    string fullName;
+    string shell;
+    string home;
+    string passwd;
+};
+
+struct GroupRecord
+{
+    long gid;
+    string name;
+};
+
+exception NotFound
+{
+};
+
+exception UserNotFound extends NotFound
+{
+};
+
+exception GroupNotFound extends NotFound
+{
+};
+
+exception PermissionDenied
+{
+};
+
+exception AlreadyExists
+{
+};
+
+exception UserAlreadyExists extends AlreadyExists
+{
+};
+
+exception GroupAlreadyExists extends AlreadyExists
+{
+};
+
+exception Done
+{
+};
+
+sequence<UserRecord> Users;
+sequence<GroupRecord> Groups;
+sequence<long> Ids;
+
+interface UserReader
+{
+    idempotent UserRecord getById(long uid)
+                            throws UserNotFound, PermissionDenied;
+    idempotent UserRecord getByName(string name)
+                            throws UserNotFound, PermissionDenied;
+
+    idempotent Ids getGroupsById(long uid)
+                            throws UserNotFound, PermissionDenied;
+    idempotent Ids getGroupsByName(string name)
+                            throws UserNotFound, PermissionDenied;
+
+    idempotent Users getUsers(Ids userIds)
+                            throws UserNotFound, PermissionDenied;
+
+    Users search(string factor, long maximum) throws PermissionDenied;
+};
+
+interface UserManager extends UserReader
+{
+    idempotent void modify(UserRecord user)
+                            throws UserNotFound, PermissionDenied;
+    /** uid field from parameter are ignored */
+    long create(UserRecord newUser) throws UserAlreadyExists, PermissionDenied;
+};
+
+interface GroupReader
+{
+    idempotent GroupRecord getById(long gid)
+                            throws GroupNotFound, PermissionDenied;
+    idempotent GroupRecord getByName(string name)
+                            throws GroupNotFound, PermissionDenied;
+
+    idempotent Groups getGroups(Ids groupIds)
+                            throws GroupNotFound, PermissionDenied;
+    idempotent Ids getUsers(long gid)
+                            throws GroupNotFound, PermissionDenied;
+
+    Groups search(string factor, long maximum) throws PermissionDenied;
+};
+
+interface GroupManager extends GroupReader
+{
+    idempotent void setUsers(long gid, Ids userIds)
+                            throws GroupNotFound, PermissionDenied;
+    idempotent void addUsers(long gid, Ids userIds)
+                            throws GroupNotFound, PermissionDenied;
+    idempotent void delUsers(long gid, Ids userIds)
+                            throws GroupNotFound, PermissionDenied;
+
+    idempotent void modify(GroupRecord group)
+                            throws GroupNotFound, PermissionDenied;
+    /** uid field from parameter are ignored */
+    long create(GroupRecord newGroup) throws GroupAlreadyExists, PermissionDenied;
+};
+
+};
+};};
