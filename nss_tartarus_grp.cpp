@@ -80,8 +80,8 @@ static nss_status fill_group (struct group *ent, const SysDB::GroupRecord& group
 	if (ent->gr_passwd == NULL)
 		return NSS_STATUS_TRYAGAIN;
 
-	const SysDB::Ids ids = getGroupReader()->getUsers(group.gid);
-	const SysDB::Users users = getUserReader()->getUsers(ids);
+	const SysDB::IdSeq ids = getGroupReader()->getUsers(group.gid);
+	const SysDB::UserSeq users = getUserReader()->getUsers(ids);
 
 	char *member_list_tst;
 	size_t align = (unsigned long)(*buffer) % sizeof(char*);
@@ -95,7 +95,7 @@ static nss_status fill_group (struct group *ent, const SysDB::GroupRecord& group
 	ent->gr_mem = (char **)(member_list_tst + align);
 	char **member_list = ent->gr_mem;
 
-	for (SysDB::Users::const_iterator i = users.begin(); i != users.end(); i++) {
+	for (SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); i++) {
 		const std::string &username = i->name;
 		size_t length, size = username.size();
 		char *member = allocate_mem (buffer, buflen, size + 1);
@@ -272,10 +272,10 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 #endif
 
 	try {
-		SysDB::Ids ids = getUserReader()->getGroupsByName(user);
-		SysDB::Groups groupRecords = getGroupReader()->getGroups(ids);
+		SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(user);
+		SysDB::GroupSeq groupRecords = getGroupReader()->getGroups(ids);
 
-		for (SysDB::Groups::iterator i = groupRecords.begin(); i != groupRecords.end(); i++) {
+		for (SysDB::GroupSeq::iterator i = groupRecords.begin(); i != groupRecords.end(); i++) {
 			if (*start == *size) {
 				if (!realloc_groups (&size, &groups, limit))
 					break;

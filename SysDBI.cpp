@@ -5,42 +5,36 @@
 
 using namespace Tartarus;
 
+::Tartarus::iface::SysDB::UserSeq
+Tartarus::iface::SysDB::UserReaderI::get(::Ice::Long limit,
+                                         ::Ice::Long offset,
+                                         const Ice::Current& current)
+{
+    return getUserReader(current)->get(limit, offset);
+}
+
 ::Tartarus::iface::SysDB::UserRecord
 Tartarus::iface::SysDB::UserReaderI::getById(::Ice::Long uid,
-                                              const Ice::Current& current)
+                                             const Ice::Current& current)
 {
     return getUserReader(current)->getById(uid);
 }
 
 ::Tartarus::iface::SysDB::UserRecord
 Tartarus::iface::SysDB::UserReaderI::getByName(const ::std::string& name,
-                                                const Ice::Current& current)
+                                               const Ice::Current& current)
 {
     return getUserReader(current)->getByName(name);
 }
 
-::Tartarus::iface::SysDB::Ids
-Tartarus::iface::SysDB::UserReaderI::getGroupsById(::Ice::Long uid,
-                                                    const Ice::Current& current)
-{
-    return getUserReader(current)->getGroupsById(uid);
-}
-
-::Tartarus::iface::SysDB::Ids
-Tartarus::iface::SysDB::UserReaderI::getGroupsByName(const ::std::string& name,
-                                                      const Ice::Current& current)
-{
-    return getUserReader(current)->getGroupsByName(name);
-}
-
-::Tartarus::iface::SysDB::Users
-Tartarus::iface::SysDB::UserReaderI::getUsers(const ::Tartarus::iface::SysDB::Ids& userIds,
+::Tartarus::iface::SysDB::UserSeq
+Tartarus::iface::SysDB::UserReaderI::getUsers(const ::Tartarus::iface::SysDB::IdSeq& userIds,
                                                const Ice::Current& current)
 {
     return getUserReader(current)->getUsers(userIds);
 }
 
-::Tartarus::iface::SysDB::Users
+::Tartarus::iface::SysDB::UserSeq
 Tartarus::iface::SysDB::UserReaderI::search(const ::std::string& factor,
                                              ::Ice::Long maximum,
                                              const Ice::Current& current)
@@ -67,6 +61,14 @@ Tartarus::iface::SysDB::UserReaderI::search(const ::std::string& factor,
 //    return users;
 }
 
+::Tartarus::iface::SysDB::GroupSeq
+Tartarus::iface::SysDB::GroupReaderI::get(::Ice::Long limit,
+                                        ::Ice::Long offset,
+                                        const Ice::Current& current)
+{
+    return getGroupReader(current)->get(limit, offset);
+}
+
 ::Tartarus::iface::SysDB::GroupRecord
 Tartarus::iface::SysDB::GroupReaderI::getById(::Ice::Long gid,
                                                const Ice::Current& current)
@@ -81,26 +83,41 @@ Tartarus::iface::SysDB::GroupReaderI::getByName(const ::std::string& name,
     return getGroupReader(current)->getByName(name);
 }
 
-::Tartarus::iface::SysDB::Groups
-Tartarus::iface::SysDB::GroupReaderI::getGroups(const ::Tartarus::iface::SysDB::Ids& groupIds,
+::Tartarus::iface::SysDB::IdSeq
+Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserId(::Ice::Long uid,
+                                                    const Ice::Current& current)
+{
+    return getGroupReader(current)->getGroupsForUserId(uid);
+}
+
+::Tartarus::iface::SysDB::IdSeq
+Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserName(const ::std::string& name,
+                                                      const Ice::Current& current)
+{
+    return getGroupReader(current)->getGroupsForUserName(name);
+}
+
+
+::Tartarus::iface::SysDB::GroupSeq
+Tartarus::iface::SysDB::GroupReaderI::getGroups(const ::Tartarus::iface::SysDB::IdSeq& groupIds,
                                                  const Ice::Current& current)
 {
     return getGroupReader(current)->getGroups(groupIds);
 }
 
-::Tartarus::iface::SysDB::Ids
+::Tartarus::iface::SysDB::IdSeq
 Tartarus::iface::SysDB::GroupReaderI::getUsers(::Ice::Long gid,
                                                 const Ice::Current& current)
 {
     return getGroupReader(current)->getUsers(gid);
 }
 
-::Tartarus::iface::SysDB::Groups
+::Tartarus::iface::SysDB::GroupSeq
 Tartarus::iface::SysDB::GroupReaderI::search(const ::std::string& factor,
                                               ::Ice::Long maximum,
                                               const Ice::Current& current)
 {
-    SysDB::Groups groups;
+    SysDB::GroupSeq groups;
     try {
         groups = getGroupReader(current)->search(factor, maximum);
     } catch (...) {

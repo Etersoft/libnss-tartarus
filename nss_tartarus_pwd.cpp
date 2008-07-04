@@ -22,12 +22,16 @@ static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static nss_status fill_user (struct passwd *ent, const SysDB::UserRecord& user, char **buffer, size_t *buflen)
 {
+	const std::string passwd("x");
+	std::string home("/home/");
+	home.append(user.name);
+ 
 	ent->pw_name = fill_record (buffer, buflen, user.name);
 	if (ent->pw_name == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
 
-	ent->pw_passwd = fill_record (buffer, buflen, user.passwd);
+	ent->pw_passwd = fill_record (buffer, buflen, passwd);
 	if (ent->pw_passwd == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
@@ -37,7 +41,7 @@ static nss_status fill_user (struct passwd *ent, const SysDB::UserRecord& user, 
 		return NSS_STATUS_TRYAGAIN;
 	}
 
-	ent->pw_dir = fill_record (buffer, buflen, user.home);
+	ent->pw_dir = fill_record (buffer, buflen, home);
 	if (ent->pw_dir == NULL) {
 		return NSS_STATUS_TRYAGAIN;
 	}
