@@ -9,6 +9,9 @@ Ice::InitializationData& NSCDInitialize(bool quiet)
 {
 	static Ice::InitializationData init;
 	init.properties = Ice::createProperties();
+#ifdef DEBUG
+	std::cerr << "NSCDInitialize properties" << std::endl;
+#endif
 	try
 	{
 		init.properties->load("/etc/Tartarus/tnscd.conf");
@@ -19,6 +22,9 @@ Ice::InitializationData& NSCDInitialize(bool quiet)
 			throw error;
 		std::cerr << error << std::endl;
 	}
+#ifdef DEBUG
+	std::cerr << "NSCDInitialize properties done" << std::endl;
+#endif
 	return init;
 }
 

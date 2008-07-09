@@ -29,7 +29,7 @@ const SysDB::UserManagerPrx& getUserReader()
 	static SysDB::UserManagerPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("TartarusNSCD.UserReaderPrx");
+		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.UserReaderPrx");
 		if (!base)
 			throw "Could not create proxy";
 		prx = SysDB::UserManagerPrx::checkedCast(base);
@@ -45,7 +45,7 @@ const SysDB::GroupManagerPrx& getGroupReader()
 	static SysDB::GroupManagerPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("TartarusNSCD.GrouprReaderPrx");
+		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.GroupReaderPrx");
 		if (!base)
 			throw "Could not create proxy";
 		prx = SysDB::GroupManagerPrx::checkedCast(base);

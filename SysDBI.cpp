@@ -3,6 +3,10 @@
 #include <TartarusSysDB.h>
 #include <stdexcept>
 
+#ifdef DEBUG
+#include <iostream>
+#endif
+
 using namespace Tartarus;
 
 ::Tartarus::iface::SysDB::UserSeq

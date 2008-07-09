@@ -60,5 +60,5 @@ Tartarus.SysDB.UserReaderPrx=UserReader:ssl -p 12345
 Tartarus.SysDB.GroupReaderPrx=GroupReader:ssl -p 12345
 
 TartarusNSCD.Endpoints=tcp -p 12346 -h localhost
-TartarusNSCD.UserReaderPrx=UserReader:tcp -p 12346 -h localhost
-TartarusNSCD.GroupReaderPrx=GroupReader:tcp -p 12346 -h localhost
+Tartarus.NSCD.UserReaderPrx=UserReader:tcp -p 12346 -h localhost
+Tartarus.NSCD.GroupReaderPrx=GroupReader:tcp -p 12346 -h localhost
