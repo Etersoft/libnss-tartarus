@@ -66,7 +66,7 @@ nss_status _nss_tartarus_setpwent(void)
 	Lock lock(&mutex);
 
 	try {
-		SysDB::UserManagerPrx prx = getUserReader();
+		SysDB::UserReaderPrx prx = getUserReader();
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
 		std::cerr << "_nss_tartarus_setpwent memory_allocate_error: " << error << std::endl;

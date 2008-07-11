@@ -56,8 +56,8 @@ IceSSL.Keytab=/etc/krb5.keytab
 
 #Tartarus.SysDB.UserManagerPrx=UserReader@SysDB
 #Tartarus.SysDB.GroupManagerPrx=GroupReader@SysDB
-Tartarus.SysDB.UserReaderPrx=UserReader:ssl -p 12345
-Tartarus.SysDB.GroupReaderPrx=GroupReader:ssl -p 12345
+Tartarus.SysDB.UserReaderPrx=SysDB-Manager/Users:ssl -p 12345
+Tartarus.SysDB.GroupReaderPrx=SysDB-Manager/Groups:ssl -p 12345
 
 TartarusNSCD.Endpoints=tcp -p 12346 -h localhost
 Tartarus.NSCD.UserReaderPrx=UserReader:tcp -p 12346 -h localhost

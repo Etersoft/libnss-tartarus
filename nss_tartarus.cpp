@@ -24,33 +24,33 @@ static const Ice::CommunicatorPtr& getIceCommunicator()
 	return ic;
 }
 
-const SysDB::UserManagerPrx& getUserReader()
+const SysDB::UserReaderPrx& getUserReader()
 {
-	static SysDB::UserManagerPrx prx;
+	static SysDB::UserReaderPrx prx;
 
 	if (!prx) {
 		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.UserReaderPrx");
 		if (!base)
-			throw "Could not create proxy";
-		prx = SysDB::UserManagerPrx::checkedCast(base);
+			throw "Could not create TNSCD/Users proxy";
+		prx = SysDB::UserReaderPrx::checkedCast(base);
 		if (!prx)
-			throw "Invalid proxy";
+			throw "Invalid TNSCD/Users proxy";
 	}
 	
 	return prx;
 }
 
-const SysDB::GroupManagerPrx& getGroupReader()
+const SysDB::GroupReaderPrx& getGroupReader()
 {
-	static SysDB::GroupManagerPrx prx;
+	static SysDB::GroupReaderPrx prx;
 
 	if (!prx) {
 		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.GroupReaderPrx");
 		if (!base)
-			throw "Could not create proxy";
-		prx = SysDB::GroupManagerPrx::checkedCast(base);
+			throw "Could not create TNSCD/Groups proxy";
+		prx = SysDB::GroupReaderPrx::checkedCast(base);
 		if (!prx)
-			throw "Invalid proxy";
+			throw "Invalid TNSCD/Groups proxy";
 	}
 	
 	return prx;

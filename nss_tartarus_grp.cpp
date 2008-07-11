@@ -122,7 +122,7 @@ nss_status _nss_tartarus_setgrent (int)
 	Lock lock(&mutex);
 
 	try {
-		SysDB::GroupManagerPrx prx = getGroupReader();
+		SysDB::GroupReaderPrx prx = getGroupReader();
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
 		std::cerr << "_nss_tartarus_setgrent memory_allocate_error: " << error << std::endl;
