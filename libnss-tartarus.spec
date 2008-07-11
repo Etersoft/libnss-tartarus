@@ -61,10 +61,10 @@ sed -i -e 's/ tartarus//' /etc/nsswitch.conf
 update_chrooted all
 
 %post -n nss-tartarus-daemon
-%post_service %name
+%post_service tnscd
 
 %preun -n nss-tartarus-daemon
-%preun_service %name
+%preun_service tnscd
 
 %files
 /%_lib/libnss_*.so.*
