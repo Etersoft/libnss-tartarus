@@ -11,7 +11,7 @@ Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 
 Source: %name-%version.tar
 
-Requires: libnss-role Tartarus-SysDB-slice
+Requires: libnss-role
 
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
@@ -19,6 +19,9 @@ Requires(postun): chrooted >= 0.3.5-alt1 sed
 BuildRequires: gcc-c++ glibc-devel scons
 #BuildRequires: boost-devel boost-iostreams-devel boost-program-options-devel
 BuildRequires(pre): rpm-build-licenses
+
+BuildRequires: Tartarus-SysDB-slice
+BuildRequires: libice-devel ice libice
 
 %description
 NSS library module for Tartarus.

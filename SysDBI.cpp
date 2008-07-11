@@ -65,6 +65,12 @@ Tartarus::iface::SysDB::UserReaderI::search(const ::std::string& factor,
 //    return users;
 }
 
+::Ice::Long
+Tartarus::iface::SysDB::UserReaderI::count(const Ice::Current& current)
+{
+    return getUserReader(current)->count();
+}
+
 ::Tartarus::iface::SysDB::GroupSeq
 Tartarus::iface::SysDB::GroupReaderI::get(::Ice::Long limit,
                                         ::Ice::Long offset,
@@ -121,11 +127,11 @@ Tartarus::iface::SysDB::GroupReaderI::search(const ::std::string& factor,
                                               ::Ice::Long maximum,
                                               const Ice::Current& current)
 {
-    SysDB::GroupSeq groups;
-    try {
-        groups = getGroupReader(current)->search(factor, maximum);
-    } catch (...) {
-        current.adapter->getCommunicator()->getLogger()->error("wrong www");
-    }
-    return groups;
+    return getGroupReader(current)->search(factor, maximum);
+}
+
+::Ice::Long
+Tartarus::iface::SysDB::GroupReaderI::count(const Ice::Current& current)
+{
+    return getGroupReader(current)->count();
 }

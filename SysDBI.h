@@ -32,6 +32,8 @@ public:
     virtual ::Tartarus::iface::SysDB::UserSeq search(const ::std::string&,
                                                      ::Ice::Long,
                                                      const Ice::Current&);
+    virtual ::Ice::Long count(const Ice::Current&);
+
 };
 
 class GroupReaderI : virtual public GroupReader
@@ -63,6 +65,8 @@ public:
     virtual ::Tartarus::iface::SysDB::GroupSeq search(const ::std::string&,
                                                       ::Ice::Long,
                                                       const Ice::Current&);
+    virtual ::Ice::Long count(const Ice::Current&);
+
 };
 
 }
