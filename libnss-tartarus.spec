@@ -41,7 +41,7 @@ scons
 scons install DESTDIR=%buildroot
 mkdir -p %buildroot%_sysconfdir/Tartarus
 touch %buildroot%_sysconfdir/role
-cp config.service %buildroot%_sysconfdir/Tartarus/tncsd.conf
+cp config.service %buildroot%_sysconfdir/Tartarus/tnscd.conf
 
 mkdir -p %buildroot%_initdir
 cp tnscd.init.%_vendor %buildroot%_initdir/tnscd

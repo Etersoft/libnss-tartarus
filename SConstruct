@@ -23,6 +23,8 @@ so = libenv.SharedLibrary(NAME, ['TartarusNSCDInit.cpp', 'nss_tartarus_grp.cpp',
 
 i = libenv.Install('$DESTDIR/lib', so)
 libenv.Alias('install', i)
+i = env.Install('$DESTDIR/usr/sbin', tnscd)
+env.Alias('install', i)
 
 if 'install' in COMMAND_LINE_TARGETS:
         i = libenv.Command(NAME + '.so', so[0], 'ln -sf %s $DESTDIR/lib/%s' % ( SONAME+'.0.0', SONAME))
