@@ -1,6 +1,6 @@
 Name: libnss-tartarus
 Version: 0.0.1
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -12,6 +12,8 @@ Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 Source: %name-%version.tar
 
 Requires: libnss-role
+Requires: nss-tartarus-daemon = %version-%release
+Requires: libice-ssl-krb
 
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
@@ -22,6 +24,7 @@ BuildRequires(pre): rpm-build-licenses
 
 BuildRequires: Tartarus-SysDB-slice
 BuildRequires: libice-devel ice libice
+BuildRequires: libice-ssl-krb-devel
 
 %description
 NSS library module for Tartarus.
@@ -29,7 +32,6 @@ NSS library module for Tartarus.
 %package -n nss-tartarus-daemon
 Summary: Authorization proxy and cache daemon for Tartarus
 Group: System/Servers
-Requires: %name = %version-%release
 
 %description -n nss-tartarus-daemon
 Authorization proxy and cache daemon for Tartarus
@@ -75,6 +77,9 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/tnscd.conf
 
 %changelog
+* Mon Jul 14 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt2
+- Fix requires for nss module and daemon
+
 * Fri Jul 11 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt1
 - Initial rpm build for ALT Linux Sisyphus
 
