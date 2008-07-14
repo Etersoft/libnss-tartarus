@@ -20,7 +20,7 @@ RETVAL=0
 start()
 {
         msg_starting $"tnscd"
-        start_daemon --lockfile "$LOCKFILE" --no-announce -- tnscd
+        start_daemon --lockfile "$LOCKFILE" --make-pidfile --pidfile "$PIDFILE" --no-announce -- tnscd
         RETVAL=$?
         return $RETVAL
 }
@@ -29,7 +29,7 @@ start()
 stop()
 {
         msg_stopping $"tnscd"
-        stop_daemon --lockfile "$LOCKFILE" --no-announce -- tnscd
+        stop_daemon --lockfile "$LOCKFILE" --pidfile "$PIDFILE" --no-announce -- tnscd
         RETVAL=$?
         return $RETVAL
 }
