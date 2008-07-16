@@ -14,6 +14,9 @@ Tartarus::iface::SysDB::UserReaderI::get(::Ice::Long limit,
                                          ::Ice::Long offset,
                                          const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "UserReaderI::get for " << limit << ", " << offset << std::endl;
+#endif
     return getUserReader(current)->get(limit, offset);
 }
 
@@ -21,20 +24,45 @@ Tartarus::iface::SysDB::UserReaderI::get(::Ice::Long limit,
 Tartarus::iface::SysDB::UserReaderI::getById(::Ice::Long uid,
                                              const Ice::Current& current)
 {
-    return getUserReader(current)->getById(uid);
+#ifdef DEBUG
+	std::cerr << "UserReaderI::getById for " << uid << std::endl;
+#endif
+	::Tartarus::iface::SysDB::UserRecord user = getUserReader(current)->getById(uid);
+#ifdef DEBUG
+	std::cerr << "user: " << user.name << "(" << user.uid << ")\n";
+#endif
+	return user;
 }
 
 ::Tartarus::iface::SysDB::UserRecord
 Tartarus::iface::SysDB::UserReaderI::getByName(const ::std::string& name,
                                                const Ice::Current& current)
 {
-    return getUserReader(current)->getByName(name);
+#ifdef DEBUG
+	std::cerr << "UserReaderI::getByName for " << name << std::endl;
+#endif
+	::Tartarus::iface::SysDB::UserRecord user = getUserReader(current)->getByName(name);
+#ifdef DEBUG
+	std::cerr << "user: " << user.name << "(" << user.uid << ")\n";
+#endif
+    return user;
 }
 
 ::Tartarus::iface::SysDB::UserSeq
 Tartarus::iface::SysDB::UserReaderI::getUsers(const ::Tartarus::iface::SysDB::IdSeq& userIds,
                                                const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "UserReaderI::getUsers for: ";
+	for (::Tartarus::iface::SysDB::IdSeq::const_iterator i = userIds.begin(); i != userIds.end(); i++)
+	{
+		if(i == userIds.begin())
+			std::cerr << *i;
+		else
+			std::cerr << ", " << *i;
+	}
+	std::cerr << std::endl;
+#endif
     return getUserReader(current)->getUsers(userIds);
 }
 
@@ -76,6 +104,9 @@ Tartarus::iface::SysDB::GroupReaderI::get(::Ice::Long limit,
                                         ::Ice::Long offset,
                                         const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::get for " << limit << ", " << offset << std::endl;
+#endif
     return getGroupReader(current)->get(limit, offset);
 }
 
@@ -83,6 +114,9 @@ Tartarus::iface::SysDB::GroupReaderI::get(::Ice::Long limit,
 Tartarus::iface::SysDB::GroupReaderI::getById(::Ice::Long gid,
                                                const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getById for: " << gid << std::endl;
+#endif
     return getGroupReader(current)->getById(gid);
 }
 
@@ -90,6 +124,9 @@ Tartarus::iface::SysDB::GroupReaderI::getById(::Ice::Long gid,
 Tartarus::iface::SysDB::GroupReaderI::getByName(const ::std::string& name,
                                                  const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getByName for: " << name << std::endl;
+#endif
     return getGroupReader(current)->getByName(name);
 }
 
@@ -97,6 +134,9 @@ Tartarus::iface::SysDB::GroupReaderI::getByName(const ::std::string& name,
 Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserId(::Ice::Long uid,
                                                     const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getGroupsForUserId for: " << uid << std::endl;
+#endif
     return getGroupReader(current)->getGroupsForUserId(uid);
 }
 
@@ -104,6 +144,9 @@ Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserId(::Ice::Long uid,
 Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserName(const ::std::string& name,
                                                       const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getGroupsForUserName for: " << name << std::endl;
+#endif
     return getGroupReader(current)->getGroupsForUserName(name);
 }
 
@@ -112,6 +155,17 @@ Tartarus::iface::SysDB::GroupReaderI::getGroupsForUserName(const ::std::string& 
 Tartarus::iface::SysDB::GroupReaderI::getGroups(const ::Tartarus::iface::SysDB::IdSeq& groupIds,
                                                  const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getGroups for: ";
+	for (::Tartarus::iface::SysDB::IdSeq::const_iterator i = groupIds.begin(); i != groupIds.end(); i++)
+	{
+		if(i == groupIds.begin())
+			std::cerr << *i;
+		else
+			std::cerr << ", " << *i;
+	}
+	std::cerr << std::endl;
+#endif
     return getGroupReader(current)->getGroups(groupIds);
 }
 
@@ -119,6 +173,9 @@ Tartarus::iface::SysDB::GroupReaderI::getGroups(const ::Tartarus::iface::SysDB::
 Tartarus::iface::SysDB::GroupReaderI::getUsers(::Ice::Long gid,
                                                 const Ice::Current& current)
 {
+#ifdef DEBUG
+	std::cerr << "GroupReaderI::getUsers for: " << gid << std::endl;
+#endif
     return getGroupReader(current)->getUsers(gid);
 }
 

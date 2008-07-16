@@ -18,7 +18,7 @@ const SysDB::UserReaderPrx& getUserReader(const Ice::CommunicatorPtr& communicat
 	static SysDB::UserReaderPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = communicator->propertyToProxy("Tartarus.SysDB.UserReaderPrx");
+		Ice::ObjectPrx base = communicator->propertyToProxy("Tartarus.SysDB.UserManagerPrx");
 		if (!base)
 			throw "Could not create SysDB/Users proxy";
 		prx = SysDB::UserReaderPrx::checkedCast(base);
@@ -34,7 +34,7 @@ const SysDB::GroupReaderPrx& getGroupReader(const Ice::CommunicatorPtr& communic
 	static SysDB::GroupReaderPrx prx;
 
 	if (!prx) {
-		Ice::ObjectPrx base = communicator->propertyToProxy("Tartarus.SysDB.GroupReaderPrx");
+		Ice::ObjectPrx base = communicator->propertyToProxy("Tartarus.SysDB.GroupManagerPrx");
 		if (!base)
 			throw "Could not create SysDB/Groups proxy";
 		prx = SysDB::GroupReaderPrx::checkedCast(base);

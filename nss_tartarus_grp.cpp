@@ -16,10 +16,7 @@
 #include <Ice/Ice.h>
 #include <SysDB.h>
 
-#include "lock.h"
 #include "nss_tartarus.h"
-
-static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static bool realloc_groups (long int **size, gid_t ***groups, long int limit)
 {
@@ -119,13 +116,15 @@ nss_status _nss_tartarus_setgrent (int)
 {
 	nss_status ret = NSS_STATUS_SUCCESS;
 
-	Lock lock(&mutex);
+#ifdef DEBUG
+	std::cerr << __FUNCTION__ << " start" << std::endl;
+#endif
 
 	try {
 		SysDB::GroupReaderPrx prx = getGroupReader();
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_setgrent memory_allocate_error: " << error << std::endl;
+		std::cerr << "_nss_tartarus_setgrent Ice_error: " << error << std::endl;
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (std::bad_alloc error) {
@@ -155,17 +154,27 @@ nss_status _nss_tartarus_setgrent (int)
 		ret = NSS_STATUS_UNAVAIL;
 	}
 
+#ifdef DEBUG
+	std::cerr << __FUNCTION__ << " end" << std::endl;
+#endif
+
 	return ret;
 }
 nss_status _nss_tartarus_endgrent (void)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
+#ifdef DEBUG
+	std::cerr << __FUNCTION__ << " start stop" << std::endl;
+#endif
+
+	return NSS_STATUS_SUCCESS;
 }
 nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buffer, size_t buflen, int *errnop)
 {
 	nss_status ret = NSS_STATUS_SUCCESS;
 
-	Lock lock(&mutex);
+#ifdef DEBUG
+	std::cerr << "_nss_tartarus_getgrgid_r start" << std::endl;
+#endif
 
 	try {
 		ret = fill_group (result, getGroupReader()->getById(gid), &buffer, &buflen);
@@ -174,9 +183,14 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
+	} catch (const Tartarus::iface::SysDB::NotFound& error) {
+#ifdef DEBUG
+		std::cerr << __FUNCTION__ <<" NotFound_error: " << error << std::endl;
+#endif
+		ret = NSS_STATUS_NOTFOUND;
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getgrgid_r memory_allocate_error: " << error << std::endl;
+		std::cerr << "_nss_tartarus_getgrgid_r Ice_error: " << error << std::endl;
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (std::bad_alloc error) {
@@ -207,13 +221,19 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 		ret = NSS_STATUS_UNAVAIL;
 	}
 
+#ifdef DEBUG
+	std::cerr << "_nss_tartarus_getgrgid_r end" << std::endl;
+#endif
+
 	return ret;
 }
 nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, char *buffer, size_t buflen, int *errnop)
 {
 	nss_status ret = NSS_STATUS_SUCCESS;
 
-	Lock lock(&mutex);
+#ifdef DEBUG
+	std::cerr << "_nss_tartarus_getgrnam_r start" << std::endl;
+#endif
 
 	try {
 		ret = fill_group (result, getGroupReader()->getByName(name), &buffer, &buflen);
@@ -222,9 +242,14 @@ nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, cha
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
+	} catch (const Tartarus::iface::SysDB::NotFound& error) {
+#ifdef DEBUG
+		std::cerr << __FUNCTION__ <<" NotFound_error: " << error << std::endl;
+#endif
+		ret = NSS_STATUS_NOTFOUND;
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getgrnam_r memory_allocate_error: " << error << std::endl;
+		std::cerr << "_nss_tartarus_getgrnam_r Ice_error: " << error << std::endl;
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (std::bad_alloc error) {
@@ -255,36 +280,49 @@ nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, cha
 		ret = NSS_STATUS_UNAVAIL;
 	}
 
+#ifdef DEBUG
+	std::cerr << "_nss_tartarus_getgrnam_r stop" << std::endl;
+#endif
+
 	return ret;
 }
 nss_status _nss_tartarus_getgrent_r (struct group *result, char *buffer, size_t buflen, int *errnop)
 {
-	return NSS_STATUS_UNAVAIL;
+#ifdef DEBUG
+	std::cerr << "_nss_tartarus_getgrent_r start stop" << std::endl;
+#endif
+
+//	return NSS_STATUS_UNAVAIL;
+	return NSS_STATUS_NOTFOUND;
 }
 nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int *start, long int *size, gid_t **groups, long int limit, int *errnop)
 {
 	nss_status ret = NSS_STATUS_SUCCESS;
 
-	Lock lock(&mutex);
-
 #ifdef DEBUG
-	std::cerr << "_nss_tartarus_initgroups start" << std::endl;
+	std::cerr << "_nss_tartarus_initgroups_dyn start" << std::endl;
 #endif
 
 	try {
 		SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(user);
-		SysDB::GroupSeq groupRecords = getGroupReader()->getGroups(ids);
+//		SysDB::GroupSeq groupRecords = getGroupReader()->getGroups(ids);
 
-		for (SysDB::GroupSeq::iterator i = groupRecords.begin(); i != groupRecords.end(); i++) {
+//		for (SysDB::GroupSeq::iterator i = groupRecords.begin(); i != groupRecords.end(); i++) {
+		for(SysDB::IdSeq::const_iterator i = ids.begin(); i != ids.end(); ++i) {
 			if (*start == *size) {
 				if (!realloc_groups (&size, &groups, limit))
 					break;
 			}
-			(*groups)[(*start)++] = i->gid;
+			(*groups)[(*start)++] = *i;
 		}
+	} catch (const Tartarus::iface::SysDB::NotFound& error) {
+#ifdef DEBUG
+		std::cerr << __FUNCTION__ <<" NotFound_error: " << error << std::endl;
+#endif
+		ret = NSS_STATUS_NOTFOUND;
 	} catch (const Ice::Exception& error) {
 #ifdef DEBUG
-		std::cerr << "_nss_tartarus_getgrnam_r memory_allocate_error: " << error << std::endl;
+		std::cerr << "_nss_tartarus_initgroups Ice_error: " << error << std::endl;
 #endif
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (std::bad_alloc error) {
@@ -316,7 +354,7 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 	}
 
 #ifdef DEBUG
-	std::cerr << "_nss_tartarus_initgroups end" << std::endl;
+	std::cerr << "_nss_tartarus_initgroups_dyn stop" << std::endl;
 #endif
 
 	return ret;

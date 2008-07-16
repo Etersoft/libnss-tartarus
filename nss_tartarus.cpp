@@ -1,5 +1,6 @@
 #include "nss_tartarus.h"
 #include <TartarusNSCDInit.h>
+#include <IceUtil/StaticMutex.h>
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len)
 {
@@ -24,9 +25,12 @@ static const Ice::CommunicatorPtr& getIceCommunicator()
 	return ic;
 }
 
+
 const SysDB::UserReaderPrx& getUserReader()
 {
 	static SysDB::UserReaderPrx prx;
+	static IceUtil::StaticMutex mutex = ICE_STATIC_MUTEX_INITIALIZER;
+	IceUtil::StaticMutex::Lock lock(mutex);
 
 	if (!prx) {
 		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.UserReaderPrx");
@@ -43,6 +47,8 @@ const SysDB::UserReaderPrx& getUserReader()
 const SysDB::GroupReaderPrx& getGroupReader()
 {
 	static SysDB::GroupReaderPrx prx;
+	static IceUtil::StaticMutex mutex = ICE_STATIC_MUTEX_INITIALIZER;
+	IceUtil::StaticMutex::Lock lock(mutex);
 
 	if (!prx) {
 		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.GroupReaderPrx");
