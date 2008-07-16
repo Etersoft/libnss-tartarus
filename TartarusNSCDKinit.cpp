@@ -3,6 +3,11 @@
 
 #include <string>
 #include <stdexcept>
+#include <cstring>
+
+#include <errno.h>
+#include <sys/socket.h>
+#include <netdb.h>
 
 extern "C"
 {
@@ -12,7 +17,48 @@ extern "C"
 
 namespace Tartarus {
 
-krb5_error_code
+#ifndef AI_CANONIDN
+#define FQDN_R_AI_FLAGS (AI_CANONNAME)
+#else
+#define FQDN_R_AI_FLAGS (AI_CANONNAME | AI_CANONIDN)
+#endif
+
+static int fqdn_r(char* buf, int len)
+{
+    char data[HOST_NAME_MAX + 1];
+    struct addrinfo hints;
+    struct addrinfo *result = 0;
+    char* x = 0;
+    int l = 0, e = 0;
+
+    std::memset(&hints, 0, sizeof(struct addrinfo));
+
+    e = gethostname(data, HOST_NAME_MAX + 1);
+    if (e < 0) return EAI_SYSTEM;
+
+    data[HOST_NAME_MAX] = 0;
+
+    hints.ai_flags = FQDN_R_AI_FLAGS;
+    hints.ai_family = AF_INET;
+
+    e = getaddrinfo(data, 0, &hints, &result);
+    if (e != 0) return e;
+
+    x = result->ai_canonname;
+    l = std::strlen(x);
+    if (l > len)
+    {
+        errno = EINVAL;
+        return EAI_SYSTEM;
+    }
+    std::strncpy(buf, x, len);
+
+    freeaddrinfo(result);
+
+    return 0;
+}
+
+static krb5_error_code
 kinit_keytab(const char* princname, const char* ktname, const char* ccname, char** what)
 {
     char *dummy = 0;
@@ -111,12 +157,22 @@ out1:
 
 void NSCDKinit(const char *princname, const char* ktname, const char* ccname)
 {
-    char* what = 0;
+    char host[HOST_NAME_MAX+1];
     krb5_error_code e = 0;
+    char* what = 0;
+    int ret;
 
-    e = kinit_keytab(princname, ktname, ccname, &what);
-    if (e != 0)
-    {
+    ret = fqdn_r(host, HOST_NAME_MAX);
+    if (ret) {
+        std::string err("getting host name: ");
+        err += std::strerror(errno);
+        throw (std::runtime_error(err));
+    }
+
+    std::string princ(princname);
+    princ += std::string("/") + host;
+    ret = kinit_keytab(princ.c_str(), ktname, ccname, &what);
+    if (ret) {
         std::string err(error_message(e));
         err += std::string(": ") + what;
         throw (std::runtime_error(err));

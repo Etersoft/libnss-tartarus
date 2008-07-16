@@ -4,6 +4,7 @@
 #include <Ice/Ice.h>
 #include <SysDBI.h>
 #include <TartarusNSCDInit.h>
+#include <TartarusNSCDKinit.h>
 
 #include <iostream>
 
@@ -72,6 +73,7 @@ int main(int argc, char* argv[])
 	TatarusNSCD svc;
 
 	Ice::InitializationData &init = Tartarus::NSCDInitialize();
+	Tartarus::NSCDKinit();
 
 	return svc.main(argc,argv,init);
 }
