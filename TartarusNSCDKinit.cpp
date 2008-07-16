@@ -169,6 +169,9 @@ void NSCDKinit(const char *princname, const char* ktname, const char* ccname)
         throw (std::runtime_error(err));
     }
 
+    if (ccname && setenv("KRB5CCNAME", ccname, 1) != 0)
+        throw (std::runtime_error("can't set KRB5CCNAME"));
+
     std::string princ(princname);
     princ += std::string("/") + host;
     ret = kinit_keytab(princ.c_str(), ktname, ccname, &what);
