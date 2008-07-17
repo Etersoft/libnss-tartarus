@@ -1,5 +1,5 @@
-#ifndef __Tartarus_NSCD_Initialaize_h__
-#define __Tartarus_NSCD_Initialaize_h__
+#ifndef Tartarus_NSCD_Initialaize_h
+#define Tartarus_NSCD_Initialaize_h
 
 #include <Ice/Ice.h>
 

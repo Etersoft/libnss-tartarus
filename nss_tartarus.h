@@ -1,10 +1,7 @@
 #ifndef LIBNSS_TARTARUS_H_
 #define LIBNSS_TARTARUS_H_
 
-#include <Ice/Ice.h>
-#include <SysDB.h>
-
-namespace SysDB = Tartarus::iface::SysDB;
+#include <TartarusClientI.h>
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len);
 
@@ -16,7 +13,7 @@ inline char *fill_record (char **buffer, size_t *buflen, const std::string &valu
 	return result;
 }
 
-const SysDB::UserReaderPrx& getUserReader();
-const SysDB::GroupReaderPrx& getGroupReader();
+Tartarus::UserReaderPrx getUserReader();
+Tartarus::GroupReaderPrx getGroupReader();
 
 #endif /*LIBNSS_TARTARUS_H_*/

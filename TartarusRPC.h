@@ -1,5 +1,5 @@
-#ifndef TARTARUS_RPC_RPC
-#define TARTARUS_RPC_RPC
+#ifndef Tartarus_RPC_h
+#define Tartarus_RPC_h
 
 #include <string>
 #include <stdexcept>

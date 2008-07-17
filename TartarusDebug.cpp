@@ -1,10 +1,11 @@
-#include "debug.hpp"
+#include <TartarusDebug.h>
+
+namespace Tartarus {
 
 #ifdef DEBUG
 
 #include <stdarg.h>
 #include <iostream>
-
 
 void debug(const char * msg)
 {
@@ -33,3 +34,5 @@ const char * va(const char * format, ...)
 }
 
 #endif /* DEBUG */
+
+}

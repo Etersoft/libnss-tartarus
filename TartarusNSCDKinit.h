@@ -1,5 +1,5 @@
-#ifndef __Tartarus_NSCD_Kinit_h__
-#define __Tartarus_NSCD_Kinit_h__
+#ifndef Tartarus_NSCD_Kinit_h
+#define Tartarus_NSCD_Kinit_h
 
 #include <stdexcept>
 

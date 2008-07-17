@@ -1,5 +1,5 @@
-#ifndef __Tartarus_SysDB_h__
-#define __Tartarus_SysDB_h__
+#ifndef Tartarus_SysDB_h
+#define Tartarus_SysDB_h
 
 #include <Ice/Ice.h>
 #include <SysDB.h>

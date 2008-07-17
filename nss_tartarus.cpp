@@ -1,6 +1,6 @@
+#include <TartarusDebug.h>
+
 #include "nss_tartarus.h"
-#include <TartarusNSCDInit.h>
-#include <IceUtil/StaticMutex.h>
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len)
 {
@@ -15,49 +15,14 @@ char *allocate_mem (char **buf, size_t *buflen, size_t len)
 	return next;
 }
 
-static const Ice::CommunicatorPtr& getIceCommunicator()
+Tartarus::UserReaderPrx getUserReader()
 {
-	static Ice::CommunicatorPtr ic = 0;
-	
-	if (!ic)
-		ic = Ice::initialize(Tartarus::NSCDInitialize(false));
-		
-	return ic;
+    Tartarus::RPC::Connection con(12346);
+    return Tartarus::UserReaderPrx ("UserReader", con);
 }
 
-
-const SysDB::UserReaderPrx& getUserReader()
+Tartarus::GroupReaderPrx getGroupReader()
 {
-	static SysDB::UserReaderPrx prx;
-	static IceUtil::StaticMutex mutex = ICE_STATIC_MUTEX_INITIALIZER;
-	IceUtil::StaticMutex::Lock lock(mutex);
-
-	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.UserReaderPrx");
-		if (!base)
-			throw "Could not create TNSCD/Users proxy";
-		prx = SysDB::UserReaderPrx::checkedCast(base);
-		if (!prx)
-			throw "Invalid TNSCD/Users proxy";
-	}
-	
-	return prx;
-}
-
-const SysDB::GroupReaderPrx& getGroupReader()
-{
-	static SysDB::GroupReaderPrx prx;
-	static IceUtil::StaticMutex mutex = ICE_STATIC_MUTEX_INITIALIZER;
-	IceUtil::StaticMutex::Lock lock(mutex);
-
-	if (!prx) {
-		Ice::ObjectPrx base = getIceCommunicator()->propertyToProxy("Tartarus.NSCD.GroupReaderPrx");
-		if (!base)
-			throw "Could not create TNSCD/Groups proxy";
-		prx = SysDB::GroupReaderPrx::checkedCast(base);
-		if (!prx)
-			throw "Invalid TNSCD/Groups proxy";
-	}
-	
-	return prx;
+    Tartarus::RPC::Connection con(12346);
+    return Tartarus::UserReaderPrx ("GroupReader", con);
 }

@@ -1,0 +1,9 @@
+from glob import glob
+
+Import('env')
+Import('libenv')
+
+json_spirit = env.Object('json_spirit', glob('*.cpp'))
+#json_shared_spirit = libenv.Object('json_spirit', glob('*.cpp'))
+
+Return(['json_spirit', 'json_shared_spirit'])
