@@ -1,15 +1,15 @@
 #include <TartarusDebug.h>
 
+#include <stdarg.h>
+#include <iostream>
+
 namespace Tartarus {
 
 #ifdef DEBUG
 
-#include <stdarg.h>
-#include <iostream>
-
 void debug(const char * msg)
 {
-    std::cerr << msg << std::endl;
+    ::std::cerr << msg << std::endl;
 }
 
 const char * va(const char * format, ...)
