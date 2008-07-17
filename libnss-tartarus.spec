@@ -18,7 +18,7 @@ Requires: libice-ssl-krb
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
-BuildRequires: gcc-c++ glibc-devel scons
+BuildRequires: gcc-c++ glibc-devel scons libkrb5-devel
 #BuildRequires: boost-devel boost-iostreams-devel boost-program-options-devel
 BuildRequires(pre): rpm-build-licenses
 
