@@ -34,7 +34,7 @@ env['LIBS'] += Popen(["/usr/bin/krb5-config", "--libs"], stdout=PIPE).communicat
 
 tnscd = env.Program('tnscd', ['TartarusNSCD.cpp', 'TartarusNSCDInit.cpp', 'TartarusNSCDKinit.cpp', 'TartarusServer.cpp', 'TartarusServerI.cpp', 'TartarusSysDB.cpp', 'boost_error_code.cpp', 'TartarusDebug.cpp', glob('json_spirit/*.cpp'), ice])
 
-so = libenv.SharedLibrary(NAME, ['TartarusNSCDInit.cpp', 'nss_tartarus_grp.cpp', 'nss_tartarus_pwd.cpp', 'TartarusClient.cpp', 'TartarusClientI.cpp', 'boost_error_code.cpp', 'TartarusDebug.cpp', glob('json_spirit/*.cpp')])
+so = libenv.SharedLibrary(NAME, ['nss_tartarus.cpp', 'nss_tartarus_grp.cpp', 'nss_tartarus_pwd.cpp', 'TartarusClient.cpp', 'TartarusClientI.cpp', 'boost_error_code.cpp', 'TartarusDebug.cpp', glob('json_spirit/*.cpp')])
 
 i = libenv.Install('$DESTDIR/lib', so)
 libenv.Alias('install', i)

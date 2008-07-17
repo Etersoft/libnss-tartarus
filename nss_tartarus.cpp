@@ -17,12 +17,16 @@ char *allocate_mem (char **buf, size_t *buflen, size_t len)
 
 Tartarus::UserReaderPrx getUserReader()
 {
+    Tartarus::debug ("getUserReader start");
     Tartarus::RPC::Connection con(12346);
-    return Tartarus::UserReaderPrx ("UserReader", con);
+    Tartarus::debug ("getUserReader con");
+    Tartarus::UserReaderPrx prx ("UserReader", con);
+    Tartarus::debug ("getUserReader end");
+    return prx;
 }
 
 Tartarus::GroupReaderPrx getGroupReader()
 {
     Tartarus::RPC::Connection con(12346);
-    return Tartarus::UserReaderPrx ("GroupReader", con);
+    return Tartarus::GroupReaderPrx ("GroupReader", con);
 }

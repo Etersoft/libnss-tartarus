@@ -1,3 +1,4 @@
+#include <TartarusDebug.h>
 #include <TartarusClientI.h>
 
 using namespace Tartarus;
@@ -6,28 +7,40 @@ UserRecord UserReaderPrx::getUser(uid_t uid)
 {
     json_spirit::Array params;
     params.push_back((int)uid);
-    return connection().call(name(), "getUserById", params);
+    json_spirit::Value result(connection().call(name(), "getUserById", params));
+    const json_spirit::Object &o = result.get_obj();
+    return UserRecord(o);
 }
 
 UserRecord UserReaderPrx::getUser(const std::string &username)
 {
+    debug("getUser start");
     json_spirit::Array params;
     params.push_back(username);
-    return connection().call(name(), "getUserByName", params);
+    debug("getUser call");
+    json_spirit::Value result(connection().call(name(), "getUserByName", params));
+    debug("getUser result");
+    const json_spirit::Object &o = result.get_obj();
+    debug("getUser construct");
+    return UserRecord(o);
 }
 
 GroupRecord GroupReaderPrx::getGroup(gid_t gid)
 {
     json_spirit::Array params;
     params.push_back((int)gid);
-    return connection().call(name(), "getGroupById", params);
+    json_spirit::Value result(connection().call(name(), "getGroupById", params));
+    const json_spirit::Object &o = result.get_obj();
+    return GroupRecord(o);
 }
 
 GroupRecord GroupReaderPrx::getGroup(const std::string &groupname)
 {
     json_spirit::Array params;
     params.push_back(groupname);
-    return connection().call(name(), "getGroupByName", params);
+    json_spirit::Value result(connection().call(name(), "getGroupByName", params));
+    const json_spirit::Object &o = result.get_obj();
+    return GroupRecord(o);
 }
 
 std::vector<std::string> GroupReaderPrx::getUsers(gid_t gid)

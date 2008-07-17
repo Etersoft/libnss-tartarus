@@ -36,20 +36,35 @@ json_spirit::Value Connection::call(const std::string & object, const std::strin
     o.push_back(json_spirit::Pair("method", method));
     o.push_back(json_spirit::Pair("params", params));
 
+    ::Tartarus::debug("Connection::call write");
+
     std::string buf = json_spirit::write(o);
+    ::Tartarus::debug("Connection::call buf.push_back");
+    ::Tartarus::debug(buf.c_str());
+    ::Tartarus::debug("Connection::call buf.push_back!");
     buf.push_back('\0');
+    ::Tartarus::debug("Connection::call boost::asio::write"); ///!!!!!!!
     boost::asio::write(socket, boost::asio::buffer(buf), boost::asio::transfer_all());
+    ::Tartarus::debug("Connection::call boost::asio::streambuf");
     boost::asio::streambuf recv_buf;
+    ::Tartarus::debug("Connection::call boost::asio::read_until");
     boost::asio::read_until(socket, recv_buf, '\0');
+
+    ::Tartarus::debug("Connection::call get recv");
+
     std::istream in(&recv_buf);
     std::string str;
     std::getline(in, str, '\0');
     json_spirit::Value res;
+
+    ::Tartarus::debug("Connection::call read json");
+
     if(!json_spirit::read(str, res))
     {
         throw RPCError("Wrong reply");
     } else
     {
+    ::Tartarus::debug("Connection::call get array");
         const json_spirit::Array & a = res.get_array();
         if(a[0].get_int())
             return a[1];
