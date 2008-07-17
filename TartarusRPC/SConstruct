@@ -1,0 +1,16 @@
+from glob import glob
+
+env = Environment()
+#env['LIBS'] = ['pthread', 'boost_system-mt']
+env['LIBS'] = ['pthread']
+env['CPPPATH'] = '.'
+env['LIBPATH'] = '.'
+
+if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
+    env['CPPFLAGS'] = '-DDEBUG'
+
+json_spirit = SConscript('json_spirit/SConscript')
+tartarus_rpc = env.StaticLibrary('tartarus-rpc', ['server.cpp', 'client.cpp', 'error_code.cpp', 'debug.cpp'])
+
+env.Program('server', ['sample_server.cpp', tartarus_rpc, json_spirit])
+env.Program('client', ['sample_client.cpp', tartarus_rpc, json_spirit])

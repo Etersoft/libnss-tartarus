@@ -1,0 +1,5 @@
+from glob import glob
+
+json_spirit = StaticLibrary('json_spirit', glob('*.cpp'))
+
+Return('json_spirit')
