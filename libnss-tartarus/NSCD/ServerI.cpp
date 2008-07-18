@@ -25,12 +25,12 @@ json_spirit::Value UserReader::call(const std::string & method, const json_spiri
 
 json_spirit::Value GroupReader::call(const std::string & method, const json_spirit::Array & params)
 {
-    if(method == "getUserById")
+    if(method == "getGroupById")
     {
         gid_t gid = params[0].get_int();
         return getGroup(gid).toValue();
     }
-    else if(method == "getUserByName")
+    else if(method == "getGroupByName")
     {
         const std::string &groupname = params[0].get_str();
         return getGroup(groupname).toValue();
