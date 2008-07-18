@@ -1,4 +1,5 @@
 from glob import glob
+from os import path
 from subprocess import Popen, PIPE
 
 Import('env', 'rpc', 'json')
@@ -9,11 +10,17 @@ env['CCFLAGS'] += Popen(["/usr/bin/krb5-config", "--cflags"], stdout=PIPE).commu
 env['LIBS'] += Popen(["/usr/bin/krb5-config", "--libs"], stdout=PIPE).communicate()[0].split()
 env['CPPPATH'] += ['.']
 
+libs = [path.basename(str(i[0]))[:-3] for i in (rpc, json)]
+libpath = [path.dirname(str(i[0])) for i in (rpc, json)]
+
+env['LIBS'] += libs
+env['LIBPATH'] = libpath
+
 ice = env.Ice('SysDB', '/usr/share/Tartarus/slice/SysDB/SysDB.ice')
 
 src = glob('*.cpp')
 if 'SysDB.cpp' in src:
     src.remove('SysDB.cpp')
-nscd = env.Program('nscd', src + [ice, rpc, json])
+nscd = env.Program('nscd', src + [ice])
 
 Return('nscd')

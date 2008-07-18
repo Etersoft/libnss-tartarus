@@ -1,8 +1,16 @@
 from glob import glob
 
+class TartarusEnvironment(Environment):
+    def __init__(self, *args, **kwargs):
+        Environment.__init__(self, *args, **kwargs)
+    def Install(self, destdir, *args, **kwargs):
+        i = Environment.Install(self, '$DESTDIR/%s' % destdir, *args, **kwargs)
+        self.Alias('install', i)
+        return i
+
 opts = Options()
 opts.Add('DESTDIR', 'Directory to install', '')
-env = Environment(options=opts)
+env = TartarusEnvironment(options=opts)
 Help(opts.GenerateHelpText(env))
 
 env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
@@ -13,16 +21,16 @@ if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
     env['CPPFLAGS'] = '-DDEBUG'
 else:
     env['CCFLAGS'] = ['-O2']
-
-
 Export('env')
-rpc = SConscript('RPC/SConscript')
+
 json = SConscript('json_spirit/SConscript')
-Export('json', 'rpc')
+Export('json')
+rpc = SConscript('RPC/SConscript')
+Export('rpc')
+env.Install('/usr/lib', [rpc, json])
 tnscd = SConscript('NSCD/SConscript')
 nss = SConscript('nss/SConscript')
 
-i = env.Install('$DESTDIR/lib', nss)
-env.Alias('install', i)
-i = env.Install('$DESTDIR/usr/sbin', tnscd)
-env.Alias('install', i)
+nss_inst = env.Install('$DESTDIR/lib', nss)
+env.Install('$DESTDIR/usr/sbin', tnscd)
+env.Alias('install', env.Command('$DESTDIR/lib/nss_tartarus.so.2', nss_inst, 'ln -s `basename $SOURCE` $TARGET'))

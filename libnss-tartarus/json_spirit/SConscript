@@ -5,6 +5,6 @@ Import('env')
 env = env.Clone()
 env['CPPPATH'] = ['..']
 
-json_spirit = env.StaticLibrary('json_spirit', glob('*.cpp'))
+json = env.SharedLibrary('json_spirit', glob('*.cpp'))
 
-Return('json_spirit')
+Return('json')
