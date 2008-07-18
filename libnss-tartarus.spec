@@ -1,6 +1,6 @@
 Name: libnss-tartarus
 Version: 0.0.1
-Release: alt2
+Release: alt3
 
 Summary: NSS library module for Tartarus
 
