@@ -1,4 +1,5 @@
 from glob import glob
+from os import path
 
 Import('env', 'rpc', 'json')
 env = env.Clone()
@@ -8,6 +9,13 @@ SUFFIX = ".so.2"
 SONAME = NAME + SUFFIX
 env["SHLIBSUFFIX"] = [SUFFIX + '.0.0']
 env["LINKFLAGS"] = ['-Wl,-soname,' + SONAME]
+
+libs = [path.basename(str(i[0]))[:-3] for i in (rpc, json)]
+libpath = [path.dirname(str(i[0])) for i in (rpc, json)]
+
+env['LIBS'] += libs
+env['LIBPATH'] = libpath
+
 nss = env.SharedLibrary('nss_tartarus', glob('*.cpp'))
 
 Return('nss')
