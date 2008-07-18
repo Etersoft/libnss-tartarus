@@ -13,6 +13,8 @@
 
 #include "nss_tartarus.h"
 
+using namespace Tartarus;
+
 static bool realloc_groups (long int **size, gid_t ***groups, long int limit)
 {
 	long int new_size;
@@ -85,16 +87,15 @@ extern "C" {
 
 nss_status _nss_tartarus_setgrent (int)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug(va("%s: %s", __FUNCTION__, "start"));
 	try {
 		Tartarus::GroupReaderPrx prx = getGroupReader();
+		ret = NSS_STATUS_SUCCESS;
 	} catch (std::exception error) {
 		debug(va("%s: %s", __FUNCTION__, error.what()));
-		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
 	debug (va("%s: %s", __FUNCTION__, "end"));
 	return ret;
@@ -108,10 +109,8 @@ nss_status _nss_tartarus_endgrent (void)
 
 nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buffer, size_t buflen, int *errnop)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
-
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
-
 	try {
 		ret = fill_group (result, getGroupReader().getGroup(gid), &buffer, &buflen);
 
@@ -119,31 +118,24 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
+	} catch (const RPC::RPCError& error) {
+		debug (va("%s: %s", __FUNCTION__, "RPC Error: ", error.what()));
+		if (error.what() == "NotFound")
+			ret = NSS_STATUS_NOTFOUND;
 	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
-		ret = NSS_STATUS_UNAVAIL;
+	} catch (std::exception error) {
+		debug (va("%s: %s", __FUNCTION__, error.what()));
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, char *buffer, size_t buflen, int *errnop)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
+	nss_status ret = NSS_STATUS_UNAVAIL;
 
 	debug (va("%s: %s", __FUNCTION__, "start"));
 
@@ -154,44 +146,31 @@ nss_status _nss_tartarus_getgrnam_r (const char *name, struct group *result, cha
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
-//	} catch (const Tartarus::iface::SysDB::NotFound& error) {
-//		debug (va("%s: %s", __FUNCTION__, "NotFound_error", error));
-//		ret = NSS_STATUS_NOTFOUND;
+	} catch (const RPC::RPCError& error) {
+		debug (va("%s: %s", __FUNCTION__, "RPC Error: ", error.what()));
+		if (error.what() == "NotFound")
+			ret = NSS_STATUS_NOTFOUND;
 	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
-		ret = NSS_STATUS_UNAVAIL;
+	} catch (std::exception error) {
+		debug (va("%s: %s", __FUNCTION__, error.what()));
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 nss_status _nss_tartarus_getgrent_r (struct group *result, char *buffer, size_t buflen, int *errnop)
 {
 	debug (va("%s: %s", __FUNCTION__, "start stop"));
-
 //	return NSS_STATUS_UNAVAIL;
 	return NSS_STATUS_NOTFOUND;
 }
 nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int *start, long int *size, gid_t **groups, long int limit, int *errnop)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
-
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
-
 	try {
 		std::vector<uid_t> ids = getGroupReader().getUserGroups(user);
 
@@ -202,23 +181,21 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 			}
 			(*groups)[(*start)++] = *i;
 		}
-//	} catch (const Tartarus::iface::SysDB::NotFound& error) {
-//		debug (va("%s: %s", __FUNCTION__, "NotFound_error", error));
-//		ret = NSS_STATUS_NOTFOUND;
+
+		ret = NSS_STATUS_SUCCESS;
+	} catch (const RPC::RPCError& error) {
+		debug (va("%s: %s", __FUNCTION__, "RPC Error: ", error.what()));
+		if (error.what() == "NotFound")
+			ret = NSS_STATUS_NOTFOUND;
 	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
-		ret = NSS_STATUS_UNAVAIL;
 	} catch (std::exception error) {
 		debug (va("%s: %s", __FUNCTION__, error.what()));
-		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 

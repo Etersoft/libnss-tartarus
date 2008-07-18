@@ -12,6 +12,8 @@
 
 #include "nss_tartarus.h"
 
+using namespace Tartarus;
+
 static nss_status fill_user (struct passwd *ent, const Tartarus::UserRecord& user, char **buffer, size_t *buflen)
 {
 	debug (va("%s: %s", __FUNCTION__, "start"));
@@ -45,7 +47,6 @@ static nss_status fill_user (struct passwd *ent, const Tartarus::UserRecord& use
 	ent->pw_gid = user.gid;
 
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return NSS_STATUS_SUCCESS;
 }
 
@@ -53,47 +54,30 @@ extern "C" {
 
 nss_status _nss_tartarus_setpwent(void)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
-
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
-
 	try {
 		Tartarus::UserReaderPrx prx = getUserReader();
-	} catch (std::bad_alloc error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
-		ret = NSS_STATUS_UNAVAIL;
+		ret = NSS_STATUS_SUCCESS;
+	} catch (std::exception error) {
+		debug(va("%s: %s", __FUNCTION__, error.what()));
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 
 nss_status _nss_tartarus_endpwent(void)
 {
 	debug (va("%s: %s", __FUNCTION__, "start stop"));
-
 	return NSS_STATUS_SUCCESS;
 }
 
 nss_status _nss_tartarus_getpwuid_r(uid_t uid, struct passwd *result, char *buffer, size_t buflen, int *errnop)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
-
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
-
 	try {
 		ret = fill_user (result, getUserReader().getUser(uid), &buffer, &buflen);
 
@@ -101,38 +85,26 @@ nss_status _nss_tartarus_getpwuid_r(uid_t uid, struct passwd *result, char *buff
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
-//	} catch (const Tartarus::iface::SysDB::NotFound& error) {
-//		debug (va("%s: %s", __FUNCTION__, "NotFound_error", error));
-//		ret = NSS_STATUS_NOTFOUND;
+	} catch (const RPC::RPCError& error) {
+		debug (va("%s: %s", __FUNCTION__, "RPC Error: ", error.what()));
+		if (error.what() == "NotFound")
+			ret = NSS_STATUS_NOTFOUND;
 	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
-		ret = NSS_STATUS_UNAVAIL;
+	} catch (std::exception error) {
+		debug (va("%s: %s", __FUNCTION__, error.what()));
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 
 nss_status _nss_tartarus_getpwnam_r(const char *name, struct passwd *result, char *buffer, size_t buflen, int *errnop)
 {
-	nss_status ret = NSS_STATUS_SUCCESS;
-
+	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
-
 	try {
 		ret = fill_user (result, getUserReader().getUser(name), &buffer, &buflen);
 
@@ -140,36 +112,25 @@ nss_status _nss_tartarus_getpwnam_r(const char *name, struct passwd *result, cha
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
-//	} catch (const Tartarus::iface::SysDB::NotFound& error) {
-//		debug (va("%s: %s", __FUNCTION__, "NotFound_error", error));
-//		ret = NSS_STATUS_NOTFOUND;
+	} catch (const RPC::RPCError& error) {
+		debug (va("%s: %s", __FUNCTION__, "RPC Error: ", error.what()));
+		if (error.what() == "NotFound")
+			ret = NSS_STATUS_NOTFOUND;
 	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
-		ret = NSS_STATUS_UNAVAIL;
+	} catch (std::exception error) {
+		debug (va("%s: %s", __FUNCTION__, error.what()));
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));
-		ret = NSS_STATUS_UNAVAIL;
 	}
-
 	debug (va("%s: %s", __FUNCTION__, "end"));
-
 	return ret;
 }
 
 nss_status _nss_tartarus_getpwent_r(struct passwd *result, char *buffer, size_t buflen, int *errnop)
 {
 	debug (va("%s: %s", __FUNCTION__, "start stop"));
-
 //	return NSS_STATUS_UNAVAIL;
 	return NSS_STATUS_NOTFOUND;
 }

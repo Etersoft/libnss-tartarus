@@ -75,47 +75,79 @@ json_spirit::Value GroupReader::call(const std::string & method, const json_spir
 
 UserRecord UserReaderI::getUser(uid_t uid)
 {
-        SysDB::UserRecord user = getUserReader()->getById(uid);
-        return makeUserRecord(user);
+        try {
+                SysDB::UserRecord user = getUserReader()->getById(uid);
+                return makeUserRecord(user);
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }
 
 UserRecord UserReaderI::getUser(const std::string & name)
 {
-        SysDB::UserRecord user = getUserReader()->getByName(name);
-        return makeUserRecord(user);
+        try {
+                SysDB::UserRecord user = getUserReader()->getByName(name);
+                return makeUserRecord(user);
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }
 
 GroupRecord GroupReaderI::getGroup(gid_t gid)
 {
-    SysDB::GroupRecord group = getGroupReader()->getById(gid);
-    return makeGroupRecord(group);
+        try {
+                SysDB::GroupRecord group = getGroupReader()->getById(gid);
+                return makeGroupRecord(group);
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }
 
 GroupRecord GroupReaderI::getGroup(const std::string & name)
 {
-    SysDB::GroupRecord group = getGroupReader()->getByName(name);
-    return makeGroupRecord(group);
+        try {
+                SysDB::GroupRecord group = getGroupReader()->getByName(name);
+                return makeGroupRecord(group);
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }
 
 std::vector<std::string> GroupReaderI::getUsers(gid_t gid)
 {
-    const SysDB::IdSeq ids = getGroupReader()->getUsers(gid);
-    const SysDB::UserSeq users = getUserReader()->getUsers(ids);
-    std::vector<std::string> ret;
-    for(SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); ++i)
-    {
-        ret.push_back(i->name);
-    }
-    return ret;
+        try {
+                const SysDB::IdSeq ids = getGroupReader()->getUsers(gid);
+                const SysDB::UserSeq users = getUserReader()->getUsers(ids);
+                std::vector<std::string> ret;
+                for(SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); ++i)
+                        ret.push_back(i->name);
+                return ret;
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }
 
 std::vector<gid_t> GroupReaderI::getUserGroups(const std::string &name)
 {
-    SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(name);
-    std::vector<gid_t> gids;
-    for(SysDB::IdSeq::const_iterator i = ids.begin(); i != ids.end(); ++i)
-    {
-        gids.push_back(*i);
-    }
-    return gids;
+        try {
+                SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(name);
+                std::vector<gid_t> gids;
+                for(SysDB::IdSeq::const_iterator i = ids.begin(); i != ids.end(); ++i)
+                        gids.push_back(*i);
+                return gids;
+        } catch (const SysDB::NotFound& error) {
+                throw RPC::RPCError("NotFound");
+        } catch (const Ice::Exception& error) {
+                throw RPC::RPCError(error.ice_name());
+        }
 }

@@ -11,7 +11,7 @@ env["SHLIBSUFFIX"] = [SUFFIX + '.0.0']
 env["LINKFLAGS"] = ['-Wl,-soname,' + SONAME]
 env["CPPFLAGS"] = '-DBOOST_DISABLE_THREADS'
 
-env.Append(LIBS=['json_spirit'])
+env.Append(LIBS=['json_spirit', 'boost_system'])
 
 nss = env.SharedLibrary('nss_tartarus', glob('*.cpp') + ['#RPC/client.cpp'])
 

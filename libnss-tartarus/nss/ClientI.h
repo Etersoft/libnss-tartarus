@@ -1,5 +1,5 @@
-#ifndef __Tartarus_RPC_ClientI_h__
-#define __Tartarus_RPC_ClientI_h__
+#ifndef Tartarus_RPC_ClientI_h
+#define Tartarus_RPC_ClientI_h
 
 #include <RPC/RPC.h>
 #include <NSCD/RPCTypes.h>
