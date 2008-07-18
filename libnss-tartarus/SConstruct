@@ -17,9 +17,9 @@ env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOUR
 env['CPPPATH'] = ['#.']
 
 if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
-    env['CPPFLAGS'] = '-DDEBUG'
+    env['CPPFLAGS'] = ['-DDEBUG', '-g']
 else:
-    env['CCFLAGS'] = ['-O2', '-g']
+    env['CCFLAGS'] = ['-O2']
 Export('env')
 
 rpc = SConscript('RPC/SConscript')
