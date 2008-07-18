@@ -1,7 +1,7 @@
 #ifndef LIBNSS_TARTARUS_H_
 #define LIBNSS_TARTARUS_H_
 
-#include <TartarusClientI.h>
+#include "ClientI.h"
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len);
 

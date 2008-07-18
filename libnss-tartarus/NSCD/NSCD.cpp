@@ -1,10 +1,10 @@
-#include <TartarusRPC.h>
-#include <TartarusDebug.h>
-#include <TartarusRPCTypes.h>
+#include <RPC/RPC.h>
+#include <debug.h>
+#include "RPCTypes.h"
 
-#include <TartarusServerI.h>
-#include <TartarusNSCDInit.h>
-#include <TartarusNSCDKinit.h>
+#include "ServerI.h"
+#include "Init.h"
+#include "Kinit.h"
 
 int main()
 {
@@ -21,13 +21,3 @@ int main()
 
     return 0;
 }
-
-/*int main(int argc, char* argv[])
-{
-	TatarusNSCD svc;
-
-	Ice::InitializationData &init = Tartarus::NSCDInitialize();
-	Tartarus::NSCDKinit();
-
-	return svc.main(argc,argv,init);
-}*/

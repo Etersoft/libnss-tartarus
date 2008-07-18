@@ -1,0 +1,28 @@
+from glob import glob
+
+opts = Options()
+opts.Add('DESTDIR', 'Directory to install', '')
+env = Environment(options=opts)
+Help(opts.GenerateHelpText(env))
+
+env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
+env['CPPPATH'] = ['#.']
+env['LIBS'] = ['pthread']
+
+if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
+    env['CPPFLAGS'] = '-DDEBUG'
+else:
+    env['CCFLAGS'] = ['-O2']
+
+
+Export('env')
+rpc = SConscript('RPC/SConscript')
+json = SConscript('json_spirit/SConscript')
+Export('json', 'rpc')
+tnscd = SConscript('NSCD/SConscript')
+nss = SConscript('nss/SConscript')
+
+i = env.Install('$DESTDIR/lib', nss)
+env.Alias('install', i)
+i = env.Install('$DESTDIR/usr/sbin', tnscd)
+env.Alias('install', i)

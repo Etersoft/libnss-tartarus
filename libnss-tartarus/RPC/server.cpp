@@ -6,8 +6,8 @@
 #include <boost/asio/read_until.hpp>
 #include <json_spirit/json_spirit.h>
 
-#include <TartarusDebug.h>
-#include <TartarusRPC.h>
+#include <debug.h>
+#include "RPC.h"
 
 namespace Tartarus { namespace RPC {
 

@@ -1,0 +1,13 @@
+from glob import glob
+
+Import('env', 'rpc', 'json')
+env = env.Clone()
+
+NAME = "libnss_tartarus"
+SUFFIX = ".so.2"
+SONAME = NAME + SUFFIX
+env["SHLIBSUFFIX"] = [SUFFIX + '.0.0']
+env["LINKFLAGS"] = ['-Wl,-soname,' + SONAME]
+nss = env.SharedLibrary('nss_tartarus', glob('*.cpp'))
+
+Return('nss')

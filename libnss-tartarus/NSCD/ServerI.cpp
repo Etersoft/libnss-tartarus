@@ -1,5 +1,5 @@
-#include <TartarusServerI.h>
-#include <TartarusDebug.h>
+#include "ServerI.h"
+#include <debug.h>
 
 using namespace Tartarus;
 

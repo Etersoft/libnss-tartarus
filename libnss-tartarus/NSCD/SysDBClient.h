@@ -2,7 +2,7 @@
 #define Tartarus_SysDB_h
 
 #include <Ice/Ice.h>
-#include <SysDB.h>
+#include "SysDB.h"
 
 namespace SysDB = Tartarus::iface::SysDB;
 

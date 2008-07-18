@@ -8,10 +8,7 @@
 #include <iterator>
 #include <string>
 
-#include <TartarusDebug.h>
-
-using Tartarus::debug;
-using Tartarus::va;
+#include <debug.h>
 
 #include "nss_tartarus.h"
 

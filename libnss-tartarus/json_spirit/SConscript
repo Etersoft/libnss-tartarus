@@ -1,0 +1,10 @@
+from glob import glob
+
+Import('env')
+
+env = env.Clone()
+env['CPPPATH'] = ['..']
+
+json_spirit = env.StaticLibrary('json_spirit', glob('*.cpp'))
+
+Return('json_spirit')

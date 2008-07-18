@@ -1,8 +1,8 @@
 #ifndef __Tartarus_RPC_ClientI_h__
 #define __Tartarus_RPC_ClientI_h__
 
-#include <TartarusRPC.h>
-#include <TartarusRPCTypes.h>
+#include <RPC/RPC.h>
+#include <NSCD/RPCTypes.h>
 
 namespace Tartarus
 {

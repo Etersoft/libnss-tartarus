@@ -1,6 +1,6 @@
 
 #include <Ice/Exception.h>
-#include <TartarusNSCDInit.h>
+#include <Init.h>
 #include <iostream>
 
 namespace Tartarus {

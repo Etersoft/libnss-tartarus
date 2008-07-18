@@ -5,7 +5,7 @@
 #include <stdexcept>
 #include <map>
 
-#include <json_spirit/json_spirit.h>
+#include "json_spirit/json_spirit.h"
 #include <boost/asio.hpp>
 
 namespace Tartarus { namespace RPC {

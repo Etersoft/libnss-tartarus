@@ -2,4 +2,10 @@
 *.pyo
 *~
 .*
+*.os
+*.o
+*.so.*
+*.so
+libnss-tartarus/NSCD/nscd
+*.a
 

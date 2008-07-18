@@ -1,5 +1,4 @@
-
-#include <TartarusSysDB.h>
+#include "SysDBClient.h"
 
 namespace Tartarus {
 

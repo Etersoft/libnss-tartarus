@@ -1,0 +1,9 @@
+from glob import glob
+
+Import('env')
+env = env.Clone()
+#env['LIBS'] = ['pthread']
+
+tartarus_rpc = env.StaticLibrary('tartarus-rpc', glob('*.cpp'))
+
+Return('tartarus_rpc')

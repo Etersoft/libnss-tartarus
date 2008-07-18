@@ -1,5 +1,5 @@
-#include <TartarusDebug.h>
-#include <TartarusClientI.h>
+#include <debug.h>
+#include "ClientI.h"
 
 using namespace Tartarus;
 

@@ -1,4 +1,4 @@
-#include <TartarusDebug.h>
+#include <debug.h>
 
 #include "nss_tartarus.h"
 
@@ -17,11 +17,11 @@ char *allocate_mem (char **buf, size_t *buflen, size_t len)
 
 Tartarus::UserReaderPrx getUserReader()
 {
-    Tartarus::debug ("getUserReader start");
+    debug ("getUserReader start");
     Tartarus::RPC::Connection con(12346);
-    Tartarus::debug ("getUserReader con");
+    debug ("getUserReader con");
     Tartarus::UserReaderPrx prx ("UserReader", con);
-    Tartarus::debug ("getUserReader end");
+    debug ("getUserReader end");
     return prx;
 }
 

@@ -1,5 +1,5 @@
 
-#include <TartarusNSCDKinit.h>
+#include <Kinit.h>
 
 #include <string>
 #include <stdexcept>
