@@ -10,6 +10,7 @@ Group: System/Libraries
 Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 
 Source: %name-%version.tar
+Source1: tnscd.init.%_vendor
 
 Requires: libnss-role
 Requires: nss-tartarus-daemon = %version-%release
@@ -44,12 +45,11 @@ scons
 
 %install
 scons install DESTDIR=%buildroot
-mkdir -p %buildroot%_sysconfdir/Tartarus
-touch %buildroot%_sysconfdir/role
-cp config.service %buildroot%_sysconfdir/Tartarus/tnscd.conf
+mkdir -p %buildroot%_sysconfdir/Tartarus/clients
+cp tnscd.config %buildroot%_sysconfdir/Tartarus/clients/
 
 mkdir -p %buildroot%_initdir
-cp tnscd.init.%_vendor %buildroot%_initdir/tnscd
+cp %SOURCE1 %buildroot%_initdir/tnscd
 
 %post
 %post_ldconfig
@@ -74,7 +74,7 @@ update_chrooted all
 %files -n nss-tartarus-daemon
 %_sbindir/*
 %_initdir/*
-%config(noreplace) %_sysconfdir/Tartarus/tnscd.conf
+%config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
 * Mon Jul 14 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt2

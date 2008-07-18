@@ -4,7 +4,7 @@ from os import path
 Import('env')
 env = env.Clone()
 
-env.Append(LIBS = ['json_spirit', 'boost_system'])
-rpc = env.SharedLibrary('tartarus-rpc', ['server.cpp'])
+env.Append(LIBS = ['json_spirit', 'boost_system', 'pthread'])
+rpc = env.Library('tartarus-rpc', ['server.cpp'])
 
 Return('rpc')

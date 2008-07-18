@@ -10,10 +10,10 @@ env['CCFLAGS'] += Popen(["/usr/bin/krb5-config", "--cflags"], stdout=PIPE).commu
 env['LIBS'] += Popen(["/usr/bin/krb5-config", "--libs"], stdout=PIPE).communicate()[0].split()
 env['CPPPATH'] += ['.']
 
-libs = [path.basename(str(i[0]))[:-3] for i in (rpc,)]
+libs = [path.basename(str(i[0])) for i in (rpc,)]
 libpath = [path.dirname(str(i[0])) for i in (rpc,)]
 
-env.Append(LIBS=libs + ['json_spirit'])
+env.Append(LIBS=libs + ['json_spirit', 'boost_system'])
 env['LIBPATH'] = libpath
 
 ice = env.Ice('SysDB', '/usr/share/Tartarus/slice/SysDB/SysDB.ice')

@@ -2,22 +2,29 @@
 #include <debug.h>
 #include "RPCTypes.h"
 
+#include <stdexcept>
+#include <iostream>
+
 #include "ServerI.h"
-#include "Init.h"
 #include "Kinit.h"
 
 int main()
 {
-//    Ice::InitializationData &init = Tartarus::NSCDInitialize();
-//    Tartarus::NSCDKinit();
+        try {
+                Tartarus::NSCDKinit();
 
-    Tartarus::RPC::Server s(12346);
-    Tartarus::RPC::ObjectPtr ur(new Tartarus::UserReaderI());
-    Tartarus::RPC::Functions::get().add_object("UserReader", ur);
-    Tartarus::RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
-    Tartarus::RPC::Functions::get().add_object("GroupReader", gr);
-    s.async_accept();
-    s.run();
+                Tartarus::RPC::Server s(12346);
+                Tartarus::RPC::ObjectPtr ur(new Tartarus::UserReaderI());
+                Tartarus::RPC::Functions::get().add_object("UserReader", ur);
+                Tartarus::RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
+                Tartarus::RPC::Functions::get().add_object("GroupReader", gr);
+                s.async_accept();
 
-    return 0;
+                s.run();
+        } catch (const std::exception &error)
+        {
+                std::cerr << error.what() << std::endl;
+        }
+
+        return 0;
 }

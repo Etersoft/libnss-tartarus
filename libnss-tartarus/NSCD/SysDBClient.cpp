@@ -12,7 +12,8 @@ static const Ice::CommunicatorPtr& getIceCommunicator()
 	{
 		Ice::InitializationData init;
 		init.properties = Ice::createProperties();
-		init.properties->load("/etc/Tartarus/tnscd.conf");
+		init.properties->load("/etc/Tartarus/clients/all.config");
+		init.properties->load("/etc/Tartarus/clients/tnscd.config");
 		ic = Ice::initialize(init);
 	}
 		

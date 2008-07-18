@@ -24,10 +24,11 @@ Export('env')
 
 rpc = SConscript('RPC/SConscript')
 Export('rpc')
-env.Install('/usr/lib', [rpc])
-tnscd = SConscript('NSCD/SConscript')
-nss = SConscript('nss/SConscript')
+#env.Install('/usr/lib', [rpc])
 
-nss_inst = env.Install('$DESTDIR/lib', nss)
-env.Install('$DESTDIR/usr/sbin', tnscd)
+tnscd = SConscript('NSCD/SConscript')
+env.Install('/usr/sbin', tnscd)
+
+nss = SConscript('nss/SConscript')
+nss_inst = env.Install('/lib', nss)
 env.Alias('install', env.Command('$DESTDIR/lib/nss_tartarus.so.2', nss_inst, 'ln -s `basename $SOURCE` $TARGET'))

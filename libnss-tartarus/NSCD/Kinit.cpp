@@ -174,8 +174,8 @@ void NSCDKinit(const char *princname, const char* ktname, const char* ccname)
 
     std::string princ(princname);
     princ += std::string("/") + host;
-    ret = kinit_keytab(princ.c_str(), ktname, ccname, &what);
-    if (ret) {
+    e = kinit_keytab(princ.c_str(), ktname, ccname, &what);
+    if (e) {
         std::string err(error_message(e));
         err += std::string(": ") + what;
         throw (std::runtime_error(err));
