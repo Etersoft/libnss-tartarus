@@ -21,6 +21,6 @@ ice = env.Ice('SysDB', '/usr/share/Tartarus/slice/SysDB/SysDB.ice')
 src = glob('*.cpp')
 if 'SysDB.cpp' in src:
     src.remove('SysDB.cpp')
-nscd = env.Program('nscd', src + [ice])
+tnscd = env.Program('tnscd', src + [ice])
 
-Return('nscd')
+Return('tnscd')
