@@ -115,7 +115,9 @@ class Client
                         json_spirit::Array a;
                         a.push_back(0);
                         a.push_back(what);
-                        boost::asio::write(*socket, boost::asio::buffer(json_spirit::write(a)));
+                        std::string to_send = json_spirit::write(a);
+                        to_send.push_back('\0');
+                        boost::asio::write(*socket, boost::asio::buffer(to_send));
                     }
                     async_read();
                 } else

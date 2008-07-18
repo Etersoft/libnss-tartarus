@@ -72,6 +72,9 @@ class ObjectPrx
         ObjectPrx(const std::string & name, Connection & connection):
             _name(name), _connection(connection)
         {}
+/*        ObjectPrx(const ObjectPrx & prx):
+            _name(prx._name), _connection(prx._connection)
+        {}*/
         const std::string & name() const
         {
             return _name;
