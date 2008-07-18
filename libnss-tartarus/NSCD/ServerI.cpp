@@ -1,7 +1,19 @@
 #include "ServerI.h"
+#include "SysDBClient.h"
 #include <debug.h>
 
 using namespace Tartarus;
+
+UserRecord makeUserRecord(const SysDB::UserRecord & user)
+{
+    return UserRecord(user.uid, user.gid, user.name, user.fullName, std::string("/home/remote/") + user.name, user.shell);
+}
+
+GroupRecord makeGroupRecord(const SysDB::GroupRecord & group)
+{
+    return GroupRecord(group.gid, group.name);
+}
+
 
 json_spirit::Value UserReader::call(const std::string & method, const json_spirit::Array & params)
 {
@@ -63,38 +75,47 @@ json_spirit::Value GroupReader::call(const std::string & method, const json_spir
 
 UserRecord UserReaderI::getUser(uid_t uid)
 {
-        return UserRecord(uid, 100, "rlz", "Test", std::string("/home/rlz"));
+        SysDB::UserRecord user = getUserReader()->getById(uid);
+        return makeUserRecord(user);
 }
 
-UserRecord UserReaderI::getUser(const std::string &username)
+UserRecord UserReaderI::getUser(const std::string & name)
 {
-        return UserRecord(666, 100, username, "Test", std::string("/home/") + username);
+        SysDB::UserRecord user = getUserReader()->getByName(name);
+        return makeUserRecord(user);
 }
 
 GroupRecord GroupReaderI::getGroup(gid_t gid)
 {
-        return GroupRecord(gid, "grpx");
+    SysDB::GroupRecord group = getGroupReader()->getById(gid);
+    return makeGroupRecord(group);
 }
 
-GroupRecord GroupReaderI::getGroup(const std::string &groupname)
+GroupRecord GroupReaderI::getGroup(const std::string & name)
 {
-        return GroupRecord(666, groupname);
+    SysDB::GroupRecord group = getGroupReader()->getByName(name);
+    return makeGroupRecord(group);
 }
 
 std::vector<std::string> GroupReaderI::getUsers(gid_t gid)
 {
-        std::vector<std::string> ret;
-        ret.push_back("one");
-        ret.push_back("two");
-        ret.push_back("three");
-        return ret;
+    const SysDB::IdSeq ids = getGroupReader()->getUsers(gid);
+    const SysDB::UserSeq users = getUserReader()->getUsers(ids);
+    std::vector<std::string> ret;
+    for(SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); ++i)
+    {
+        ret.push_back(i->name);
+    }
+    return ret;
 }
 
-std::vector<gid_t> GroupReaderI::getUserGroups(const std::string &username)
+std::vector<gid_t> GroupReaderI::getUserGroups(const std::string &name)
 {
-        std::vector<gid_t> ret;
-        ret.push_back(5);
-        ret.push_back(6);
-        ret.push_back(7);
-        return ret;
+    SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(name);
+    std::vector<gid_t> gids;
+    for(SysDB::IdSeq::const_iterator i = ids.begin(); i != ids.end(); ++i)
+    {
+        gids.push_back(*i);
+    }
+    return gids;
 }

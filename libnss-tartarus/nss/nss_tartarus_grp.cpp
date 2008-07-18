@@ -119,7 +119,7 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 			*errnop = errno = ERANGE;
 		else
 			*errnop = 0;
-	} catch (std::exception error) {
+	} catch (std::bad_alloc error) {
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
 		ret = NSS_STATUS_UNAVAIL;
@@ -209,14 +209,8 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 		debug (va("%s: %s - %s", __FUNCTION__, "memory_allocate_error", error.what()));
 		*errnop = ENOMEM;
 		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::runtime_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "runtime_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (std::logic_error error) {
-		debug (va("%s: %s - %s", __FUNCTION__, "logic_error", error.what()));
-		ret = NSS_STATUS_UNAVAIL;
-	} catch (const char* msg) {
-		debug (va("%s: %s - %s", __FUNCTION__, "message_error", msg));
+	} catch (std::exception error) {
+		debug (va("%s: %s", __FUNCTION__, error.what()));
 		ret = NSS_STATUS_UNAVAIL;
 	} catch (...) {
 		debug (va("%s: %s", __FUNCTION__, "unknown_error"));

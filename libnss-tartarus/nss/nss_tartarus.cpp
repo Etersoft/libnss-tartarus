@@ -6,6 +6,7 @@
 
 #include "nss_tartarus.h"
 #include <RPC/RPC.h>
+#include <stdexcept>
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len)
 {
@@ -29,9 +30,11 @@ Tartarus::RPC::Connection& getConnection()
     static map connections;
     const pid_t tid = syscall(__NR_gettid);
     iterator i = connections.find(tid);
-    if(i == connections.end())
-    {
-        connections[tid] = ConnectionPtr(new Tartarus::RPC::Connection(12346));
+    if (i == connections.end()) {
+        ConnectionPtr ptr = ConnectionPtr(new Tartarus::RPC::Connection(12346));
+        if (!ptr)
+            throw std::runtime_error("Can't establish connection");
+        connections[tid] = ptr;
     }
     return *connections[tid];
 }

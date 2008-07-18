@@ -15,19 +15,16 @@ Help(opts.GenerateHelpText(env))
 
 env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
 env['CPPPATH'] = ['#.']
-env['LIBS'] = ['pthread']
 
 if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
     env['CPPFLAGS'] = '-DDEBUG'
 else:
-    env['CCFLAGS'] = ['-O2']
+    env['CCFLAGS'] = ['-O2', '-g']
 Export('env')
 
-json = SConscript('json_spirit/SConscript')
-Export('json')
 rpc = SConscript('RPC/SConscript')
 Export('rpc')
-env.Install('/usr/lib', [rpc, json])
+env.Install('/usr/lib', [rpc])
 tnscd = SConscript('NSCD/SConscript')
 nss = SConscript('nss/SConscript')
 

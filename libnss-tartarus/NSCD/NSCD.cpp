@@ -8,8 +8,8 @@
 
 int main()
 {
-    Ice::InitializationData &init = Tartarus::NSCDInitialize();
-    Tartarus::NSCDKinit();
+//    Ice::InitializationData &init = Tartarus::NSCDInitialize();
+//    Tartarus::NSCDKinit();
 
     Tartarus::RPC::Server s(12346);
     Tartarus::RPC::ObjectPtr ur(new Tartarus::UserReaderI());

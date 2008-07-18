@@ -1,11 +1,10 @@
 from glob import glob
 from os import path
 
-Import('env', 'json')
+Import('env')
 env = env.Clone()
 
-env['LIBS'] = path.basename(str(json[0]))[:-3]
-env['LIBPATH'] = path.dirname(str(json[0]))
-rpc = env.SharedLibrary('tartarus-rpc', glob('*.cpp'))
+env.Append(LIBS = ['json_spirit'])
+rpc = env.SharedLibrary('tartarus-rpc', ['server.cpp', 'boost_error_code.cpp'])
 
 Return('rpc')

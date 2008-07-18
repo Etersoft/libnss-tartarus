@@ -5,23 +5,14 @@
 
 namespace Tartarus {
 
-Ice::InitializationData& NSCDInitialize(bool quiet)
+Ice::InitializationData& NSCDInitialize()
 {
 	static Ice::InitializationData init;
 	init.properties = Ice::createProperties();
 #ifdef DEBUG
 	std::cerr << "NSCDInitialize properties" << std::endl;
 #endif
-	try
-	{
-		init.properties->load("/etc/Tartarus/tnscd.conf");
-	}
-	catch (Ice::FileException &error)
-	{
-		if (!quiet)
-			throw error;
-		std::cerr << error << std::endl;
-	}
+	init.properties->load("/etc/Tartarus/tnscd.conf");
 #ifdef DEBUG
 	std::cerr << "NSCDInitialize properties done" << std::endl;
 #endif
