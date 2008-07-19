@@ -78,6 +78,9 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
+* Sat Jul 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt3
+- Prerelease done
+
 * Mon Jul 14 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt2
 - Fix requires for nss module and daemon
 
