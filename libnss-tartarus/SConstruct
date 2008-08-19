@@ -1,16 +1,6 @@
-from glob import glob
-
-class TartarusEnvironment(Environment):
-    def __init__(self, *args, **kwargs):
-        Environment.__init__(self, *args, **kwargs)
-    def Install(self, destdir, *args, **kwargs):
-        i = Environment.Install(self, '$DESTDIR/%s' % destdir, *args, **kwargs)
-        self.Alias('install', i)
-        return i
-
 opts = Options()
 opts.Add('DESTDIR', 'Directory to install', '')
-env = TartarusEnvironment(options=opts)
+env = Environment(options=opts)
 Help(opts.GenerateHelpText(env))
 
 env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
@@ -27,8 +17,9 @@ Export('rpc')
 #env.Install('/usr/lib', [rpc])
 
 tnscd = SConscript('NSCD/SConscript')
-env.Install('/usr/sbin', tnscd)
+env.Install('$DESTDIR/usr/sbin', tnscd)
+env.Alias('install', '$DESTDIR/usr/sbin'
 
 nss = SConscript('nss/SConscript')
-nss_inst = env.Install('/lib', nss)
+nss_inst = env.Install('$DESTDIR/lib', nss)
 env.Alias('install', env.Command('$DESTDIR/lib/nss_tartarus.so.2', nss_inst, 'ln -s `basename $SOURCE` $TARGET'))
