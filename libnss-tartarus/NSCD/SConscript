@@ -17,6 +17,7 @@ env.Append(LIBS=libs + ['json_spirit', 'boost_system'])
 env['LIBPATH'] = libpath
 
 ice = env.Ice('SysDB', '/usr/share/Tartarus/slice/SysDB/SysDB.ice')
+env.Depends('ServerI.cpp', ice)
 
 src = glob('*.cpp')
 if 'SysDB.cpp' in src:

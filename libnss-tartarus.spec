@@ -1,6 +1,6 @@
 Name: libnss-tartarus
 Version: 0.0.1
-Release: alt3
+Release: alt4
 
 Summary: NSS library module for Tartarus
 
@@ -20,12 +20,12 @@ Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
 # Automatically added by buildreq on Fri Jul 18 2008
-BuildRequires: boost-datetime-devel boost-regex-devel boost-system-devel gcc-c++ libcom_err-devel libice-devel libjson_spirit-devel libkrb5-devel scons
+BuildRequires: boost-asio-devel gcc-c++ libcom_err-devel libice-devel libjson_spirit-devel libkrb5-devel scons
 
 BuildRequires(pre): rpm-build-licenses
 
 BuildRequires: Tartarus-SysDB-slice
-BuildRequires: libice-devel ice libice
+#BuildRequires: libice-devel ice libice
 BuildRequires: libice-ssl-krb-devel
 
 %description
@@ -78,6 +78,11 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
+* Thu Sep 11 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt4
+- Fixed buildrequires for new boost build
+- Added genererated ice files depends
+- Fixed Sconstruct
+
 * Sat Jul 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.1-alt3
 - Prerelease done
 

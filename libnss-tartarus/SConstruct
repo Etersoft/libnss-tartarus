@@ -18,7 +18,7 @@ Export('rpc')
 
 tnscd = SConscript('NSCD/SConscript')
 env.Install('$DESTDIR/usr/sbin', tnscd)
-env.Alias('install', '$DESTDIR/usr/sbin'
+env.Alias('install', '$DESTDIR/usr/sbin')
 
 nss = SConscript('nss/SConscript')
 nss_inst = env.Install('$DESTDIR/lib', nss)
