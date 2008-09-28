@@ -1,31 +1,30 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2007 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2008 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
 //
 // **********************************************************************
 
-// Ice version 3.2.1
+// Ice version 3.3.0
 // Generated from file `SysDB.ice'
 
 #include <SysDB.h>
 #include <Ice/LocalException.h>
 #include <Ice/ObjectFactory.h>
 #include <Ice/BasicStream.h>
-#include <Ice/Object.h>
 #include <IceUtil/Iterator.h>
 #include <IceUtil/ScopedArray.h>
 
 #ifndef ICE_IGNORE_VERSION
-#   if ICE_INT_VERSION / 100 != 302
+#   if ICE_INT_VERSION / 100 != 303
 #       error Ice version mismatch!
 #   endif
 #   if ICE_INT_VERSION % 100 > 50
 #       error Beta header file detected
 #   endif
-#   if ICE_INT_VERSION % 100 < 1
+#   if ICE_INT_VERSION % 100 < 0
 #       error Ice patch level mismatch!
 #   endif
 #endif
@@ -82,107 +81,17 @@ static const ::std::string __Tartarus__iface__SysDB__GroupManager__addUserToGrou
 
 static const ::std::string __Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name = "delUserFromGroups";
 
-void
-IceInternal::incRef(::Tartarus::iface::SysDB::UserReader* p)
-{
-    p->__incRef();
-}
+::Ice::Object* IceInternal::upCast(::Tartarus::iface::SysDB::UserReader* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Tartarus::iface::SysDB::UserReader* p) { return p; }
 
-void
-IceInternal::decRef(::Tartarus::iface::SysDB::UserReader* p)
-{
-    p->__decRef();
-}
+::Ice::Object* IceInternal::upCast(::Tartarus::iface::SysDB::UserManager* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Tartarus::iface::SysDB::UserManager* p) { return p; }
 
-void
-IceInternal::incRef(::IceProxy::Tartarus::iface::SysDB::UserReader* p)
-{
-    p->__incRef();
-}
+::Ice::Object* IceInternal::upCast(::Tartarus::iface::SysDB::GroupReader* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Tartarus::iface::SysDB::GroupReader* p) { return p; }
 
-void
-IceInternal::decRef(::IceProxy::Tartarus::iface::SysDB::UserReader* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::Tartarus::iface::SysDB::UserManager* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::Tartarus::iface::SysDB::UserManager* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::IceProxy::Tartarus::iface::SysDB::UserManager* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::IceProxy::Tartarus::iface::SysDB::UserManager* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::Tartarus::iface::SysDB::GroupReader* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::Tartarus::iface::SysDB::GroupReader* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::IceProxy::Tartarus::iface::SysDB::GroupReader* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::IceProxy::Tartarus::iface::SysDB::GroupReader* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::Tartarus::iface::SysDB::GroupManager* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::Tartarus::iface::SysDB::GroupManager* p)
-{
-    p->__decRef();
-}
-
-void
-IceInternal::incRef(::IceProxy::Tartarus::iface::SysDB::GroupManager* p)
-{
-    p->__incRef();
-}
-
-void
-IceInternal::decRef(::IceProxy::Tartarus::iface::SysDB::GroupManager* p)
-{
-    p->__decRef();
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserReaderPrx& v)
-{
-    __os->write(::Ice::ObjectPrx(v));
-}
+::Ice::Object* IceInternal::upCast(::Tartarus::iface::SysDB::GroupManager* p) { return p; }
+::IceProxy::Ice::Object* IceInternal::upCast(::IceProxy::Tartarus::iface::SysDB::GroupManager* p) { return p; }
 
 void
 Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::UserReaderPrx& v)
@@ -198,18 +107,6 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
         v = new ::IceProxy::Tartarus::iface::SysDB::UserReader;
         v->__copyFrom(proxy);
     }
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserReaderPtr& v)
-{
-    __os->write(::Ice::ObjectPtr(v));
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserManagerPrx& v)
-{
-    __os->write(::Ice::ObjectPrx(v));
 }
 
 void
@@ -229,18 +126,6 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
 }
 
 void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserManagerPtr& v)
-{
-    __os->write(::Ice::ObjectPtr(v));
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupReaderPrx& v)
-{
-    __os->write(::Ice::ObjectPrx(v));
-}
-
-void
 Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::GroupReaderPrx& v)
 {
     ::Ice::ObjectPrx proxy;
@@ -254,18 +139,6 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
         v = new ::IceProxy::Tartarus::iface::SysDB::GroupReader;
         v->__copyFrom(proxy);
     }
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupReaderPtr& v)
-{
-    __os->write(::Ice::ObjectPtr(v));
-}
-
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupManagerPrx& v)
-{
-    __os->write(::Ice::ObjectPrx(v));
 }
 
 void
@@ -284,46 +157,34 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
     }
 }
 
-void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupManagerPtr& v)
-{
-    __os->write(::Ice::ObjectPtr(v));
-}
-
 bool
 Tartarus::iface::SysDB::UserRecord::operator==(const UserRecord& __rhs) const
 {
-    return !operator!=(__rhs);
-}
-
-bool
-Tartarus::iface::SysDB::UserRecord::operator!=(const UserRecord& __rhs) const
-{
     if(this == &__rhs)
     {
-        return false;
+        return true;
     }
     if(uid != __rhs.uid)
     {
-        return true;
+        return false;
     }
     if(gid != __rhs.gid)
     {
-        return true;
+        return false;
     }
     if(name != __rhs.name)
     {
-        return true;
+        return false;
     }
     if(fullName != __rhs.fullName)
     {
-        return true;
+        return false;
     }
     if(shell != __rhs.shell)
     {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 bool
@@ -399,29 +260,23 @@ Tartarus::iface::SysDB::UserRecord::__read(::IceInternal::BasicStream* __is)
 bool
 Tartarus::iface::SysDB::GroupRecord::operator==(const GroupRecord& __rhs) const
 {
-    return !operator!=(__rhs);
-}
-
-bool
-Tartarus::iface::SysDB::GroupRecord::operator!=(const GroupRecord& __rhs) const
-{
     if(this == &__rhs)
     {
-        return false;
+        return true;
     }
     if(gid != __rhs.gid)
     {
-        return true;
+        return false;
     }
     if(name != __rhs.name)
     {
-        return true;
+        return false;
     }
     if(description != __rhs.description)
     {
-        return true;
+        return false;
     }
-    return false;
+    return true;
 }
 
 bool
@@ -1656,7 +1511,7 @@ extern "C" { void __F__Tartarus__iface__SysDB__DBError__initializer() {} }
 #endif
 
 void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserRecord* begin, const ::Tartarus::iface::SysDB::UserRecord* end, ::Tartarus::iface::SysDB::__U__UserSeq)
+Tartarus::iface::SysDB::__writeUserSeq(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::UserRecord* begin, const ::Tartarus::iface::SysDB::UserRecord* end)
 {
     ::Ice::Int size = static_cast< ::Ice::Int>(end - begin);
     __os->writeSize(size);
@@ -1667,7 +1522,7 @@ Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartar
 }
 
 void
-Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::UserSeq& v, ::Tartarus::iface::SysDB::__U__UserSeq)
+Tartarus::iface::SysDB::__readUserSeq(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::UserSeq& v)
 {
     ::Ice::Int sz;
     __is->readSize(sz);
@@ -1683,7 +1538,7 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
 }
 
 void
-Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupRecord* begin, const ::Tartarus::iface::SysDB::GroupRecord* end, ::Tartarus::iface::SysDB::__U__GroupSeq)
+Tartarus::iface::SysDB::__writeGroupSeq(::IceInternal::BasicStream* __os, const ::Tartarus::iface::SysDB::GroupRecord* begin, const ::Tartarus::iface::SysDB::GroupRecord* end)
 {
     ::Ice::Int size = static_cast< ::Ice::Int>(end - begin);
     __os->writeSize(size);
@@ -1694,7 +1549,7 @@ Tartarus::iface::SysDB::__write(::IceInternal::BasicStream* __os, const ::Tartar
 }
 
 void
-Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::GroupSeq& v, ::Tartarus::iface::SysDB::__U__GroupSeq)
+Tartarus::iface::SysDB::__readGroupSeq(::IceInternal::BasicStream* __is, ::Tartarus::iface::SysDB::GroupSeq& v)
 {
     ::Ice::Int sz;
     __is->readSize(sz);
@@ -1709,102 +1564,6 @@ Tartarus::iface::SysDB::__read(::IceInternal::BasicStream* __is, ::Tartarus::ifa
     __is->endSeq(sz);
 }
 
-void
-Tartarus::iface::SysDB::__addObject(const UserReaderPtr& p, ::IceInternal::GCCountMap& c)
-{
-    p->__addObject(c);
-}
-
-bool
-Tartarus::iface::SysDB::__usesClasses(const UserReaderPtr& p)
-{
-    return p->__usesClasses();
-}
-
-void
-Tartarus::iface::SysDB::__decRefUnsafe(const UserReaderPtr& p)
-{
-    p->__decRefUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__clearHandleUnsafe(UserReaderPtr& p)
-{
-    p.__clearHandleUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__addObject(const UserManagerPtr& p, ::IceInternal::GCCountMap& c)
-{
-    p->__addObject(c);
-}
-
-bool
-Tartarus::iface::SysDB::__usesClasses(const UserManagerPtr& p)
-{
-    return p->__usesClasses();
-}
-
-void
-Tartarus::iface::SysDB::__decRefUnsafe(const UserManagerPtr& p)
-{
-    p->__decRefUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__clearHandleUnsafe(UserManagerPtr& p)
-{
-    p.__clearHandleUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__addObject(const GroupReaderPtr& p, ::IceInternal::GCCountMap& c)
-{
-    p->__addObject(c);
-}
-
-bool
-Tartarus::iface::SysDB::__usesClasses(const GroupReaderPtr& p)
-{
-    return p->__usesClasses();
-}
-
-void
-Tartarus::iface::SysDB::__decRefUnsafe(const GroupReaderPtr& p)
-{
-    p->__decRefUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__clearHandleUnsafe(GroupReaderPtr& p)
-{
-    p.__clearHandleUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__addObject(const GroupManagerPtr& p, ::IceInternal::GCCountMap& c)
-{
-    p->__addObject(c);
-}
-
-bool
-Tartarus::iface::SysDB::__usesClasses(const GroupManagerPtr& p)
-{
-    return p->__usesClasses();
-}
-
-void
-Tartarus::iface::SysDB::__decRefUnsafe(const GroupManagerPtr& p)
-{
-    p->__decRefUnsafe();
-}
-
-void
-Tartarus::iface::SysDB::__clearHandleUnsafe(GroupManagerPtr& p)
-{
-    p.__clearHandleUnsafe();
-}
-
 ::Tartarus::iface::SysDB::UserRecord
 IceProxy::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const ::Ice::Context* __ctx)
 {
@@ -1815,17 +1574,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const ::I
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__getById_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->getById(uid, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1840,17 +1599,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string& nam
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__getByName_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->getByName(name, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1865,17 +1624,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::iface::
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__getUsers_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->getUsers(userIds, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1890,17 +1649,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::search(const ::std::string& factor
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__search_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->search(factor, limit, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1915,17 +1674,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __ctx)
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__count_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->count(__ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1940,17 +1699,17 @@ IceProxy::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::Long
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserReader__get_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserReader*>(__delBase.get());
             return __del->get(limit, offset, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -1973,40 +1732,10 @@ IceProxy::Tartarus::iface::SysDB::UserReader::__createDelegateD()
     return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Tartarus::iface::SysDB::UserReader);
 }
 
-bool
-IceProxy::Tartarus::iface::SysDB::operator==(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
+::IceProxy::Ice::Object*
+IceProxy::Tartarus::iface::SysDB::UserReader::__newInstance() const
 {
-    return static_cast<const ::IceProxy::Ice::Object&>(l) == static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator!=(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) != static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) < static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<=(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
-{
-    return l < r || l == r;
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>=(const ::IceProxy::Tartarus::iface::SysDB::UserReader& l, const ::IceProxy::Tartarus::iface::SysDB::UserReader& r)
-{
-    return !(l < r);
+    return new UserReader;
 }
 
 void
@@ -2019,18 +1748,18 @@ IceProxy::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::iface::S
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserManager__modify_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserManager*>(__delBase.get());
             __del->modify(user, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2045,17 +1774,17 @@ IceProxy::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::iface::S
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserManager__create_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserManager*>(__delBase.get());
             return __del->create(newUser, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2070,18 +1799,18 @@ IceProxy::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, const
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__UserManager__delete_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::UserManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::UserManager*>(__delBase.get());
             __del->_cpp_delete(id, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2104,40 +1833,10 @@ IceProxy::Tartarus::iface::SysDB::UserManager::__createDelegateD()
     return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Tartarus::iface::SysDB::UserManager);
 }
 
-bool
-IceProxy::Tartarus::iface::SysDB::operator==(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
+::IceProxy::Ice::Object*
+IceProxy::Tartarus::iface::SysDB::UserManager::__newInstance() const
 {
-    return static_cast<const ::IceProxy::Ice::Object&>(l) == static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator!=(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) != static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) < static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<=(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
-{
-    return l < r || l == r;
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>=(const ::IceProxy::Tartarus::iface::SysDB::UserManager& l, const ::IceProxy::Tartarus::iface::SysDB::UserManager& r)
-{
-    return !(l < r);
+    return new UserManager;
 }
 
 ::Tartarus::iface::SysDB::GroupRecord
@@ -2150,17 +1849,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, const ::
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getById_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getById(gid, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2175,17 +1874,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string& na
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getByName_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getByName(name, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2200,17 +1899,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Long ui
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getGroupsForUserId_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getGroupsForUserId(uid, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2225,17 +1924,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::std:
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getGroupsForUserName_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getGroupsForUserName(name, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2250,17 +1949,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::iface
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getGroups_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getGroups(groupIds, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2275,17 +1974,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, const :
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__getUsers_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->getUsers(gid, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2300,17 +1999,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& facto
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__search_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->search(factor, limit, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2325,17 +2024,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* __ctx
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__count_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->count(__ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2350,17 +2049,17 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice::Lon
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupReader__get_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupReader* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupReader*>(__delBase.get());
             return __del->get(limit, offset, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2383,40 +2082,10 @@ IceProxy::Tartarus::iface::SysDB::GroupReader::__createDelegateD()
     return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Tartarus::iface::SysDB::GroupReader);
 }
 
-bool
-IceProxy::Tartarus::iface::SysDB::operator==(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
+::IceProxy::Ice::Object*
+IceProxy::Tartarus::iface::SysDB::GroupReader::__newInstance() const
 {
-    return static_cast<const ::IceProxy::Ice::Object&>(l) == static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator!=(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) != static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) < static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<=(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return l < r || l == r;
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>=(const ::IceProxy::Tartarus::iface::SysDB::GroupReader& l, const ::IceProxy::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return !(l < r);
+    return new GroupReader;
 }
 
 void
@@ -2429,18 +2098,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, const 
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__setUsers_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->setUsers(gid, userIds, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2455,18 +2124,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, const 
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__addUsers_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->addUsers(gid, userIds, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2481,18 +2150,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, const 
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__delUsers_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->delUsers(gid, userIds, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2507,18 +2176,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::iface::
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__modify_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->modify(group, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapperRelaxed(__delBase, __ex, __cnt);
+            __handleExceptionWrapperRelaxed(__delBase, __ex, 0, __cnt);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2533,17 +2202,17 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::iface::
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__create_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             return __del->create(newGroup, __ctx);
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2558,18 +2227,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, cons
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__delete_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->_cpp_delete(id, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2584,18 +2253,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long uid,
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__addUserToGroups_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->addUserToGroups(uid, groups, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2610,18 +2279,18 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Long ui
         try
         {
             __checkTwowayOnly(__Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name);
-            __delBase = __getDelegate();
+            __delBase = __getDelegate(false);
             ::IceDelegate::Tartarus::iface::SysDB::GroupManager* __del = dynamic_cast< ::IceDelegate::Tartarus::iface::SysDB::GroupManager*>(__delBase.get());
             __del->delUserFromGroups(uid, groups, __ctx);
             return;
         }
         catch(const ::IceInternal::LocalExceptionWrapper& __ex)
         {
-            __handleExceptionWrapper(__delBase, __ex);
+            __handleExceptionWrapper(__delBase, __ex, 0);
         }
         catch(const ::Ice::LocalException& __ex)
         {
-            __handleException(__delBase, __ex, __cnt);
+            __handleException(__delBase, __ex, 0, __cnt);
         }
     }
 }
@@ -2644,46 +2313,16 @@ IceProxy::Tartarus::iface::SysDB::GroupManager::__createDelegateD()
     return ::IceInternal::Handle< ::IceDelegateD::Ice::Object>(new ::IceDelegateD::Tartarus::iface::SysDB::GroupManager);
 }
 
-bool
-IceProxy::Tartarus::iface::SysDB::operator==(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
+::IceProxy::Ice::Object*
+IceProxy::Tartarus::iface::SysDB::GroupManager::__newInstance() const
 {
-    return static_cast<const ::IceProxy::Ice::Object&>(l) == static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator!=(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) != static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return static_cast<const ::IceProxy::Ice::Object&>(l) < static_cast<const ::IceProxy::Ice::Object&>(r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator<=(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return l < r || l == r;
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-IceProxy::Tartarus::iface::SysDB::operator>=(const ::IceProxy::Tartarus::iface::SysDB::GroupManager& l, const ::IceProxy::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return !(l < r);
+    return new GroupManager;
 }
 
 ::Tartarus::iface::SysDB::UserRecord
 IceDelegateM::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__getById_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__getById_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2696,12 +2335,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2709,11 +2347,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::UserRecord __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __ret.__read(__is);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2725,7 +2367,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const
 ::Tartarus::iface::SysDB::UserRecord
 IceDelegateM::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__getByName_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__getByName_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2738,12 +2380,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string&
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2751,11 +2392,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string&
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::UserRecord __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __ret.__read(__is);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2767,7 +2412,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string&
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateM::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__getUsers_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__getUsers_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2787,12 +2432,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::ifa
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2800,11 +2444,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::ifa
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::UserSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__UserSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readUserSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2816,7 +2464,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::ifa
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateM::Tartarus::iface::SysDB::UserReader::search(const ::std::string& factor, ::Ice::Long limit, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__search_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__search_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2830,12 +2478,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::search(const ::std::string& fa
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2843,11 +2490,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::search(const ::std::string& fa
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::UserSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__UserSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readUserSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2859,16 +2510,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::search(const ::std::string& fa
 ::Ice::Long
 IceDelegateM::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__count_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__count_name, ::Ice::Idempotent, __context);
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2876,11 +2526,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Ice::Long __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2892,7 +2546,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateM::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::Long offset, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserReader__get_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserReader__get_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2906,12 +2560,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2919,11 +2572,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::UserSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__UserSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readUserSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -2935,7 +2592,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::
 void
 IceDelegateM::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::iface::SysDB::UserRecord& user, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserManager__modify_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserManager__modify_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2948,12 +2605,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::ifac
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -2961,9 +2617,13 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::ifac
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -2974,7 +2634,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::ifac
 ::Ice::Long
 IceDelegateM::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::iface::SysDB::UserRecord& newUser, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserManager__create_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserManager__create_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -2987,12 +2647,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::ifac
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3000,11 +2659,15 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::ifac
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Ice::Long __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3016,7 +2679,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::ifac
 void
 IceDelegateM::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__UserManager__delete_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__UserManager__delete_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3029,12 +2692,11 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, c
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3042,9 +2704,13 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, c
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3055,7 +2721,7 @@ IceDelegateM::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, c
 ::Tartarus::iface::SysDB::GroupRecord
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getById_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getById_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3068,12 +2734,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, cons
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3081,11 +2746,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, cons
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::GroupRecord __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __ret.__read(__is);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3097,7 +2766,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, cons
 ::Tartarus::iface::SysDB::GroupRecord
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getByName_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getByName_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3110,12 +2779,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3123,11 +2791,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::GroupRecord __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __ret.__read(__is);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3139,7 +2811,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Long uid, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getGroupsForUserId_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getGroupsForUserId_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3152,12 +2824,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Lon
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3165,11 +2836,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Lon
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::IdSeq __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3181,7 +2856,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Lon
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getGroupsForUserName_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getGroupsForUserName_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3194,12 +2869,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3207,11 +2881,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::IdSeq __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3223,7 +2901,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::iface::SysDB::IdSeq& groupIds, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getGroups_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getGroups_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3243,12 +2921,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::i
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3256,11 +2933,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::i
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::GroupSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__GroupSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readGroupSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3272,7 +2953,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::i
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__getUsers_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__getUsers_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3285,12 +2966,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, con
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3298,11 +2978,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, con
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::IdSeq __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3314,7 +2998,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, con
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& factor, ::Ice::Long limit, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__search_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__search_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3328,12 +3012,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& f
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3341,11 +3024,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& f
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::GroupSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__GroupSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readGroupSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3357,16 +3044,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& f
 ::Ice::Long
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__count_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__count_name, ::Ice::Idempotent, __context);
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3374,11 +3060,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* _
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Ice::Long __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3390,7 +3080,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* _
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateM::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice::Long offset, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupReader__get_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupReader__get_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3404,12 +3094,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice:
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3417,11 +3106,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice:
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Tartarus::iface::SysDB::GroupSeq __ret;
-        ::Tartarus::iface::SysDB::__read(__is, __ret, ::Tartarus::iface::SysDB::__U__GroupSeq());
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        ::Tartarus::iface::SysDB::__readGroupSeq(__is, __ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3433,7 +3126,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice:
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__setUsers_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__setUsers_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3454,12 +3147,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, co
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3467,9 +3159,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, co
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3480,7 +3176,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, co
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__addUsers_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__addUsers_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3501,12 +3197,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, co
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3514,9 +3209,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, co
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3527,7 +3226,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, co
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__delUsers_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__delUsers_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3548,12 +3247,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, co
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3561,9 +3259,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, co
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3574,7 +3276,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, co
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::iface::SysDB::GroupRecord& group, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__modify_name, ::Ice::Idempotent, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__modify_name, ::Ice::Idempotent, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3587,12 +3289,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::ifa
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3600,9 +3301,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::ifa
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3613,7 +3318,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::ifa
 ::Ice::Long
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::iface::SysDB::GroupRecord& newGroup, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__create_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__create_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3626,12 +3331,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::ifa
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3639,11 +3343,15 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::ifa
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
         ::Ice::Long __ret;
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
         __is->read(__ret);
+        __is->endReadEncaps();
         return __ret;
     }
     catch(const ::Ice::LocalException& __ex)
@@ -3655,7 +3363,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::ifa
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__delete_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__delete_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3668,12 +3376,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, 
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3681,9 +3388,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, 
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3694,7 +3405,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, 
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__addUserToGroups_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__addUserToGroups_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3715,12 +3426,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long 
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3728,9 +3438,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long 
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3741,7 +3455,7 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long 
 void
 IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Context* __context)
 {
-    ::IceInternal::Outgoing __og(__connection.get(), __reference.get(), __Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name, ::Ice::Normal, __context, __compress);
+    ::IceInternal::Outgoing __og(__handler.get(), __Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name, ::Ice::Normal, __context);
     try
     {
         ::IceInternal::BasicStream* __os = __og.os();
@@ -3762,12 +3476,11 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Lon
     bool __ok = __og.invoke();
     try
     {
-        ::IceInternal::BasicStream* __is = __og.is();
         if(!__ok)
         {
             try
             {
-                __is->throwException();
+                __og.throwUserException();
             }
             catch(const ::Tartarus::iface::SysDB::Error&)
             {
@@ -3775,9 +3488,13 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Lon
             }
             catch(const ::Ice::UserException& __ex)
             {
-                throw ::Ice::UnknownUserException(__FILE__, __LINE__, __ex.ice_name());
+                ::Ice::UnknownUserException __uue(__FILE__, __LINE__, __ex.ice_name());
+                throw __uue;
             }
         }
+        ::IceInternal::BasicStream* __is = __og.is();
+        __is->startReadEncaps();
+        __is->endReadEncaps();
     }
     catch(const ::Ice::LocalException& __ex)
     {
@@ -3788,31 +3505,52 @@ IceDelegateM::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Lon
 ::Tartarus::iface::SysDB::UserRecord
 IceDelegateD::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getById_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::UserRecord __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::UserRecord& __result, ::Ice::Long uid, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_uid(uid)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getById(uid, __current);
+                _result = servant->getById(_m_uid, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::UserRecord& _result;
+        ::Ice::Long _m_uid;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getById_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::UserRecord __result;
+    try
+    {
+        _DirectI __direct(__result, uid, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -3820,38 +3558,79 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::getById(::Ice::Long uid, const
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::UserRecord
 IceDelegateD::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getByName_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::UserRecord __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::UserRecord& __result, const ::std::string& name, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_name(name)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getByName(name, __current);
+                _result = servant->getByName(_m_name, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::UserRecord& _result;
+        const ::std::string& _m_name;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getByName_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::UserRecord __result;
+    try
+    {
+        _DirectI __direct(__result, name, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -3859,38 +3638,79 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::getByName(const ::std::string&
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateD::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getUsers_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::UserSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::UserSeq& __result, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_userIds(userIds)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getUsers(userIds, __current);
+                _result = servant->getUsers(_m_userIds, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::UserSeq& _result;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_userIds;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__getUsers_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::UserSeq __result;
+    try
+    {
+        _DirectI __direct(__result, userIds, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -3898,38 +3718,81 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::getUsers(const ::Tartarus::ifa
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateD::Tartarus::iface::SysDB::UserReader::search(const ::std::string& factor, ::Ice::Long limit, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__search_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::UserSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::UserSeq& __result, const ::std::string& factor, ::Ice::Long limit, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_factor(factor),
+            _m_limit(limit)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->search(factor, limit, __current);
+                _result = servant->search(_m_factor, _m_limit, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::UserSeq& _result;
+        const ::std::string& _m_factor;
+        ::Ice::Long _m_limit;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__search_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::UserSeq __result;
+    try
+    {
+        _DirectI __direct(__result, factor, limit, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -3937,38 +3800,77 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::search(const ::std::string& fa
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Ice::Long
 IceDelegateD::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__count_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Ice::Long __ret;
-        try
+    public:
+
+        _DirectI(::Ice::Long& __result, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->count(__current);
+                _result = servant->count(_current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long& _result;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__count_name, ::Ice::Idempotent, __context);
+    ::Ice::Long __result;
+    try
+    {
+        _DirectI __direct(__result, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -3976,38 +3878,81 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::count(const ::Ice::Context* __
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::UserSeq
 IceDelegateD::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::Long offset, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__get_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::UserSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::UserSeq& __result, ::Ice::Long limit, ::Ice::Long offset, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_limit(limit),
+            _m_offset(offset)
         {
-            ::Tartarus::iface::SysDB::UserReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->get(limit, offset, __current);
+                _result = servant->get(_m_limit, _m_offset, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::UserSeq& _result;
+        ::Ice::Long _m_limit;
+        ::Ice::Long _m_offset;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserReader__get_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::UserSeq __result;
+    try
+    {
+        _DirectI __direct(__result, limit, offset, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4015,37 +3960,76 @@ IceDelegateD::Tartarus::iface::SysDB::UserReader::get(::Ice::Long limit, ::Ice::
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::iface::SysDB::UserRecord& user, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__modify_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(const ::Tartarus::iface::SysDB::UserRecord& user, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_user(user)
         {
-            ::Tartarus::iface::SysDB::UserManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->modify(user, __current);
+                servant->modify(_m_user, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        const ::Tartarus::iface::SysDB::UserRecord& _m_user;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__modify_name, ::Ice::Idempotent, __context);
+    try
+    {
+        _DirectI __direct(user, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4053,38 +4037,78 @@ IceDelegateD::Tartarus::iface::SysDB::UserManager::modify(const ::Tartarus::ifac
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 ::Ice::Long
 IceDelegateD::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::iface::SysDB::UserRecord& newUser, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__create_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Ice::Long __ret;
-        try
+    public:
+
+        _DirectI(::Ice::Long& __result, const ::Tartarus::iface::SysDB::UserRecord& newUser, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_newUser(newUser)
         {
-            ::Tartarus::iface::SysDB::UserManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->create(newUser, __current);
+                _result = servant->create(_m_newUser, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long& _result;
+        const ::Tartarus::iface::SysDB::UserRecord& _m_newUser;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__create_name, ::Ice::Normal, __context);
+    ::Ice::Long __result;
+    try
+    {
+        _DirectI __direct(__result, newUser, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4092,37 +4116,76 @@ IceDelegateD::Tartarus::iface::SysDB::UserManager::create(const ::Tartarus::ifac
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__delete_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long id, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_id(id)
         {
-            ::Tartarus::iface::SysDB::UserManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::UserManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::UserManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->_cpp_delete(id, __current);
+                servant->_cpp_delete(_m_id, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_id;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__UserManager__delete_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(id, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4130,38 +4193,78 @@ IceDelegateD::Tartarus::iface::SysDB::UserManager::_cpp_delete(::Ice::Long id, c
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 ::Tartarus::iface::SysDB::GroupRecord
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getById_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::GroupRecord __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::GroupRecord& __result, ::Ice::Long gid, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_gid(gid)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getById(gid, __current);
+                _result = servant->getById(_m_gid, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::GroupRecord& _result;
+        ::Ice::Long _m_gid;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getById_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::GroupRecord __result;
+    try
+    {
+        _DirectI __direct(__result, gid, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4169,38 +4272,79 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getById(::Ice::Long gid, cons
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::GroupRecord
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getByName_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::GroupRecord __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::GroupRecord& __result, const ::std::string& name, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_name(name)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getByName(name, __current);
+                _result = servant->getByName(_m_name, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::GroupRecord& _result;
+        const ::std::string& _m_name;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getByName_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::GroupRecord __result;
+    try
+    {
+        _DirectI __direct(__result, name, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4208,38 +4352,79 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getByName(const ::std::string
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Long uid, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroupsForUserId_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::IdSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::IdSeq& __result, ::Ice::Long uid, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_uid(uid)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getGroupsForUserId(uid, __current);
+                _result = servant->getGroupsForUserId(_m_uid, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::IdSeq& _result;
+        ::Ice::Long _m_uid;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroupsForUserId_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::IdSeq __result;
+    try
+    {
+        _DirectI __direct(__result, uid, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4247,38 +4432,79 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroupsForUserId(::Ice::Lon
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::std::string& name, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroupsForUserName_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::IdSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::IdSeq& __result, const ::std::string& name, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_name(name)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getGroupsForUserName(name, __current);
+                _result = servant->getGroupsForUserName(_m_name, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::IdSeq& _result;
+        const ::std::string& _m_name;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroupsForUserName_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::IdSeq __result;
+    try
+    {
+        _DirectI __direct(__result, name, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4286,38 +4512,79 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroupsForUserName(const ::
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::iface::SysDB::IdSeq& groupIds, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroups_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::GroupSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::GroupSeq& __result, const ::Tartarus::iface::SysDB::IdSeq& groupIds, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_groupIds(groupIds)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getGroups(groupIds, __current);
+                _result = servant->getGroups(_m_groupIds, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::GroupSeq& _result;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_groupIds;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getGroups_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::GroupSeq __result;
+    try
+    {
+        _DirectI __direct(__result, groupIds, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4325,38 +4592,79 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getGroups(const ::Tartarus::i
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::IdSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getUsers_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::IdSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::IdSeq& __result, ::Ice::Long gid, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_gid(gid)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->getUsers(gid, __current);
+                _result = servant->getUsers(_m_gid, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::IdSeq& _result;
+        ::Ice::Long _m_gid;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__getUsers_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::IdSeq __result;
+    try
+    {
+        _DirectI __direct(__result, gid, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4364,38 +4672,81 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::getUsers(::Ice::Long gid, con
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& factor, ::Ice::Long limit, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__search_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::GroupSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::GroupSeq& __result, const ::std::string& factor, ::Ice::Long limit, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_factor(factor),
+            _m_limit(limit)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->search(factor, limit, __current);
+                _result = servant->search(_m_factor, _m_limit, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::GroupSeq& _result;
+        const ::std::string& _m_factor;
+        ::Ice::Long _m_limit;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__search_name, ::Ice::Normal, __context);
+    ::Tartarus::iface::SysDB::GroupSeq __result;
+    try
+    {
+        _DirectI __direct(__result, factor, limit, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4403,38 +4754,77 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::search(const ::std::string& f
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Ice::Long
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__count_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Ice::Long __ret;
-        try
+    public:
+
+        _DirectI(::Ice::Long& __result, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->count(__current);
+                _result = servant->count(_current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long& _result;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__count_name, ::Ice::Idempotent, __context);
+    ::Ice::Long __result;
+    try
+    {
+        _DirectI __direct(__result, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4442,38 +4832,81 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::count(const ::Ice::Context* _
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 ::Tartarus::iface::SysDB::GroupSeq
 IceDelegateD::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice::Long offset, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__get_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Tartarus::iface::SysDB::GroupSeq __ret;
-        try
+    public:
+
+        _DirectI(::Tartarus::iface::SysDB::GroupSeq& __result, ::Ice::Long limit, ::Ice::Long offset, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_limit(limit),
+            _m_offset(offset)
         {
-            ::Tartarus::iface::SysDB::GroupReader* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupReader* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupReader*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->get(limit, offset, __current);
+                _result = servant->get(_m_limit, _m_offset, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Tartarus::iface::SysDB::GroupSeq& _result;
+        ::Ice::Long _m_limit;
+        ::Ice::Long _m_offset;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupReader__get_name, ::Ice::Idempotent, __context);
+    ::Tartarus::iface::SysDB::GroupSeq __result;
+    try
+    {
+        _DirectI __direct(__result, limit, offset, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4481,37 +4914,78 @@ IceDelegateD::Tartarus::iface::SysDB::GroupReader::get(::Ice::Long limit, ::Ice:
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__setUsers_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_gid(gid),
+            _m_userIds(userIds)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->setUsers(gid, userIds, __current);
+                servant->setUsers(_m_gid, _m_userIds, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_gid;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_userIds;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__setUsers_name, ::Ice::Idempotent, __context);
+    try
+    {
+        _DirectI __direct(gid, userIds, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4519,37 +4993,77 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::setUsers(::Ice::Long gid, co
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__addUsers_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_gid(gid),
+            _m_userIds(userIds)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->addUsers(gid, userIds, __current);
+                servant->addUsers(_m_gid, _m_userIds, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_gid;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_userIds;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__addUsers_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(gid, userIds, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4557,37 +5071,77 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::addUsers(::Ice::Long gid, co
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delUsers_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long gid, const ::Tartarus::iface::SysDB::IdSeq& userIds, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_gid(gid),
+            _m_userIds(userIds)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->delUsers(gid, userIds, __current);
+                servant->delUsers(_m_gid, _m_userIds, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_gid;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_userIds;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delUsers_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(gid, userIds, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4595,37 +5149,75 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::delUsers(::Ice::Long gid, co
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::iface::SysDB::GroupRecord& group, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__modify_name, ::Ice::Idempotent, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(const ::Tartarus::iface::SysDB::GroupRecord& group, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_group(group)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->modify(group, __current);
+                servant->modify(_m_group, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        const ::Tartarus::iface::SysDB::GroupRecord& _m_group;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__modify_name, ::Ice::Idempotent, __context);
+    try
+    {
+        _DirectI __direct(group, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4633,38 +5225,78 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::modify(const ::Tartarus::ifa
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 ::Ice::Long
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::iface::SysDB::GroupRecord& newGroup, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__create_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        ::Ice::Long __ret;
-        try
+    public:
+
+        _DirectI(::Ice::Long& __result, const ::Tartarus::iface::SysDB::GroupRecord& newGroup, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _result(__result),
+            _m_newGroup(newGroup)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __ret = __servant->create(newGroup, __current);
+                _result = servant->create(_m_newGroup, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long& _result;
+        const ::Tartarus::iface::SysDB::GroupRecord& _m_newGroup;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__create_name, ::Ice::Normal, __context);
+    ::Ice::Long __result;
+    try
+    {
+        _DirectI __direct(__result, newGroup, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4672,37 +5304,76 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::create(const ::Tartarus::ifa
             throw;
         }
         __direct.destroy();
-        return __ret;
     }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
+    }
+    return __result;
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delete_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long id, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_id(id)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->_cpp_delete(id, __current);
+                servant->_cpp_delete(_m_id, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_id;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delete_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(id, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4710,37 +5381,77 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::_cpp_delete(::Ice::Long id, 
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__addUserToGroups_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_uid(uid),
+            _m_groups(groups)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->addUserToGroups(uid, groups, __current);
+                servant->addUserToGroups(_m_uid, _m_groups, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_uid;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_groups;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__addUserToGroups_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(uid, groups, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4748,37 +5459,77 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::addUserToGroups(::Ice::Long 
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
 void
 IceDelegateD::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Context* __context)
 {
-    ::Ice::Current __current;
-    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name, ::Ice::Normal, __context);
-    while(true)
+    class _DirectI : public ::IceInternal::Direct
     {
-        ::IceInternal::Direct __direct(__current);
-        try
+    public:
+
+        _DirectI(::Ice::Long uid, const ::Tartarus::iface::SysDB::IdSeq& groups, const ::Ice::Current& __current) : 
+            ::IceInternal::Direct(__current),
+            _m_uid(uid),
+            _m_groups(groups)
         {
-            ::Tartarus::iface::SysDB::GroupManager* __servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(__direct.servant().get());
-            if(!__servant)
+        }
+        
+        virtual ::Ice::DispatchStatus
+        run(::Ice::Object* object)
+        {
+            ::Tartarus::iface::SysDB::GroupManager* servant = dynamic_cast< ::Tartarus::iface::SysDB::GroupManager*>(object);
+            if(!servant)
             {
-                ::Ice::OperationNotExistException __opEx(__FILE__, __LINE__);
-                __opEx.id = __current.id;
-                __opEx.facet = __current.facet;
-                __opEx.operation = __current.operation;
-                throw __opEx;
+                throw ::Ice::OperationNotExistException(__FILE__, __LINE__, _current.id, _current.facet, _current.operation);
             }
             try
             {
-                __servant->delUserFromGroups(uid, groups, __current);
+                servant->delUserFromGroups(_m_uid, _m_groups, _current);
+                return ::Ice::DispatchOK;
             }
-            catch(const ::Ice::LocalException& __ex)
+            catch(const ::Ice::UserException& __ex)
             {
-                throw ::IceInternal::LocalExceptionWrapper(__ex, false);
+                setUserException(__ex);
+                return ::Ice::DispatchUserException;
             }
+        }
+        
+    private:
+        
+        ::Ice::Long _m_uid;
+        const ::Tartarus::iface::SysDB::IdSeq& _m_groups;
+    };
+    
+    ::Ice::Current __current;
+    __initCurrent(__current, __Tartarus__iface__SysDB__GroupManager__delUserFromGroups_name, ::Ice::Normal, __context);
+    try
+    {
+        _DirectI __direct(uid, groups, __current);
+        try
+        {
+            __direct.servant()->__collocDispatch(__direct);
         }
         catch(...)
         {
@@ -4786,7 +5537,26 @@ IceDelegateD::Tartarus::iface::SysDB::GroupManager::delUserFromGroups(::Ice::Lon
             throw;
         }
         __direct.destroy();
-        return;
+    }
+    catch(const ::Tartarus::iface::SysDB::Error&)
+    {
+        throw;
+    }
+    catch(const ::Ice::SystemException&)
+    {
+        throw;
+    }
+    catch(const ::IceInternal::LocalExceptionWrapper&)
+    {
+        throw;
+    }
+    catch(const ::std::exception& __ex)
+    {
+        ::IceInternal::LocalExceptionWrapper::throwWrapper(__ex);
+    }
+    catch(...)
+    {
+        throw ::IceInternal::LocalExceptionWrapper(::Ice::UnknownException(__FILE__, __LINE__, "unknown c++ exception"), false);
     }
 }
 
@@ -4827,14 +5597,16 @@ Tartarus::iface::SysDB::UserReader::ice_staticId()
     return __Tartarus__iface__SysDB__UserReader_ids[1];
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___getById(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___getById(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long uid;
     __is->read(uid);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::UserRecord __ret = getById(uid, __current);
@@ -4843,19 +5615,21 @@ Tartarus::iface::SysDB::UserReader::___getById(::IceInternal::Incoming&__inS, co
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___getByName(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___getByName(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::std::string name;
     __is->read(name);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::UserRecord __ret = getByName(name, __current);
@@ -4864,19 +5638,21 @@ Tartarus::iface::SysDB::UserReader::___getByName(::IceInternal::Incoming&__inS, 
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___getUsers(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___getUsers(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::IdSeq userIds;
     __is->read(userIds);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::UserSeq __ret = getUsers(userIds, __current);
@@ -4886,27 +5662,29 @@ Tartarus::iface::SysDB::UserReader::___getUsers(::IceInternal::Incoming&__inS, c
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__UserSeq());
+            ::Tartarus::iface::SysDB::__writeUserSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___search(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___search(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::std::string factor;
     ::Ice::Long limit;
     __is->read(factor);
     __is->read(limit);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::UserSeq __ret = search(factor, limit, __current);
@@ -4916,21 +5694,22 @@ Tartarus::iface::SysDB::UserReader::___search(::IceInternal::Incoming&__inS, con
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__UserSeq());
+            ::Tartarus::iface::SysDB::__writeUserSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___count(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___count(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
+    __inS.is()->skipEmptyEncaps();
     ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
@@ -4940,21 +5719,23 @@ Tartarus::iface::SysDB::UserReader::___count(::IceInternal::Incoming&__inS, cons
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserReader::___get(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserReader::___get(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long limit;
     ::Ice::Long offset;
     __is->read(limit);
     __is->read(offset);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::UserSeq __ret = get(limit, offset, __current);
@@ -4964,15 +5745,15 @@ Tartarus::iface::SysDB::UserReader::___get(::IceInternal::Incoming&__inS, const 
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__UserSeq());
+            ::Tartarus::iface::SysDB::__writeUserSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
 static ::std::string __Tartarus__iface__SysDB__UserReader_all[] =
@@ -4989,13 +5770,13 @@ static ::std::string __Tartarus__iface__SysDB__UserReader_all[] =
     "search"
 };
 
-::IceInternal::DispatchStatus
+::Ice::DispatchStatus
 Tartarus::iface::SysDB::UserReader::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
     ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Tartarus__iface__SysDB__UserReader_all, __Tartarus__iface__SysDB__UserReader_all + 10, current.operation);
     if(r.first == r.second)
     {
-        return ::IceInternal::DispatchOperationNotExist;
+        throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
     switch(r.first - __Tartarus__iface__SysDB__UserReader_all)
@@ -5043,7 +5824,7 @@ Tartarus::iface::SysDB::UserReader::__dispatch(::IceInternal::Incoming& in, cons
     }
 
     assert(false);
-    return ::IceInternal::DispatchOperationNotExist;
+    throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
 }
 
 void
@@ -5100,10 +5881,7 @@ Tartarus::iface::SysDB::__patch__UserReaderPtr(void* __addr, ::Ice::ObjectPtr& v
     *p = ::Tartarus::iface::SysDB::UserReaderPtr::dynamicCast(v);
     if(v && !*p)
     {
-        ::Ice::UnexpectedObjectException e(__FILE__, __LINE__);
-        e.type = v->ice_id();
-        e.expectedType = ::Tartarus::iface::SysDB::UserReader::ice_staticId();
-        throw e;
+        IceInternal::Ex::throwUOE(::Tartarus::iface::SysDB::UserReader::ice_staticId(), v->ice_id());
     }
 }
 
@@ -5114,33 +5892,9 @@ Tartarus::iface::SysDB::operator==(const ::Tartarus::iface::SysDB::UserReader& l
 }
 
 bool
-Tartarus::iface::SysDB::operator!=(const ::Tartarus::iface::SysDB::UserReader& l, const ::Tartarus::iface::SysDB::UserReader& r)
-{
-    return static_cast<const ::Ice::Object&>(l) != static_cast<const ::Ice::Object&>(r);
-}
-
-bool
 Tartarus::iface::SysDB::operator<(const ::Tartarus::iface::SysDB::UserReader& l, const ::Tartarus::iface::SysDB::UserReader& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
-}
-
-bool
-Tartarus::iface::SysDB::operator<=(const ::Tartarus::iface::SysDB::UserReader& l, const ::Tartarus::iface::SysDB::UserReader& r)
-{
-    return l < r || l == r;
-}
-
-bool
-Tartarus::iface::SysDB::operator>(const ::Tartarus::iface::SysDB::UserReader& l, const ::Tartarus::iface::SysDB::UserReader& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-Tartarus::iface::SysDB::operator>=(const ::Tartarus::iface::SysDB::UserReader& l, const ::Tartarus::iface::SysDB::UserReader& r)
-{
-    return !(l < r);
 }
 
 ::Ice::ObjectPtr
@@ -5181,14 +5935,16 @@ Tartarus::iface::SysDB::UserManager::ice_staticId()
     return __Tartarus__iface__SysDB__UserManager_ids[1];
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserManager::___modify(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserManager::___modify(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::UserRecord user;
     user.__read(__is);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         modify(user, __current);
@@ -5196,19 +5952,21 @@ Tartarus::iface::SysDB::UserManager::___modify(::IceInternal::Incoming&__inS, co
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserManager::___create(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserManager::___create(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::UserRecord newUser;
     newUser.__read(__is);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Ice::Long __ret = create(newUser, __current);
@@ -5217,19 +5975,21 @@ Tartarus::iface::SysDB::UserManager::___create(::IceInternal::Incoming&__inS, co
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::UserManager::___delete(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::UserManager::___delete(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long id;
     __is->read(id);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         _cpp_delete(id, __current);
@@ -5237,9 +5997,9 @@ Tartarus::iface::SysDB::UserManager::___delete(::IceInternal::Incoming&__inS, co
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
 static ::std::string __Tartarus__iface__SysDB__UserManager_all[] =
@@ -5259,13 +6019,13 @@ static ::std::string __Tartarus__iface__SysDB__UserManager_all[] =
     "search"
 };
 
-::IceInternal::DispatchStatus
+::Ice::DispatchStatus
 Tartarus::iface::SysDB::UserManager::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
     ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Tartarus__iface__SysDB__UserManager_all, __Tartarus__iface__SysDB__UserManager_all + 13, current.operation);
     if(r.first == r.second)
     {
-        return ::IceInternal::DispatchOperationNotExist;
+        throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
     switch(r.first - __Tartarus__iface__SysDB__UserManager_all)
@@ -5325,7 +6085,7 @@ Tartarus::iface::SysDB::UserManager::__dispatch(::IceInternal::Incoming& in, con
     }
 
     assert(false);
-    return ::IceInternal::DispatchOperationNotExist;
+    throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
 }
 
 void
@@ -5382,10 +6142,7 @@ Tartarus::iface::SysDB::__patch__UserManagerPtr(void* __addr, ::Ice::ObjectPtr& 
     *p = ::Tartarus::iface::SysDB::UserManagerPtr::dynamicCast(v);
     if(v && !*p)
     {
-        ::Ice::UnexpectedObjectException e(__FILE__, __LINE__);
-        e.type = v->ice_id();
-        e.expectedType = ::Tartarus::iface::SysDB::UserManager::ice_staticId();
-        throw e;
+        IceInternal::Ex::throwUOE(::Tartarus::iface::SysDB::UserManager::ice_staticId(), v->ice_id());
     }
 }
 
@@ -5396,33 +6153,9 @@ Tartarus::iface::SysDB::operator==(const ::Tartarus::iface::SysDB::UserManager& 
 }
 
 bool
-Tartarus::iface::SysDB::operator!=(const ::Tartarus::iface::SysDB::UserManager& l, const ::Tartarus::iface::SysDB::UserManager& r)
-{
-    return static_cast<const ::Ice::Object&>(l) != static_cast<const ::Ice::Object&>(r);
-}
-
-bool
 Tartarus::iface::SysDB::operator<(const ::Tartarus::iface::SysDB::UserManager& l, const ::Tartarus::iface::SysDB::UserManager& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
-}
-
-bool
-Tartarus::iface::SysDB::operator<=(const ::Tartarus::iface::SysDB::UserManager& l, const ::Tartarus::iface::SysDB::UserManager& r)
-{
-    return l < r || l == r;
-}
-
-bool
-Tartarus::iface::SysDB::operator>(const ::Tartarus::iface::SysDB::UserManager& l, const ::Tartarus::iface::SysDB::UserManager& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-Tartarus::iface::SysDB::operator>=(const ::Tartarus::iface::SysDB::UserManager& l, const ::Tartarus::iface::SysDB::UserManager& r)
-{
-    return !(l < r);
 }
 
 ::Ice::ObjectPtr
@@ -5462,14 +6195,16 @@ Tartarus::iface::SysDB::GroupReader::ice_staticId()
     return __Tartarus__iface__SysDB__GroupReader_ids[1];
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getById(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getById(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long gid;
     __is->read(gid);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::GroupRecord __ret = getById(gid, __current);
@@ -5478,19 +6213,21 @@ Tartarus::iface::SysDB::GroupReader::___getById(::IceInternal::Incoming&__inS, c
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getByName(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getByName(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::std::string name;
     __is->read(name);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::GroupRecord __ret = getByName(name, __current);
@@ -5499,19 +6236,21 @@ Tartarus::iface::SysDB::GroupReader::___getByName(::IceInternal::Incoming&__inS,
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getGroupsForUserId(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getGroupsForUserId(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long uid;
     __is->read(uid);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::IdSeq __ret = getGroupsForUserId(uid, __current);
@@ -5527,19 +6266,21 @@ Tartarus::iface::SysDB::GroupReader::___getGroupsForUserId(::IceInternal::Incomi
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getGroupsForUserName(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getGroupsForUserName(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::std::string name;
     __is->read(name);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::IdSeq __ret = getGroupsForUserName(name, __current);
@@ -5555,19 +6296,21 @@ Tartarus::iface::SysDB::GroupReader::___getGroupsForUserName(::IceInternal::Inco
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getGroups(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getGroups(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::IdSeq groupIds;
     __is->read(groupIds);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::GroupSeq __ret = getGroups(groupIds, __current);
@@ -5577,25 +6320,27 @@ Tartarus::iface::SysDB::GroupReader::___getGroups(::IceInternal::Incoming&__inS,
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__GroupSeq());
+            ::Tartarus::iface::SysDB::__writeGroupSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___getUsers(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___getUsers(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long gid;
     __is->read(gid);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::IdSeq __ret = getUsers(gid, __current);
@@ -5611,21 +6356,23 @@ Tartarus::iface::SysDB::GroupReader::___getUsers(::IceInternal::Incoming&__inS, 
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___search(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___search(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::std::string factor;
     ::Ice::Long limit;
     __is->read(factor);
     __is->read(limit);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::GroupSeq __ret = search(factor, limit, __current);
@@ -5635,21 +6382,22 @@ Tartarus::iface::SysDB::GroupReader::___search(::IceInternal::Incoming&__inS, co
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__GroupSeq());
+            ::Tartarus::iface::SysDB::__writeGroupSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___count(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___count(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
+    __inS.is()->skipEmptyEncaps();
     ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
@@ -5659,21 +6407,23 @@ Tartarus::iface::SysDB::GroupReader::___count(::IceInternal::Incoming&__inS, con
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupReader::___get(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupReader::___get(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long limit;
     ::Ice::Long offset;
     __is->read(limit);
     __is->read(offset);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Tartarus::iface::SysDB::GroupSeq __ret = get(limit, offset, __current);
@@ -5683,15 +6433,15 @@ Tartarus::iface::SysDB::GroupReader::___get(::IceInternal::Incoming&__inS, const
         }
         else
         {
-            ::Tartarus::iface::SysDB::__write(__os, &__ret[0], &__ret[0] + __ret.size(), ::Tartarus::iface::SysDB::__U__GroupSeq());
+            ::Tartarus::iface::SysDB::__writeGroupSeq(__os, &__ret[0], &__ret[0] + __ret.size());
         }
     }
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
 static ::std::string __Tartarus__iface__SysDB__GroupReader_all[] =
@@ -5711,13 +6461,13 @@ static ::std::string __Tartarus__iface__SysDB__GroupReader_all[] =
     "search"
 };
 
-::IceInternal::DispatchStatus
+::Ice::DispatchStatus
 Tartarus::iface::SysDB::GroupReader::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
     ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Tartarus__iface__SysDB__GroupReader_all, __Tartarus__iface__SysDB__GroupReader_all + 13, current.operation);
     if(r.first == r.second)
     {
-        return ::IceInternal::DispatchOperationNotExist;
+        throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
     switch(r.first - __Tartarus__iface__SysDB__GroupReader_all)
@@ -5777,7 +6527,7 @@ Tartarus::iface::SysDB::GroupReader::__dispatch(::IceInternal::Incoming& in, con
     }
 
     assert(false);
-    return ::IceInternal::DispatchOperationNotExist;
+    throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
 }
 
 void
@@ -5834,10 +6584,7 @@ Tartarus::iface::SysDB::__patch__GroupReaderPtr(void* __addr, ::Ice::ObjectPtr& 
     *p = ::Tartarus::iface::SysDB::GroupReaderPtr::dynamicCast(v);
     if(v && !*p)
     {
-        ::Ice::UnexpectedObjectException e(__FILE__, __LINE__);
-        e.type = v->ice_id();
-        e.expectedType = ::Tartarus::iface::SysDB::GroupReader::ice_staticId();
-        throw e;
+        IceInternal::Ex::throwUOE(::Tartarus::iface::SysDB::GroupReader::ice_staticId(), v->ice_id());
     }
 }
 
@@ -5848,33 +6595,9 @@ Tartarus::iface::SysDB::operator==(const ::Tartarus::iface::SysDB::GroupReader& 
 }
 
 bool
-Tartarus::iface::SysDB::operator!=(const ::Tartarus::iface::SysDB::GroupReader& l, const ::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return static_cast<const ::Ice::Object&>(l) != static_cast<const ::Ice::Object&>(r);
-}
-
-bool
 Tartarus::iface::SysDB::operator<(const ::Tartarus::iface::SysDB::GroupReader& l, const ::Tartarus::iface::SysDB::GroupReader& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
-}
-
-bool
-Tartarus::iface::SysDB::operator<=(const ::Tartarus::iface::SysDB::GroupReader& l, const ::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return l < r || l == r;
-}
-
-bool
-Tartarus::iface::SysDB::operator>(const ::Tartarus::iface::SysDB::GroupReader& l, const ::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-Tartarus::iface::SysDB::operator>=(const ::Tartarus::iface::SysDB::GroupReader& l, const ::Tartarus::iface::SysDB::GroupReader& r)
-{
-    return !(l < r);
 }
 
 ::Ice::ObjectPtr
@@ -5915,16 +6638,18 @@ Tartarus::iface::SysDB::GroupManager::ice_staticId()
     return __Tartarus__iface__SysDB__GroupManager_ids[1];
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___setUsers(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___setUsers(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long gid;
     ::Tartarus::iface::SysDB::IdSeq userIds;
     __is->read(gid);
     __is->read(userIds);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         setUsers(gid, userIds, __current);
@@ -5932,21 +6657,23 @@ Tartarus::iface::SysDB::GroupManager::___setUsers(::IceInternal::Incoming&__inS,
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___addUsers(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___addUsers(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long gid;
     ::Tartarus::iface::SysDB::IdSeq userIds;
     __is->read(gid);
     __is->read(userIds);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         addUsers(gid, userIds, __current);
@@ -5954,21 +6681,23 @@ Tartarus::iface::SysDB::GroupManager::___addUsers(::IceInternal::Incoming&__inS,
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___delUsers(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___delUsers(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long gid;
     ::Tartarus::iface::SysDB::IdSeq userIds;
     __is->read(gid);
     __is->read(userIds);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         delUsers(gid, userIds, __current);
@@ -5976,19 +6705,21 @@ Tartarus::iface::SysDB::GroupManager::___delUsers(::IceInternal::Incoming&__inS,
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___modify(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___modify(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Idempotent, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::GroupRecord group;
     group.__read(__is);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         modify(group, __current);
@@ -5996,19 +6727,21 @@ Tartarus::iface::SysDB::GroupManager::___modify(::IceInternal::Incoming&__inS, c
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___create(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___create(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Tartarus::iface::SysDB::GroupRecord newGroup;
     newGroup.__read(__is);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         ::Ice::Long __ret = create(newGroup, __current);
@@ -6017,19 +6750,21 @@ Tartarus::iface::SysDB::GroupManager::___create(::IceInternal::Incoming&__inS, c
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___delete(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___delete(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long id;
     __is->read(id);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         _cpp_delete(id, __current);
@@ -6037,21 +6772,23 @@ Tartarus::iface::SysDB::GroupManager::___delete(::IceInternal::Incoming&__inS, c
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___addUserToGroups(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___addUserToGroups(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long uid;
     ::Tartarus::iface::SysDB::IdSeq groups;
     __is->read(uid);
     __is->read(groups);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         addUserToGroups(uid, groups, __current);
@@ -6059,21 +6796,23 @@ Tartarus::iface::SysDB::GroupManager::___addUserToGroups(::IceInternal::Incoming
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
-::IceInternal::DispatchStatus
-Tartarus::iface::SysDB::GroupManager::___delUserFromGroups(::IceInternal::Incoming&__inS, const ::Ice::Current& __current)
+::Ice::DispatchStatus
+Tartarus::iface::SysDB::GroupManager::___delUserFromGroups(::IceInternal::Incoming& __inS, const ::Ice::Current& __current)
 {
     __checkMode(::Ice::Normal, __current.mode);
     ::IceInternal::BasicStream* __is = __inS.is();
-    ::IceInternal::BasicStream* __os = __inS.os();
+    __is->startReadEncaps();
     ::Ice::Long uid;
     ::Tartarus::iface::SysDB::IdSeq groups;
     __is->read(uid);
     __is->read(groups);
+    __is->endReadEncaps();
+    ::IceInternal::BasicStream* __os = __inS.os();
     try
     {
         delUserFromGroups(uid, groups, __current);
@@ -6081,9 +6820,9 @@ Tartarus::iface::SysDB::GroupManager::___delUserFromGroups(::IceInternal::Incomi
     catch(const ::Tartarus::iface::SysDB::Error& __ex)
     {
         __os->write(__ex);
-        return ::IceInternal::DispatchUserException;
+        return ::Ice::DispatchUserException;
     }
-    return ::IceInternal::DispatchOK;
+    return ::Ice::DispatchOK;
 }
 
 static ::std::string __Tartarus__iface__SysDB__GroupManager_all[] =
@@ -6111,13 +6850,13 @@ static ::std::string __Tartarus__iface__SysDB__GroupManager_all[] =
     "setUsers"
 };
 
-::IceInternal::DispatchStatus
+::Ice::DispatchStatus
 Tartarus::iface::SysDB::GroupManager::__dispatch(::IceInternal::Incoming& in, const ::Ice::Current& current)
 {
     ::std::pair< ::std::string*, ::std::string*> r = ::std::equal_range(__Tartarus__iface__SysDB__GroupManager_all, __Tartarus__iface__SysDB__GroupManager_all + 21, current.operation);
     if(r.first == r.second)
     {
-        return ::IceInternal::DispatchOperationNotExist;
+        throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
     }
 
     switch(r.first - __Tartarus__iface__SysDB__GroupManager_all)
@@ -6209,7 +6948,7 @@ Tartarus::iface::SysDB::GroupManager::__dispatch(::IceInternal::Incoming& in, co
     }
 
     assert(false);
-    return ::IceInternal::DispatchOperationNotExist;
+    throw ::Ice::OperationNotExistException(__FILE__, __LINE__, current.id, current.facet, current.operation);
 }
 
 void
@@ -6266,10 +7005,7 @@ Tartarus::iface::SysDB::__patch__GroupManagerPtr(void* __addr, ::Ice::ObjectPtr&
     *p = ::Tartarus::iface::SysDB::GroupManagerPtr::dynamicCast(v);
     if(v && !*p)
     {
-        ::Ice::UnexpectedObjectException e(__FILE__, __LINE__);
-        e.type = v->ice_id();
-        e.expectedType = ::Tartarus::iface::SysDB::GroupManager::ice_staticId();
-        throw e;
+        IceInternal::Ex::throwUOE(::Tartarus::iface::SysDB::GroupManager::ice_staticId(), v->ice_id());
     }
 }
 
@@ -6280,31 +7016,7 @@ Tartarus::iface::SysDB::operator==(const ::Tartarus::iface::SysDB::GroupManager&
 }
 
 bool
-Tartarus::iface::SysDB::operator!=(const ::Tartarus::iface::SysDB::GroupManager& l, const ::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return static_cast<const ::Ice::Object&>(l) != static_cast<const ::Ice::Object&>(r);
-}
-
-bool
 Tartarus::iface::SysDB::operator<(const ::Tartarus::iface::SysDB::GroupManager& l, const ::Tartarus::iface::SysDB::GroupManager& r)
 {
     return static_cast<const ::Ice::Object&>(l) < static_cast<const ::Ice::Object&>(r);
-}
-
-bool
-Tartarus::iface::SysDB::operator<=(const ::Tartarus::iface::SysDB::GroupManager& l, const ::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return l < r || l == r;
-}
-
-bool
-Tartarus::iface::SysDB::operator>(const ::Tartarus::iface::SysDB::GroupManager& l, const ::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return !(l < r) && !(l == r);
-}
-
-bool
-Tartarus::iface::SysDB::operator>=(const ::Tartarus::iface::SysDB::GroupManager& l, const ::Tartarus::iface::SysDB::GroupManager& r)
-{
-    return !(l < r);
 }

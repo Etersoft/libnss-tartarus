@@ -6,8 +6,7 @@ Import('env', 'rpc')
 
 env = env.Clone()
 env.Append(LIBS=['Ice'])
-env['CCFLAGS'] += Popen(["/usr/bin/krb5-config", "--cflags"], stdout=PIPE).communicate()[0].split()
-env['LIBS'] += Popen(["/usr/bin/krb5-config", "--libs"], stdout=PIPE).communicate()[0].split()
+env.ParseConfig("pkg-config krb5user --cflags --libs")
 env['CPPPATH'] += ['.']
 
 libs = [path.basename(str(i[0])) for i in (rpc,)]
@@ -23,5 +22,6 @@ src = glob('*.cpp')
 if 'SysDB.cpp' in src:
     src.remove('SysDB.cpp')
 tnscd = env.Program('tnscd', src + [ice])
+Install('/usr/sbin', tnscd)
 
 Return('tnscd')

@@ -1,10 +1,29 @@
-opts = Options()
-opts.Add('DESTDIR', 'Directory to install', '')
-env = Environment(options=opts)
-Help(opts.GenerateHelpText(env))
+Environment(tools=['install'])
+AddOption('--libdir',
+      dest='libdir',
+      type='string',
+      nargs=1,
+      action='store',
+      default='/usr/lib',
+      metavar='DIR',
+      help='installation libdir')
+AddOption('--libsysdir',
+      dest='libsysdir',
+      type='string',
+      nargs=1,
+      action='store',
+      default='/lib',
+      metavar='DIR',
+      help='installation libsysdir')
+env = Environment(LIBDIR = GetOption('libdir'), LIBSYSDIR = GetOption('libsysdir'))
 
 env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
 env['CPPPATH'] = ['#.']
+
+destdir = GetOption('install_sandbox')
+destdir = destdir if destdir else '/'
+env['DESTDIR'] = destdir
+Alias('install', destdir)
 
 if 'DEBUG' in ARGUMENTS and ARGUMENTS['DEBUG'] == 'yes':
     env['CPPFLAGS'] = ['-DDEBUG', '-g']
@@ -14,12 +33,6 @@ Export('env')
 
 rpc = SConscript('RPC/SConscript')
 Export('rpc')
-#env.Install('/usr/lib', [rpc])
 
-tnscd = SConscript('NSCD/SConscript')
-env.Install('$DESTDIR/usr/sbin', tnscd)
-env.Alias('install', '$DESTDIR/usr/sbin')
-
-nss = SConscript('nss/SConscript')
-nss_inst = env.Install('$DESTDIR/lib', nss)
-env.Alias('install', env.Command('$DESTDIR/lib/nss_tartarus.so.2', nss_inst, 'ln -s `basename $SOURCE` $TARGET'))
+SConscript('NSCD/SConscript')
+SConscript('nss/SConscript')

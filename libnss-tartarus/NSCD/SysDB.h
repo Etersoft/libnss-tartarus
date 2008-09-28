@@ -1,13 +1,13 @@
 // **********************************************************************
 //
-// Copyright (c) 2003-2007 ZeroC, Inc. All rights reserved.
+// Copyright (c) 2003-2008 ZeroC, Inc. All rights reserved.
 //
 // This copy of Ice is licensed to you under the terms described in the
 // ICE_LICENSE file included in this distribution.
 //
 // **********************************************************************
 
-// Ice version 3.2.1
+// Ice version 3.3.0
 // Generated from file `SysDB.ice'
 
 #ifndef __SysDB_h__
@@ -29,13 +29,13 @@
 #include <Ice/UndefSysMacros.h>
 
 #ifndef ICE_IGNORE_VERSION
-#   if ICE_INT_VERSION / 100 != 302
+#   if ICE_INT_VERSION / 100 != 303
 #       error Ice version mismatch!
 #   endif
 #   if ICE_INT_VERSION % 100 > 50
 #       error Beta header file detected
 #   endif
-#   if ICE_INT_VERSION % 100 < 1
+#   if ICE_INT_VERSION % 100 < 0
 #       error Ice patch level mismatch!
 #   endif
 #endif
@@ -53,36 +53,12 @@ namespace SysDB
 {
 
 class UserReader;
-bool operator==(const UserReader&, const UserReader&);
-bool operator!=(const UserReader&, const UserReader&);
-bool operator<(const UserReader&, const UserReader&);
-bool operator<=(const UserReader&, const UserReader&);
-bool operator>(const UserReader&, const UserReader&);
-bool operator>=(const UserReader&, const UserReader&);
 
 class UserManager;
-bool operator==(const UserManager&, const UserManager&);
-bool operator!=(const UserManager&, const UserManager&);
-bool operator<(const UserManager&, const UserManager&);
-bool operator<=(const UserManager&, const UserManager&);
-bool operator>(const UserManager&, const UserManager&);
-bool operator>=(const UserManager&, const UserManager&);
 
 class GroupReader;
-bool operator==(const GroupReader&, const GroupReader&);
-bool operator!=(const GroupReader&, const GroupReader&);
-bool operator<(const GroupReader&, const GroupReader&);
-bool operator<=(const GroupReader&, const GroupReader&);
-bool operator>(const GroupReader&, const GroupReader&);
-bool operator>=(const GroupReader&, const GroupReader&);
 
 class GroupManager;
-bool operator==(const GroupManager&, const GroupManager&);
-bool operator!=(const GroupManager&, const GroupManager&);
-bool operator<(const GroupManager&, const GroupManager&);
-bool operator<=(const GroupManager&, const GroupManager&);
-bool operator>(const GroupManager&, const GroupManager&);
-bool operator>=(const GroupManager&, const GroupManager&);
 
 }
 
@@ -103,35 +79,19 @@ namespace SysDB
 
 class UserReader;
 bool operator==(const UserReader&, const UserReader&);
-bool operator!=(const UserReader&, const UserReader&);
 bool operator<(const UserReader&, const UserReader&);
-bool operator<=(const UserReader&, const UserReader&);
-bool operator>(const UserReader&, const UserReader&);
-bool operator>=(const UserReader&, const UserReader&);
 
 class UserManager;
 bool operator==(const UserManager&, const UserManager&);
-bool operator!=(const UserManager&, const UserManager&);
 bool operator<(const UserManager&, const UserManager&);
-bool operator<=(const UserManager&, const UserManager&);
-bool operator>(const UserManager&, const UserManager&);
-bool operator>=(const UserManager&, const UserManager&);
 
 class GroupReader;
 bool operator==(const GroupReader&, const GroupReader&);
-bool operator!=(const GroupReader&, const GroupReader&);
 bool operator<(const GroupReader&, const GroupReader&);
-bool operator<=(const GroupReader&, const GroupReader&);
-bool operator>(const GroupReader&, const GroupReader&);
-bool operator>=(const GroupReader&, const GroupReader&);
 
 class GroupManager;
 bool operator==(const GroupManager&, const GroupManager&);
-bool operator!=(const GroupManager&, const GroupManager&);
 bool operator<(const GroupManager&, const GroupManager&);
-bool operator<=(const GroupManager&, const GroupManager&);
-bool operator>(const GroupManager&, const GroupManager&);
-bool operator>=(const GroupManager&, const GroupManager&);
 
 }
 
@@ -142,29 +102,17 @@ bool operator>=(const GroupManager&, const GroupManager&);
 namespace IceInternal
 {
 
-void incRef(::Tartarus::iface::SysDB::UserReader*);
-void decRef(::Tartarus::iface::SysDB::UserReader*);
+::Ice::Object* upCast(::Tartarus::iface::SysDB::UserReader*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Tartarus::iface::SysDB::UserReader*);
 
-void incRef(::IceProxy::Tartarus::iface::SysDB::UserReader*);
-void decRef(::IceProxy::Tartarus::iface::SysDB::UserReader*);
+::Ice::Object* upCast(::Tartarus::iface::SysDB::UserManager*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Tartarus::iface::SysDB::UserManager*);
 
-void incRef(::Tartarus::iface::SysDB::UserManager*);
-void decRef(::Tartarus::iface::SysDB::UserManager*);
+::Ice::Object* upCast(::Tartarus::iface::SysDB::GroupReader*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Tartarus::iface::SysDB::GroupReader*);
 
-void incRef(::IceProxy::Tartarus::iface::SysDB::UserManager*);
-void decRef(::IceProxy::Tartarus::iface::SysDB::UserManager*);
-
-void incRef(::Tartarus::iface::SysDB::GroupReader*);
-void decRef(::Tartarus::iface::SysDB::GroupReader*);
-
-void incRef(::IceProxy::Tartarus::iface::SysDB::GroupReader*);
-void decRef(::IceProxy::Tartarus::iface::SysDB::GroupReader*);
-
-void incRef(::Tartarus::iface::SysDB::GroupManager*);
-void decRef(::Tartarus::iface::SysDB::GroupManager*);
-
-void incRef(::IceProxy::Tartarus::iface::SysDB::GroupManager*);
-void decRef(::IceProxy::Tartarus::iface::SysDB::GroupManager*);
+::Ice::Object* upCast(::Tartarus::iface::SysDB::GroupManager*);
+::IceProxy::Ice::Object* upCast(::IceProxy::Tartarus::iface::SysDB::GroupManager*);
 
 }
 
@@ -180,54 +128,26 @@ namespace SysDB
 typedef ::IceInternal::Handle< ::Tartarus::iface::SysDB::UserReader> UserReaderPtr;
 typedef ::IceInternal::ProxyHandle< ::IceProxy::Tartarus::iface::SysDB::UserReader> UserReaderPrx;
 
-void __write(::IceInternal::BasicStream*, const UserReaderPrx&);
 void __read(::IceInternal::BasicStream*, UserReaderPrx&);
-void __write(::IceInternal::BasicStream*, const UserReaderPtr&);
 void __patch__UserReaderPtr(void*, ::Ice::ObjectPtr&);
-
-void __addObject(const UserReaderPtr&, ::IceInternal::GCCountMap&);
-bool __usesClasses(const UserReaderPtr&);
-void __decRefUnsafe(const UserReaderPtr&);
-void __clearHandleUnsafe(UserReaderPtr&);
 
 typedef ::IceInternal::Handle< ::Tartarus::iface::SysDB::UserManager> UserManagerPtr;
 typedef ::IceInternal::ProxyHandle< ::IceProxy::Tartarus::iface::SysDB::UserManager> UserManagerPrx;
 
-void __write(::IceInternal::BasicStream*, const UserManagerPrx&);
 void __read(::IceInternal::BasicStream*, UserManagerPrx&);
-void __write(::IceInternal::BasicStream*, const UserManagerPtr&);
 void __patch__UserManagerPtr(void*, ::Ice::ObjectPtr&);
-
-void __addObject(const UserManagerPtr&, ::IceInternal::GCCountMap&);
-bool __usesClasses(const UserManagerPtr&);
-void __decRefUnsafe(const UserManagerPtr&);
-void __clearHandleUnsafe(UserManagerPtr&);
 
 typedef ::IceInternal::Handle< ::Tartarus::iface::SysDB::GroupReader> GroupReaderPtr;
 typedef ::IceInternal::ProxyHandle< ::IceProxy::Tartarus::iface::SysDB::GroupReader> GroupReaderPrx;
 
-void __write(::IceInternal::BasicStream*, const GroupReaderPrx&);
 void __read(::IceInternal::BasicStream*, GroupReaderPrx&);
-void __write(::IceInternal::BasicStream*, const GroupReaderPtr&);
 void __patch__GroupReaderPtr(void*, ::Ice::ObjectPtr&);
-
-void __addObject(const GroupReaderPtr&, ::IceInternal::GCCountMap&);
-bool __usesClasses(const GroupReaderPtr&);
-void __decRefUnsafe(const GroupReaderPtr&);
-void __clearHandleUnsafe(GroupReaderPtr&);
 
 typedef ::IceInternal::Handle< ::Tartarus::iface::SysDB::GroupManager> GroupManagerPtr;
 typedef ::IceInternal::ProxyHandle< ::IceProxy::Tartarus::iface::SysDB::GroupManager> GroupManagerPrx;
 
-void __write(::IceInternal::BasicStream*, const GroupManagerPrx&);
 void __read(::IceInternal::BasicStream*, GroupManagerPrx&);
-void __write(::IceInternal::BasicStream*, const GroupManagerPtr&);
 void __patch__GroupManagerPtr(void*, ::Ice::ObjectPtr&);
-
-void __addObject(const GroupManagerPtr&, ::IceInternal::GCCountMap&);
-bool __usesClasses(const GroupManagerPtr&);
-void __decRefUnsafe(const GroupManagerPtr&);
-void __clearHandleUnsafe(GroupManagerPtr&);
 
 }
 
@@ -253,8 +173,11 @@ struct UserRecord
     ::std::string shell;
 
     bool operator==(const UserRecord&) const;
-    bool operator!=(const UserRecord&) const;
     bool operator<(const UserRecord&) const;
+    bool operator!=(const UserRecord& __rhs) const
+    {
+        return !operator==(__rhs);
+    }
     bool operator<=(const UserRecord& __rhs) const
     {
         return operator<(__rhs) || operator==(__rhs);
@@ -279,8 +202,11 @@ struct GroupRecord
     ::std::string description;
 
     bool operator==(const GroupRecord&) const;
-    bool operator!=(const GroupRecord&) const;
     bool operator<(const GroupRecord&) const;
+    bool operator!=(const GroupRecord& __rhs) const
+    {
+        return !operator==(__rhs);
+    }
     bool operator<=(const GroupRecord& __rhs) const
     {
         return operator<(__rhs) || operator==(__rhs);
@@ -316,7 +242,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -341,7 +266,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -362,7 +286,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -385,7 +308,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -408,7 +330,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -429,7 +350,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -450,7 +370,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -473,7 +392,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -496,7 +414,6 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
@@ -519,26 +436,19 @@ public:
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
-
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
 
 typedef ::std::vector< ::Tartarus::iface::SysDB::UserRecord> UserSeq;
-
-class __U__UserSeq { };
-void __write(::IceInternal::BasicStream*, const ::Tartarus::iface::SysDB::UserRecord*, const ::Tartarus::iface::SysDB::UserRecord*, __U__UserSeq);
-void __read(::IceInternal::BasicStream*, UserSeq&, __U__UserSeq);
+void __writeUserSeq(::IceInternal::BasicStream*, const ::Tartarus::iface::SysDB::UserRecord*, const ::Tartarus::iface::SysDB::UserRecord*);
+void __readUserSeq(::IceInternal::BasicStream*, UserSeq&);
 
 typedef ::std::vector< ::Tartarus::iface::SysDB::GroupRecord> GroupSeq;
-
-class __U__GroupSeq { };
-void __write(::IceInternal::BasicStream*, const ::Tartarus::iface::SysDB::GroupRecord*, const ::Tartarus::iface::SysDB::GroupRecord*, __U__GroupSeq);
-void __read(::IceInternal::BasicStream*, GroupSeq&, __U__GroupSeq);
+void __writeGroupSeq(::IceInternal::BasicStream*, const ::Tartarus::iface::SysDB::GroupRecord*, const ::Tartarus::iface::SysDB::GroupRecord*);
+void __readGroupSeq(::IceInternal::BasicStream*, GroupSeq&);
 
 typedef ::std::vector< ::Ice::Long> IdSeq;
-
-class __U__IdSeq { };
 
 }
 
@@ -652,12 +562,203 @@ private:
     
 public:
     
+    ::IceInternal::ProxyHandle<UserReader> ice_context(const ::Ice::Context& __context) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_context(__context).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_context(__context).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_adapterId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_adapterId(__id).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_adapterId(__id).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_endpoints(const ::Ice::EndpointSeq& __endpoints) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_endpoints(__endpoints).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_endpoints(__endpoints).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_locatorCacheTimeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_locatorCacheTimeout(__timeout).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_locatorCacheTimeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_connectionCached(bool __cached) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_connectionCached(__cached).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_connectionCached(__cached).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_endpointSelection(::Ice::EndpointSelectionType __est) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_endpointSelection(__est).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_endpointSelection(__est).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_secure(bool __secure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_secure(__secure).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_secure(__secure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_preferSecure(bool __preferSecure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_preferSecure(__preferSecure).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_preferSecure(__preferSecure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_router(const ::Ice::RouterPrx& __router) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_router(__router).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_router(__router).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_locator(const ::Ice::LocatorPrx& __locator) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_locator(__locator).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_locator(__locator).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_collocationOptimized(bool __co) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_collocationOptimized(__co).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_collocationOptimized(__co).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_twoway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_twoway().get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_twoway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_oneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_oneway().get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_oneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_batchOneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_batchOneway().get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_batchOneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_datagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_datagram().get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_datagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_batchDatagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_batchDatagram().get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_batchDatagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_compress(bool __compress) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_compress(__compress).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_compress(__compress).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_timeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_timeout(__timeout).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_timeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserReader> ice_connectionId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserReader*>(_Base::ice_connectionId(__id).get());
+    #else
+        return dynamic_cast<UserReader*>(::IceProxy::Ice::Object::ice_connectionId(__id).get());
+    #endif
+    }
+    
     static const ::std::string& ice_staticId();
 
 private: 
 
     virtual ::IceInternal::Handle< ::IceDelegateM::Ice::Object> __createDelegateM();
     virtual ::IceInternal::Handle< ::IceDelegateD::Ice::Object> __createDelegateD();
+    virtual ::IceProxy::Ice::Object* __newInstance() const;
 };
 
 class UserManager : virtual public ::IceProxy::Tartarus::iface::SysDB::UserReader
@@ -709,12 +810,203 @@ private:
     
 public:
     
+    ::IceInternal::ProxyHandle<UserManager> ice_context(const ::Ice::Context& __context) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_context(__context).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_context(__context).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_adapterId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_adapterId(__id).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_adapterId(__id).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_endpoints(const ::Ice::EndpointSeq& __endpoints) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_endpoints(__endpoints).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_endpoints(__endpoints).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_locatorCacheTimeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_locatorCacheTimeout(__timeout).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_locatorCacheTimeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_connectionCached(bool __cached) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_connectionCached(__cached).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_connectionCached(__cached).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_endpointSelection(::Ice::EndpointSelectionType __est) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_endpointSelection(__est).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_endpointSelection(__est).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_secure(bool __secure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_secure(__secure).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_secure(__secure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_preferSecure(bool __preferSecure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_preferSecure(__preferSecure).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_preferSecure(__preferSecure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_router(const ::Ice::RouterPrx& __router) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_router(__router).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_router(__router).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_locator(const ::Ice::LocatorPrx& __locator) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_locator(__locator).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_locator(__locator).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_collocationOptimized(bool __co) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_collocationOptimized(__co).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_collocationOptimized(__co).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_twoway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_twoway().get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_twoway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_oneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_oneway().get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_oneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_batchOneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_batchOneway().get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_batchOneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_datagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_datagram().get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_datagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_batchDatagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_batchDatagram().get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_batchDatagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_compress(bool __compress) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_compress(__compress).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_compress(__compress).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_timeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_timeout(__timeout).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_timeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<UserManager> ice_connectionId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<UserManager*>(_Base::ice_connectionId(__id).get());
+    #else
+        return dynamic_cast<UserManager*>(::IceProxy::Ice::Object::ice_connectionId(__id).get());
+    #endif
+    }
+    
     static const ::std::string& ice_staticId();
 
 private: 
 
     virtual ::IceInternal::Handle< ::IceDelegateM::Ice::Object> __createDelegateM();
     virtual ::IceInternal::Handle< ::IceDelegateD::Ice::Object> __createDelegateD();
+    virtual ::IceProxy::Ice::Object* __newInstance() const;
 };
 
 class GroupReader : virtual public ::IceProxy::Ice::Object
@@ -856,12 +1148,203 @@ private:
     
 public:
     
+    ::IceInternal::ProxyHandle<GroupReader> ice_context(const ::Ice::Context& __context) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_context(__context).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_context(__context).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_adapterId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_adapterId(__id).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_adapterId(__id).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_endpoints(const ::Ice::EndpointSeq& __endpoints) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_endpoints(__endpoints).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_endpoints(__endpoints).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_locatorCacheTimeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_locatorCacheTimeout(__timeout).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_locatorCacheTimeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_connectionCached(bool __cached) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_connectionCached(__cached).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_connectionCached(__cached).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_endpointSelection(::Ice::EndpointSelectionType __est) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_endpointSelection(__est).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_endpointSelection(__est).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_secure(bool __secure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_secure(__secure).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_secure(__secure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_preferSecure(bool __preferSecure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_preferSecure(__preferSecure).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_preferSecure(__preferSecure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_router(const ::Ice::RouterPrx& __router) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_router(__router).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_router(__router).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_locator(const ::Ice::LocatorPrx& __locator) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_locator(__locator).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_locator(__locator).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_collocationOptimized(bool __co) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_collocationOptimized(__co).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_collocationOptimized(__co).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_twoway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_twoway().get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_twoway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_oneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_oneway().get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_oneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_batchOneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_batchOneway().get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_batchOneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_datagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_datagram().get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_datagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_batchDatagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_batchDatagram().get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_batchDatagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_compress(bool __compress) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_compress(__compress).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_compress(__compress).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_timeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_timeout(__timeout).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_timeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupReader> ice_connectionId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupReader*>(_Base::ice_connectionId(__id).get());
+    #else
+        return dynamic_cast<GroupReader*>(::IceProxy::Ice::Object::ice_connectionId(__id).get());
+    #endif
+    }
+    
     static const ::std::string& ice_staticId();
 
 private: 
 
     virtual ::IceInternal::Handle< ::IceDelegateM::Ice::Object> __createDelegateM();
     virtual ::IceInternal::Handle< ::IceDelegateD::Ice::Object> __createDelegateD();
+    virtual ::IceProxy::Ice::Object* __newInstance() const;
 };
 
 class GroupManager : virtual public ::IceProxy::Tartarus::iface::SysDB::GroupReader
@@ -988,12 +1471,203 @@ private:
     
 public:
     
+    ::IceInternal::ProxyHandle<GroupManager> ice_context(const ::Ice::Context& __context) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_context(__context).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_context(__context).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_adapterId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_adapterId(__id).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_adapterId(__id).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_endpoints(const ::Ice::EndpointSeq& __endpoints) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_endpoints(__endpoints).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_endpoints(__endpoints).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_locatorCacheTimeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_locatorCacheTimeout(__timeout).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_locatorCacheTimeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_connectionCached(bool __cached) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_connectionCached(__cached).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_connectionCached(__cached).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_endpointSelection(::Ice::EndpointSelectionType __est) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_endpointSelection(__est).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_endpointSelection(__est).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_secure(bool __secure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_secure(__secure).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_secure(__secure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_preferSecure(bool __preferSecure) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_preferSecure(__preferSecure).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_preferSecure(__preferSecure).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_router(const ::Ice::RouterPrx& __router) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_router(__router).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_router(__router).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_locator(const ::Ice::LocatorPrx& __locator) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_locator(__locator).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_locator(__locator).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_collocationOptimized(bool __co) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_collocationOptimized(__co).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_collocationOptimized(__co).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_twoway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_twoway().get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_twoway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_oneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_oneway().get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_oneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_batchOneway() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_batchOneway().get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_batchOneway().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_datagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_datagram().get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_datagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_batchDatagram() const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_batchDatagram().get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_batchDatagram().get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_compress(bool __compress) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_compress(__compress).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_compress(__compress).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_timeout(int __timeout) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_timeout(__timeout).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_timeout(__timeout).get());
+    #endif
+    }
+    
+    ::IceInternal::ProxyHandle<GroupManager> ice_connectionId(const std::string& __id) const
+    {
+    #if defined(_MSC_VER) && (_MSC_VER < 1300) // VC++ 6 compiler bug
+        typedef ::IceProxy::Ice::Object _Base;
+        return dynamic_cast<GroupManager*>(_Base::ice_connectionId(__id).get());
+    #else
+        return dynamic_cast<GroupManager*>(::IceProxy::Ice::Object::ice_connectionId(__id).get());
+    #endif
+    }
+    
     static const ::std::string& ice_staticId();
 
 private: 
 
     virtual ::IceInternal::Handle< ::IceDelegateM::Ice::Object> __createDelegateM();
     virtual ::IceInternal::Handle< ::IceDelegateD::Ice::Object> __createDelegateD();
+    virtual ::IceProxy::Ice::Object* __newInstance() const;
 };
 
 }
@@ -1312,32 +1986,30 @@ public:
     static const ::std::string& ice_staticId();
 
     virtual ::Tartarus::iface::SysDB::UserRecord getById(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getById(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getById(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::UserRecord getByName(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getByName(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getByName(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::UserSeq getUsers(const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getUsers(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getUsers(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::UserSeq search(const ::std::string&, ::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___search(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___search(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::Long count(const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___count(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___count(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::UserSeq get(::Ice::Long, ::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___get(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___get(::IceInternal::Incoming&, const ::Ice::Current&);
 
-    virtual ::IceInternal::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
+    virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
-
-void __patch__UserReaderPtr(void*, ::Ice::ObjectPtr&);
 
 class UserManager : virtual public ::Tartarus::iface::SysDB::UserReader
 {
@@ -1354,23 +2026,21 @@ public:
     static const ::std::string& ice_staticId();
 
     virtual void modify(const ::Tartarus::iface::SysDB::UserRecord&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___modify(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___modify(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::Long create(const ::Tartarus::iface::SysDB::UserRecord&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___create(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___create(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void _cpp_delete(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___delete(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___delete(::IceInternal::Incoming&, const ::Ice::Current&);
 
-    virtual ::IceInternal::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
+    virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
-
-void __patch__UserManagerPtr(void*, ::Ice::ObjectPtr&);
 
 class GroupReader : virtual public ::Ice::Object
 {
@@ -1387,41 +2057,39 @@ public:
     static const ::std::string& ice_staticId();
 
     virtual ::Tartarus::iface::SysDB::GroupRecord getById(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getById(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getById(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::GroupRecord getByName(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getByName(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getByName(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::IdSeq getGroupsForUserId(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getGroupsForUserId(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getGroupsForUserId(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::IdSeq getGroupsForUserName(const ::std::string&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getGroupsForUserName(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getGroupsForUserName(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::GroupSeq getGroups(const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getGroups(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getGroups(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::IdSeq getUsers(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___getUsers(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___getUsers(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::GroupSeq search(const ::std::string&, ::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___search(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___search(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::Long count(const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___count(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___count(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Tartarus::iface::SysDB::GroupSeq get(::Ice::Long, ::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___get(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___get(::IceInternal::Incoming&, const ::Ice::Current&);
 
-    virtual ::IceInternal::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
+    virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
-
-void __patch__GroupReaderPtr(void*, ::Ice::ObjectPtr&);
 
 class GroupManager : virtual public ::Tartarus::iface::SysDB::GroupReader
 {
@@ -1438,38 +2106,36 @@ public:
     static const ::std::string& ice_staticId();
 
     virtual void setUsers(::Ice::Long, const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___setUsers(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___setUsers(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void addUsers(::Ice::Long, const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___addUsers(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___addUsers(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void delUsers(::Ice::Long, const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___delUsers(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___delUsers(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void modify(const ::Tartarus::iface::SysDB::GroupRecord&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___modify(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___modify(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual ::Ice::Long create(const ::Tartarus::iface::SysDB::GroupRecord&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___create(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___create(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void _cpp_delete(::Ice::Long, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___delete(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___delete(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void addUserToGroups(::Ice::Long, const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___addUserToGroups(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___addUserToGroups(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void delUserFromGroups(::Ice::Long, const ::Tartarus::iface::SysDB::IdSeq&, const ::Ice::Current& = ::Ice::Current()) = 0;
-    ::IceInternal::DispatchStatus ___delUserFromGroups(::IceInternal::Incoming&, const ::Ice::Current&);
+    ::Ice::DispatchStatus ___delUserFromGroups(::IceInternal::Incoming&, const ::Ice::Current&);
 
-    virtual ::IceInternal::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
+    virtual ::Ice::DispatchStatus __dispatch(::IceInternal::Incoming&, const ::Ice::Current&);
 
     virtual void __write(::IceInternal::BasicStream*) const;
     virtual void __read(::IceInternal::BasicStream*, bool);
     virtual void __write(const ::Ice::OutputStreamPtr&) const;
     virtual void __read(const ::Ice::InputStreamPtr&, bool);
 };
-
-void __patch__GroupManagerPtr(void*, ::Ice::ObjectPtr&);
 
 }
 
