@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.0.2
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -29,7 +29,7 @@ BuildRequires(pre): rpm-build-licenses
 BuildRequires: Tartarus-SysDB-slice
 #BuildRequires: libice-devel ice libice
 BuildRequires: libice-ssl-krb-devel
-BuildRequires: libkrb5user-devel
+BuildRequires: libkrb5user-devel >= 0.1.0
 
 %description
 NSS library module for Tartarus.
@@ -93,6 +93,9 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
+* Wed Oct 22 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.2-alt2
+- Fixed for using krb5user_set_ccname()
+
 * Sun Sep 28 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.2-alt1
 - Start to build with libkrb5user
 - Fixed nsswitch.conf post/postun scripts
