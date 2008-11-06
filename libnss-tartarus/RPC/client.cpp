@@ -10,21 +10,10 @@
 
 namespace Tartarus { namespace RPC {
 
-Connection::Connection(int port): socket(io_service)
+Connection::Connection(const std::string & socket_name): socket(io_service)
 {
-    std::ostringstream oss;
-    oss << port;
-    boost::asio::ip::tcp::resolver resolver(io_service);
-    boost::asio::ip::tcp::resolver::query query("localhost", oss.str());
-    
-    boost::asio::ip::tcp::resolver::iterator i = resolver.resolve(query);
-    boost::asio::ip::tcp::resolver::iterator end;
-    boost::system::error_code error = boost::asio::error::host_not_found;
-    while (error && i != end)
-    {
-        socket.close();
-        socket.connect(*i++, error);
-    }
+    boost::system::error_code error;
+    socket.connect(socket_name, error);
     if (error)
         throw boost::system::system_error(error);
 }

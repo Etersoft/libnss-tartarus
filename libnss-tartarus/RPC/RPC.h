@@ -8,6 +8,10 @@
 #include "json_spirit/json_spirit.h"
 #include <boost/asio.hpp>
 
+#ifndef NSS_TARTARUS_SOCKET_PATH
+#define NSS_TARTARUS_SOCKET_PATH "/var/lib/tnscd/pipe"
+#endif
+
 namespace Tartarus { namespace RPC {
 
 class RPCError: public std::runtime_error
@@ -43,8 +47,8 @@ class Functions
 class Server
 {
     public:
-        typedef boost::asio::ip::tcp::socket socket;
-        Server(int port): acceptor(io_service, boost::asio::ip::tcp::endpoint(boost::asio::ip::tcp::v4(), port))
+        typedef boost::asio::local::stream_protocol::socket socket;
+        Server(const std::string & socket_name): acceptor(io_service, boost::asio::local::stream_protocol::endpoint(socket_name))
         {
         }
         void async_accept();
@@ -52,18 +56,18 @@ class Server
         void run();
     private:
         boost::asio::io_service io_service;
-        boost::asio::ip::tcp::acceptor acceptor;
+        boost::asio::local::stream_protocol::acceptor acceptor;
         boost::shared_ptr<socket> s;
 };
 
 class Connection
 {
     public:
-        Connection(int port);
+        Connection(const std::string & socket_name);
         json_spirit::Value call(const std::string & object, const std::string & method, const json_spirit::Value & params);
     private:
         boost::asio::io_service io_service;
-        boost::asio::ip::tcp::socket socket;
+        boost::asio::local::stream_protocol::socket socket;
 };
 
 class ObjectPrx

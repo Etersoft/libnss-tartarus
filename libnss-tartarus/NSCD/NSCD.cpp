@@ -13,7 +13,7 @@ int main()
         try {
                 Tartarus::NSCDKinit();
 
-                Tartarus::RPC::Server s(12346);
+                Tartarus::RPC::Server s(NSS_TARTARUS_SOCKET_PATH);
                 Tartarus::RPC::ObjectPtr ur(new Tartarus::UserReaderI());
                 Tartarus::RPC::Functions::get().add_object("UserReader", ur);
                 Tartarus::RPC::ObjectPtr gr(new Tartarus::GroupReaderI());

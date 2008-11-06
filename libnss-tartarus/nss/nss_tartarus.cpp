@@ -21,22 +21,16 @@ char *allocate_mem (char **buf, size_t *buflen, size_t len)
 	return next;
 }
 
-//static Tartarus::RPC::Connection c(12346);
 Tartarus::RPC::Connection& getConnection()
 {
-    typedef boost::shared_ptr<Tartarus::RPC::Connection> ConnectionPtr;
-    typedef std::map<pid_t, ConnectionPtr> map;
-    typedef map::iterator iterator;
-    static map connections;
-    const pid_t tid = syscall(__NR_gettid);
-    iterator i = connections.find(tid);
-    if (i == connections.end()) {
-        ConnectionPtr ptr = ConnectionPtr(new Tartarus::RPC::Connection(12346));
-        if (!ptr)
+    static Tartarus::RPC::Connection *connection = 0;
+
+    if (!connection) {
+        connection = new Tartarus::RPC::Connection(NSS_TARTARUS_SOCKET_PATH);
+        if (!connection)
             throw std::runtime_error("Can't establish connection");
-        connections[tid] = ptr;
     }
-    return *connections[tid];
+    return *connection;
 }
 
 Tartarus::UserReaderPrx getUserReader()
