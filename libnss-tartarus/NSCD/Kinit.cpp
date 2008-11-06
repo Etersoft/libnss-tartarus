@@ -5,7 +5,7 @@
 
 namespace Tartarus {
 
-void NSCDKinit(const char *princname, const char* ktname, const char* ccname)
+void NSCDKinit(const char *princname, const char* ccname, const char* ktname)
 {
 	krb5user_error_code e = 0;
 	const char* what = 0;
@@ -15,7 +15,7 @@ void NSCDKinit(const char *princname, const char* ktname, const char* ccname)
 		if (e)
 			throw e;
 
-		e = krb5user_kinit_keytab(princname, 0, ktname, 0, &what);
+		e = krb5user_kinit_keytab(princname, 0, ktname, ccname, &what);
 		if (e)
 			throw e;
 
