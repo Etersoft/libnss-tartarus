@@ -1,4 +1,3 @@
-from glob import glob
 from os import path
 from subprocess import Popen, PIPE
 
@@ -15,13 +14,12 @@ libpath = [path.dirname(str(i[0])) for i in (rpc,)]
 env.Append(LIBS=libs + ['json_spirit', 'boost_system'])
 env['LIBPATH'] = libpath
 
-ice = env.Ice('SysDB', '/usr/share/Tartarus/slice/SysDB/SysDB.ice')
-env.Depends('ServerI.cpp', ice)
+env.Append(ICE2CPP_INCPATH=['/usr/share/Tartarus/slice'])
+core, _ = env.Slice2Cpp('/usr/share/Tartarus/slice/core/exceptions.ice', ICE2CPP_OUTDIR="core", ICE2CPP_FLAGS='--include-dir=core')
+sysdb, _ = env.Slice2Cpp('/usr/share/Tartarus/slice/SysDB/SysDB.ice', ICE2CPP_OUTDIR="SysDB", ICE2CPP_FLAGS='--include-dir=SysDB')
 
-src = glob('*.cpp')
-if 'SysDB.cpp' in src:
-    src.remove('SysDB.cpp')
-tnscd = env.Program('tnscd', src + [ice])
+src = Glob('*.cpp')
+tnscd = env.Program('tnscd', src + [core, sysdb])
 Install('/usr/sbin', tnscd)
 
 Return('tnscd')

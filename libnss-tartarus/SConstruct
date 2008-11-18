@@ -1,3 +1,6 @@
+#import os
+#from os import path
+
 Environment(tools=['install'])
 AddOption('--libdir',
       dest='libdir',
@@ -16,8 +19,8 @@ AddOption('--libsysdir',
       metavar='DIR',
       help='installation libsysdir')
 env = Environment(LIBDIR = GetOption('libdir'), LIBSYSDIR = GetOption('libsysdir'))
+env.Tool('slice2cpp', toolpath=['tools'])
 
-env['BUILDERS']['Ice'] = Builder(action = 'cd `dirname $TARGET`; slice2cpp $SOURCE', src_suffix='.ice', suffix='.cpp')
 env['CPPPATH'] = ['#.']
 
 destdir = GetOption('install_sandbox')

@@ -78,7 +78,7 @@ UserRecord UserReaderI::getUser(uid_t uid)
         try {
                 SysDB::UserRecord user = getUserReader()->getById(uid);
                 return makeUserRecord(user);
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
@@ -90,7 +90,7 @@ UserRecord UserReaderI::getUser(const std::string & name)
         try {
                 SysDB::UserRecord user = getUserReader()->getByName(name);
                 return makeUserRecord(user);
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
@@ -102,7 +102,7 @@ GroupRecord GroupReaderI::getGroup(gid_t gid)
         try {
                 SysDB::GroupRecord group = getGroupReader()->getById(gid);
                 return makeGroupRecord(group);
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
@@ -114,7 +114,7 @@ GroupRecord GroupReaderI::getGroup(const std::string & name)
         try {
                 SysDB::GroupRecord group = getGroupReader()->getByName(name);
                 return makeGroupRecord(group);
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
@@ -130,7 +130,7 @@ std::vector<std::string> GroupReaderI::getUsers(gid_t gid)
                 for(SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); ++i)
                         ret.push_back(i->name);
                 return ret;
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
@@ -145,7 +145,7 @@ std::vector<gid_t> GroupReaderI::getUserGroups(const std::string &name)
                 for(SysDB::IdSeq::const_iterator i = ids.begin(); i != ids.end(); ++i)
                         gids.push_back(*i);
                 return gids;
-        } catch (const SysDB::NotFound& error) {
+        } catch (const core::NotFoundError& error) {
                 throw RPC::RPCError("NotFound");
         } catch (const Ice::Exception& error) {
                 throw RPC::RPCError(error.ice_name());
