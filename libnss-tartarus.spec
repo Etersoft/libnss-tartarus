@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.0.3
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -48,7 +48,7 @@ Authorization proxy and cache daemon for Tartarus
 scons
 
 %install
-scons install --install-sandbox=%buildroot
+scons install --install-sandbox=%buildroot --libdir=%_libdir --libsysdir=/%_lib
 mkdir -p %buildroot%_sysconfdir/Tartarus/clients
 cp tnscd.config %buildroot%_sysconfdir/Tartarus/clients/
 
@@ -93,6 +93,9 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
+* Wed Nov 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.3-alt2
+- Fix build at x86_64
+
 * Wed Nov 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.3-alt1
 - Build tnscd with alpha interface
 
