@@ -6,6 +6,5 @@
 *.o
 *.so.*
 *.so
-libnss-tartarus/NSCD/nscd
+libnss-tartarus/NSCD/tnscd
 *.a
-

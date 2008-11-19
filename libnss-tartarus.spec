@@ -1,8 +1,8 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.0.2
-Release: alt2
+Version: 0.0.3
+Release: alt1
 
 Summary: NSS library module for Tartarus
 
@@ -93,6 +93,9 @@ update_chrooted all
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 
 %changelog
+* Wed Nov 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.3-alt1
+- Build tnscd with alpha interface
+
 * Wed Oct 22 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.2-alt2
 - Fixed for using krb5user_set_ccname()
 
