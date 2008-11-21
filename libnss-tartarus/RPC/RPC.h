@@ -55,13 +55,17 @@ class Server
         typedef boost::asio::local::stream_protocol::socket socket;
         typedef boost::asio::local::stream_protocol::acceptor acceptor;
         typedef boost::asio::local::stream_protocol::endpoint endpoint;
+
         Server(const std::string & socket_name): sock_name (socket_name)
         {}
-        void async_accept();
-        void handler(const boost::system::error_code& error);
+        void init();
         void run();
         void stop();
+
     private:
+        void async_accept();
+        void handler(const boost::system::error_code& error);
+
         std::string sock_name;
         boost::asio::io_service io_service;
         boost::shared_ptr<acceptor> a;

@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.0.4
-Release: alt3
+Release: alt4
 
 Summary: NSS library module for Tartarus
 
@@ -98,6 +98,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt4
+- Fix daemon async_accept initialization
+
 * Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt3
 - Fix daemon error code
 

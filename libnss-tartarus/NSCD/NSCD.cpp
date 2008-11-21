@@ -45,7 +45,7 @@ int main()
 
                 {
                     Umask m;
-                    s.async_accept();
+                    s.init();
                 }
 
                 s.run();
