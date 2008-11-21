@@ -21,13 +21,13 @@ Requires: libice-ssl-krb
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
-# Automatically added by buildreq on Fri Jul 18 2008
-BuildRequires: boost-asio-devel gcc-c++ libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel scons
+BuildRequires: boost-asio-devel boost-filesystem-devel
+BuildRequires: libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel
+BuildRequires: gcc-c++ scons
 
 BuildRequires(pre): rpm-build-licenses
 
 BuildRequires: Tartarus-SysDB-slice
-#BuildRequires: libice-devel ice libice
 BuildRequires: libice-ssl-krb-devel
 BuildRequires: libkrb5user-devel >= 0.1.0
 
