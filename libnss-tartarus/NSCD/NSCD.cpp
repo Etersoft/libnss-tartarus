@@ -40,7 +40,11 @@ int main()
                 RPC::Functions::get().add_object("UserReader", ur);
                 RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
                 RPC::Functions::get().add_object("GroupReader", gr);
-                s.async_accept();
+
+                {
+                    Umask m;
+                    s.async_accept();
+                }
 
                 s.run();
         } catch (const std::exception &error)
