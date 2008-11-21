@@ -1,5 +1,4 @@
 from os import path
-from subprocess import Popen, PIPE
 
 Import('env', 'rpc')
 
@@ -11,18 +10,17 @@ env['CPPPATH'] += ['.']
 libs = [path.basename(str(i[0])) for i in (rpc,)]
 libpath = [path.dirname(str(i[0])) for i in (rpc,)]
 
-env.Append(LIBS=libs + ['json_spirit', 'boost_system'])
+env.Append(LIBS=libs + ['json_spirit', 'boost_system', 'boost_filesystem'])
 env['LIBPATH'] = libpath
 
 env.Append(ICE2CPP_INCPATH=['/usr/share/Tartarus/slice'])
 core = env.Slice2Cpp('/usr/share/Tartarus/slice/core/exceptions.ice', ICE2CPP_OUTDIR="core", ICE2CPP_FLAGS='--include-dir=core')
 sysdb = env.Slice2Cpp('/usr/share/Tartarus/slice/SysDB/SysDB.ice', ICE2CPP_OUTDIR="SysDB", ICE2CPP_FLAGS='--include-dir=SysDB')
 
-print core
-print sysdb
-
 src = Glob('*.cpp')
 tnscd = env.Program('tnscd', src + [core[0], sysdb[0]])
 Install('/usr/sbin', tnscd)
+localstatedir = env.Command('$DESTDIR/$LOCALSTATEDIR/tnscd', None, 'mkdir -p $DESTDIR/$LOCALSTATEDIR/tnscd')
+env.Alias('install', localstatedir)
 
 Return('tnscd')

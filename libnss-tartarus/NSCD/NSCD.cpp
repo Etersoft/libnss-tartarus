@@ -7,17 +7,39 @@
 
 #include "ServerI.h"
 #include "Kinit.h"
+#include "Signal.h"
+#include "Prepare.h"
+
+
+using namespace Tartarus;
+
+static RPC::Server s(NSS_TARTARUS_SOCKET_PATH);
+
+static void termination_handler(int signum)
+{
+        s.stop();
+}
 
 int main()
 {
-        try {
-                Tartarus::NSCDKinit();
+        BlockSignals(false, SIGINT);
+        BlockSignals(false, SIGQUIT);
+        BlockSignals(false, SIGTERM);
+        BlockSignals(false, SIGHUP);
 
-                Tartarus::RPC::Server s(NSS_TARTARUS_SOCKET_PATH);
-                Tartarus::RPC::ObjectPtr ur(new Tartarus::UserReaderI());
-                Tartarus::RPC::Functions::get().add_object("UserReader", ur);
-                Tartarus::RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
-                Tartarus::RPC::Functions::get().add_object("GroupReader", gr);
+        CatchSignal(SIGINT, termination_handler);
+        CatchSignal(SIGQUIT, termination_handler);
+        CatchSignal(SIGTERM, termination_handler);
+        CatchSignal(SIGPIPE, SIG_IGN);
+
+        try {
+                CheckDirectories();
+                NSCDKinit();
+
+                RPC::ObjectPtr ur(new Tartarus::UserReaderI());
+                RPC::Functions::get().add_object("UserReader", ur);
+                RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
+                RPC::Functions::get().add_object("GroupReader", gr);
                 s.async_accept();
 
                 s.run();

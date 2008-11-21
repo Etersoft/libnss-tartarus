@@ -5,19 +5,24 @@
 #include <stdexcept>
 #include <map>
 
-#include "json_spirit/json_spirit.h"
+#include <json_spirit/json_spirit.h>
 #include <boost/asio.hpp>
 
-#ifndef NSS_TARTARUS_SOCKET_PATH
-#define NSS_TARTARUS_SOCKET_PATH "/var/lib/tnscd/pipe"
-#endif
+#include "Config.h"
 
 namespace Tartarus { namespace RPC {
 
 class RPCError: public std::runtime_error
 {
     public:
-        RPCError(const std::string & what): std::runtime_error(what)
+        explicit RPCError(const std::string & what): std::runtime_error(what)
+        {}
+};
+
+class SystemError: public std::runtime_error
+{
+    public:
+        explicit SystemError(const std::string & what): std::runtime_error(what)
         {}
 };
 
@@ -48,15 +53,18 @@ class Server
 {
     public:
         typedef boost::asio::local::stream_protocol::socket socket;
-        Server(const std::string & socket_name): acceptor(io_service, boost::asio::local::stream_protocol::endpoint(socket_name))
-        {
-        }
+        typedef boost::asio::local::stream_protocol::acceptor acceptor;
+        typedef boost::asio::local::stream_protocol::endpoint endpoint;
+        Server(const std::string & socket_name): sock_name (socket_name)
+        {}
         void async_accept();
         void handler(const boost::system::error_code& error);
         void run();
+        void stop();
     private:
+        std::string sock_name;
         boost::asio::io_service io_service;
-        boost::asio::local::stream_protocol::acceptor acceptor;
+        boost::shared_ptr<acceptor> a;
         boost::shared_ptr<socket> s;
 };
 

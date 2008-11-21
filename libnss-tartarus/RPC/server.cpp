@@ -143,7 +143,8 @@ class Client
 void Server::async_accept()
 {
     s.reset(new socket(io_service));
-    acceptor.async_accept(*s, boost::bind(&Server::handler, this, _1));
+    a.reset(new acceptor(io_service, endpoint(sock_name)));
+    a->async_accept(*s, boost::bind(&Server::handler, this, _1));
 }
 
 void Server::handler(const boost::system::error_code& error)
@@ -161,6 +162,13 @@ void Server::handler(const boost::system::error_code& error)
 void Server::run()
 {
     io_service.run();
+}
+
+void Server::stop()
+{
+    boost::system::error_code ec;
+    a->close(ec);
+    io_service.stop();
 }
 
 }; };

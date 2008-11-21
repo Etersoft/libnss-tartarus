@@ -1,8 +1,8 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.0.3
-Release: alt2
+Version: 0.0.4
+Release: alt1
 
 Summary: NSS library module for Tartarus
 
@@ -48,7 +48,11 @@ Authorization proxy and cache daemon for Tartarus
 scons
 
 %install
-scons install --install-sandbox=%buildroot --libdir=%_libdir --libsysdir=/%_lib
+scons install \
+    --install-sandbox=%buildroot \
+    --libdir=%_libdir \
+    --libsysdir=/%_lib \
+    --localstatedir=%_localstatedir
 mkdir -p %buildroot%_sysconfdir/Tartarus/clients
 cp tnscd.config %buildroot%_sysconfdir/Tartarus/clients/
 
@@ -91,8 +95,14 @@ update_chrooted all
 %_sbindir/*
 %_initdir/*
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
+%dir %_localstatedir/tnscd
 
 %changelog
+* Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt1
+- Add localstate directory checking and instalation
+- Add signals handlers for daemon
+- Add global config for unix socket
+
 * Wed Nov 19 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.3-alt2
 - Fix build at x86_64
 
