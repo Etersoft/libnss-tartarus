@@ -22,6 +22,8 @@ static void termination_handler(int signum)
 
 int main()
 {
+        int error_code = 0;
+
         BlockSignals(false, SIGINT);
         BlockSignals(false, SIGQUIT);
         BlockSignals(false, SIGTERM);
@@ -50,7 +52,8 @@ int main()
         } catch (const std::exception &error)
         {
                 std::cerr << error.what() << std::endl;
+                error_code = 1;
         }
 
-        return 0;
+        return error_code;
 }

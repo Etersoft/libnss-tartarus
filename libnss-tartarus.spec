@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.0.4
-Release: alt2
+Release: alt3
 
 Summary: NSS library module for Tartarus
 
@@ -98,6 +98,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt3
+- Fix daemon error code
+
 * Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt2
 - Fix mask for daemon creating unix socket
 - Fix BuildRequires
