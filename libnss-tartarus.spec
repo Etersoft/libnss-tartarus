@@ -1,8 +1,8 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.0.4
-Release: alt4
+Version: 0.0.5
+Release: alt1
 
 Summary: NSS library module for Tartarus
 
@@ -98,6 +98,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Tue Nov 25 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.5-alt1
+- Move initialization of kerberos into global getIceCommunicator() singleton
+
 * Fri Nov 21 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.4-alt4
 - Fix daemon async_accept initialization
 
