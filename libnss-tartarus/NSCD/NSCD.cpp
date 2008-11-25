@@ -6,7 +6,6 @@
 #include <iostream>
 
 #include "ServerI.h"
-#include "Kinit.h"
 #include "Signal.h"
 #include "Prepare.h"
 
@@ -36,7 +35,6 @@ int main()
 
         try {
                 CheckDirectories();
-                NSCDKinit();
 
                 RPC::ObjectPtr ur(new Tartarus::UserReaderI());
                 RPC::Functions::get().add_object("UserReader", ur);

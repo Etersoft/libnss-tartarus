@@ -1,4 +1,5 @@
 #include "SysDBClient.h"
+#include "Kinit.h"
 #include <stdexcept>
 
 namespace Tartarus {
@@ -10,6 +11,7 @@ static const Ice::CommunicatorPtr& getIceCommunicator()
 
 	if (!ic)
 	{
+		NSCDKinit();
 		Ice::InitializationData init;
 		init.properties = Ice::createProperties();
 		init.properties->load("/etc/Tartarus/clients/all.config");
