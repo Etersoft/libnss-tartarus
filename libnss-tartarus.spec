@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.0.5
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -98,6 +98,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Thu Jan 22 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.5-alt2
+- Add Ice timeout override for daemon
+
 * Tue Nov 25 2008 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.5-alt1
 - Move initialization of kerberos into global getIceCommunicator() singleton
 
