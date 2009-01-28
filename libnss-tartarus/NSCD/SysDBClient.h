@@ -9,8 +9,10 @@ namespace core = Tartarus::iface::core;
 
 namespace Tartarus
 {
-	const SysDB::UserReaderPrx& getUserReader(Ice::CommunicatorPtr communicator = 0);
-	const SysDB::GroupReaderPrx& getGroupReader(Ice::CommunicatorPtr communicator = 0);
+	const SysDB::UserReaderPrx& getUserReader();
+	const SysDB::GroupReaderPrx& getGroupReader();
+
+	void setReaderReInit();
 }
 
 #endif

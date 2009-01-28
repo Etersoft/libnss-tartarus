@@ -79,9 +79,15 @@ UserRecord UserReaderI::getUser(uid_t uid)
                 SysDB::UserRecord user = getUserReader()->getById(uid);
                 return makeUserRecord(user);
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }
 
@@ -91,9 +97,15 @@ UserRecord UserReaderI::getUser(const std::string & name)
                 SysDB::UserRecord user = getUserReader()->getByName(name);
                 return makeUserRecord(user);
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }
 
@@ -103,9 +115,15 @@ GroupRecord GroupReaderI::getGroup(gid_t gid)
                 SysDB::GroupRecord group = getGroupReader()->getById(gid);
                 return makeGroupRecord(group);
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }
 
@@ -115,9 +133,15 @@ GroupRecord GroupReaderI::getGroup(const std::string & name)
                 SysDB::GroupRecord group = getGroupReader()->getByName(name);
                 return makeGroupRecord(group);
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }
 
@@ -131,9 +155,15 @@ std::vector<std::string> GroupReaderI::getUsers(gid_t gid)
                         ret.push_back(i->name);
                 return ret;
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }
 
@@ -146,8 +176,14 @@ std::vector<gid_t> GroupReaderI::getUserGroups(const std::string &name)
                         gids.push_back(*i);
                 return gids;
         } catch (const core::NotFoundError& error) {
-                throw RPC::RPCError("NotFound");
+                throw RPC::RPCError(std::string("NotFound: ") + error.reason + " (" + error.response + ")");
+        } catch (const core::Error& error) {
+                throw RPC::RPCError(std::string("TartarusError: ") + error.reason);
         } catch (const Ice::Exception& error) {
+                setReaderReInit();
                 throw RPC::RPCError(error.ice_name());
+        } catch (const std::runtime_error& error) {
+                setReaderReInit();
+                throw RPC::RPCError(error.what());
         }
 }

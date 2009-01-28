@@ -1,8 +1,8 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.0.5
-Release: alt2
+Version: 0.0.6
+Release: alt1
 
 Summary: NSS library module for Tartarus
 
@@ -98,6 +98,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Wed Jan 28 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.6-alt1
+- Add communicator reinitialization support with kinit
+
 * Thu Jan 22 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.5-alt2
 - Add Ice timeout override for daemon
 

@@ -10,7 +10,7 @@ env['CPPPATH'] += ['.']
 libs = [path.basename(str(i[0])) for i in (rpc,)]
 libpath = [path.dirname(str(i[0])) for i in (rpc,)]
 
-env.Append(LIBS=libs + ['json_spirit', 'boost_system', 'boost_filesystem'])
+env.Append(LIBS=libs + ['json_spirit', 'boost_system-mt', 'boost_filesystem-mt', 'boost_thread-mt'])
 env['LIBPATH'] = libpath
 
 env.Append(ICE2CPP_INCPATH=['/usr/share/Tartarus/slice'])
