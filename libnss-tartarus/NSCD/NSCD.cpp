@@ -1,57 +1,63 @@
-#include <RPC/RPC.h>
+//#include <RPC/RPC.h>
 #include <debug.h>
-#include "RPCTypes.h"
+//#include "RPCTypes.h"
 
 #include <stdexcept>
 #include <iostream>
 
-#include "ServerI.h"
+#include "ServerDBUS.h"
 #include "Signal.h"
-#include "Prepare.h"
-
+//#include "Prepare.h"
 
 using namespace Tartarus;
 
-static RPC::Server s(NSS_TARTARUS_SOCKET_PATH);
+static const char* SERVER_NAME = "ru.tartarus.DBus.TNSCD";
+static const char* SERVER_PATH = "/ru/tartarus/DBus/TNSCD";
+
+static DBus::BusDispatcher dispatcher;
 
 static void termination_handler(int signum)
 {
-        s.stop();
+    dispatcher.leave();
 }
 
 int main()
 {
-        int error_code = 0;
+    int error_code = 0;
 
-        BlockSignals(false, SIGINT);
-        BlockSignals(false, SIGQUIT);
-        BlockSignals(false, SIGTERM);
-        BlockSignals(false, SIGHUP);
+    BlockSignals(false, SIGINT);
+    BlockSignals(false, SIGQUIT);
+    BlockSignals(false, SIGTERM);
+    BlockSignals(false, SIGHUP);
 
-        CatchSignal(SIGINT, termination_handler);
-        CatchSignal(SIGQUIT, termination_handler);
-        CatchSignal(SIGTERM, termination_handler);
-        CatchSignal(SIGPIPE, SIG_IGN);
+    CatchSignal(SIGINT, termination_handler);
+    CatchSignal(SIGQUIT, termination_handler);
+    CatchSignal(SIGTERM, termination_handler);
+    CatchSignal(SIGPIPE, SIG_IGN);
 
-        try {
-                CheckDirectories();
+    try {
+//        CheckDirectories();
 
-                RPC::ObjectPtr ur(new Tartarus::UserReaderI());
-                RPC::Functions::get().add_object("UserReader", ur);
-                RPC::ObjectPtr gr(new Tartarus::GroupReaderI());
-                RPC::Functions::get().add_object("GroupReader", gr);
+        DBus::default_dispatcher = &dispatcher;
 
-                {
-                    Umask m;
-                    s.init();
-                }
+//        DBus::Connection conn = DBus::Connection::SessionBus();
+        DBus::Connection conn = DBus::Connection::SystemBus();
+        conn.request_name(SERVER_NAME);
 
-                s.run();
-        } catch (const std::exception &error)
-        {
-                std::cerr << error.what() << std::endl;
-                error_code = 1;
-        }
+        ServerDBUS server(conn, SERVER_PATH);
 
-        return error_code;
+//        {
+//            Umask m;
+//            s.init();
+//        }
+
+        dispatcher.enter();
+
+    } catch (const std::exception &error)
+    {
+        std::cerr << error.what() << std::endl;
+        error_code = 1;
+    }
+
+    return error_code;
 }

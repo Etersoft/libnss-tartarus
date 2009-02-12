@@ -1,7 +1,7 @@
 #ifndef Tartarus_NSCD_Prepare_h
 #define Tartarus_NSCD_Prepare_h
 
-#include "RPC/Config.h"
+//#include "RPC/Config.h"
 
 #include <sys/types.h>
 #include <sys/stat.h>
@@ -24,7 +24,7 @@ public:
     }
 };
 
-void CheckDirectories();
+//void CheckDirectories();
 
 }
 
