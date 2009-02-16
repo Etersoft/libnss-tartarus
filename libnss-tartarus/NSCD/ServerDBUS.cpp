@@ -1,7 +1,7 @@
 #include "ServerDBUS.h"
 #include "SysDBClient.h"
+#include <Debug.h>
 #include <stdexcept>
-#include <debug.h>
 
 using namespace Tartarus;
 

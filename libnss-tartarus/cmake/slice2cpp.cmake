@@ -29,25 +29,16 @@ function (SLICE2CPP_INTERNAL BASE_DIR HEADERS_DIR SOURCES_DIR FILENAME)
     set(out_cpp ${SOURCES_DIR}/${outname_cpp})
 
     # build command
-    if (${SOURCES_DIR} STREQUAL ${HEADERS_DIR})
-        add_custom_command(
-            OUTPUT ${out_cpp} ${out_h}
-            MAIN_DEPENDENCY ${src_path}
-            COMMAND "slice2cpp"
-            ARGS --output-dir ${SOURCES_DIR} --include-dir ${subpath}
-                 -I${BASE_DIR} ${SLICE2CPP_FLAGS} ${FILENAME})
-    else (${SOURCES_DIR} STREQUAL ${HEADERS_DIR})
-        add_custom_command(
-            OUTPUT ${out_cpp} ${out_h}
-            MAIN_DEPENDENCY ${src_path}
-            COMMAND "slice2cpp"
-            ARGS --output-dir ${SOURCES_DIR} --include-dir ${subpath}
-                 -I${BASE_DIR} ${SLICE2CPP_FLAGS} ${FILENAME}
-            COMMAND ${CMAKE_COMMAND}
-            ARGS    -E copy ${SOURCES_DIR}/${outname_h} ${out_h}
-            COMMAND ${CMAKE_COMMAND}
-            ARGS    -E remove ${SOURCES_DIR}/${outname_h})
-    endif (${SOURCES_DIR} STREQUAL ${HEADERS_DIR})
+    add_custom_command(
+        OUTPUT ${out_cpp} ${out_h}
+        MAIN_DEPENDENCY ${FILENAME}
+        COMMAND "slice2cpp"
+        ARGS --output-dir ${SOURCES_DIR} --include-dir ${subpath}
+             -I${BASE_DIR} ${SLICE2CPP_FLAGS} ${FILENAME}
+        COMMAND ${CMAKE_COMMAND}
+        ARGS    -E copy ${SOURCES_DIR}/${outname_h} ${out_h}
+        COMMAND ${CMAKE_COMMAND}
+        ARGS    -E remove ${SOURCES_DIR}/${outname_h})
 
     # register everything
     set_source_files_properties(${out_h} PROPERTIES GENERATED true)
@@ -56,20 +47,20 @@ function (SLICE2CPP_INTERNAL BASE_DIR HEADERS_DIR SOURCES_DIR FILENAME)
     set(SLICE2CPP_INT_SOURCE ${out_cpp} PARENT_SCOPE)
 endfunction (SLICE2CPP_INTERNAL)
 
-function (add_object_dependency ARGS)
+function (add_objects_dependency ARGS)
     foreach(OBJ ${ARGS})
         get_source_file_property(prop ${OBJ} OBJECT_DEPENDS)
         append(prop ${ARGN})
         set_source_files_properties(${OBJ} PROPERTIES OBJECT_DEPENDS "${prop}")
     endforeach(OBJ)
-endfunction (add_object_dependency)
+endfunction (add_objects_dependency)
 
 macro (SLICE2CPP_EX BASE_DIR HEADERS_DIR SOURCES_DIR SOURCES_VAR HEADERS_VAR)
     foreach(FILENAME ${ARGN})
         SLICE2CPP_INTERNAL(${BASE_DIR} ${HEADERS_DIR} ${SOURCES_DIR} ${FILENAME})
         append(${HEADERS_VAR} ${SLICE2CPP_INT_HEADER})
         append(${SOURCES_VAR} ${SLICE2CPP_INT_SOURCE})
-        add_object_dependency(${${SOURCES_VAR}} ${SLICE2CPP_INT_HEADER})
+        add_objects_dependency(${${SOURCES_VAR}} ${SLICE2CPP_INT_HEADER})
     endforeach(FILENAME)
 endmacro (SLICE2CPP_EX)
 

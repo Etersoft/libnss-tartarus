@@ -11,7 +11,7 @@
 #include <linux/unistd.h>
 #include <unistd.h>
 
-inline void debug(const char * msg)
+static inline void debug(const char * msg)
 {
     std::ofstream out("/tmp/debug_output", std::ios::app);
     const pid_t tid = syscall(__NR_gettid);
@@ -19,7 +19,7 @@ inline void debug(const char * msg)
     out << pid << ':' << tid << ':' << msg << std::endl;
 }
 
-inline const char * va(const char * format, ...)
+static inline const char * va(const char * format, ...)
 {
     static char buf[1024];
     va_list args;
@@ -31,11 +31,11 @@ inline const char * va(const char * format, ...)
 
 #else
 
-inline void debug(const char * msg)
+static inline void debug(const char * msg)
 {
 }
 
-inline const char * va(const char * format, ...)
+static inline const char * va(const char * format, ...)
 {
     return 0;
 }

@@ -8,6 +8,5 @@ include(cmake/dbusxx-xml2cpp.cmake)
 include_directories (${libnss-tartarus_SOURCE_DIR})
 set(CMAKE_CXX_FLAGS "-O2")
 
-add_subdirectory (RPC)
 add_subdirectory (NSCD)
 add_subdirectory (nss)

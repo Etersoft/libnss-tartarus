@@ -1,5 +1,5 @@
 //#include <RPC/RPC.h>
-#include <debug.h>
+#include <Debug.h>
 //#include "RPCTypes.h"
 
 #include <stdexcept>

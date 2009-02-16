@@ -1,5 +1,5 @@
 
-#include <Kinit.h>
+#include "Kinit.h"
 
 #include <krb5user.h>
 
