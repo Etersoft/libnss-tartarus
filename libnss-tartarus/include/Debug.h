@@ -3,9 +3,8 @@
 
 #ifdef DEBUG
 
+#include <stdio.h>
 #include <stdarg.h>
-#include <iostream>
-#include <fstream>
 #include <sys/types.h>
 #include <sys/unistd.h>
 #include <linux/unistd.h>
@@ -13,10 +12,9 @@
 
 static inline void debug(const char * msg)
 {
-    std::ofstream out("/tmp/debug_output", std::ios::app);
     const pid_t tid = syscall(__NR_gettid);
     const pid_t pid = getpid();
-    out << pid << ':' << tid << ':' << msg << std::endl;
+    fprintf (stderr, "%d: %d: %s\n", pid, tid, msg);
 }
 
 static inline const char * va(const char * format, ...)

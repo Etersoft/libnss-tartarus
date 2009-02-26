@@ -1,8 +1,10 @@
 #ifndef LIBNSS_TARTARUS_H_
 #define LIBNSS_TARTARUS_H_
 
-#include "ClientDBus.h"
 #include <string.h>
+#include <nss.h>
+
+typedef enum nss_status nss_status;
 
 char *allocate_mem (char **buf, size_t *buflen, size_t len);
 

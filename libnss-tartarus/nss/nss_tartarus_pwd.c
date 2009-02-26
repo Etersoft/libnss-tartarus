@@ -4,12 +4,10 @@
 #include <sys/types.h>
 #include <errno.h>
 #include <string.h>
+#include <stdbool.h>
 
 #include <Debug.h>
-#include "nss_tartarus.h"
-
-typedef int bool;
-typedef enum nss_status nss_status;
+#include "ClientDBus.h"
 
 /*static nss_status fill_user (struct passwd *ent, const Tartarus::UserRecord& user, char **buffer, size_t *buflen)
 {

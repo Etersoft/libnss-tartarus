@@ -2,6 +2,7 @@
 #include "SysDBClient.h"
 #include <Debug.h>
 #include <stdexcept>
+#include <iostream>
 
 using namespace Tartarus;
 
@@ -77,6 +78,7 @@ void ServerDBUS::getUserByName(
     ::DBus::String& shell,
     ::DBus::String& passwd)
 {
+    std::cerr << "getUserByName " << username << std::endl;
     try {
         SysDB::UserRecord user = getUserReader()->getByName(username);
         fillUser(user, uid, gid, name, gecos, home, shell, passwd);

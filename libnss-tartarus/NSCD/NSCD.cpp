@@ -1,6 +1,5 @@
-//#include <RPC/RPC.h>
+#include <Config.h>
 #include <Debug.h>
-//#include "RPCTypes.h"
 
 #include <stdexcept>
 #include <iostream>
@@ -11,8 +10,9 @@
 
 using namespace Tartarus;
 
-static const char* SERVER_NAME = "ru.tartarus.DBus.TNSCD";
-static const char* SERVER_PATH = "/ru/tartarus/DBus/TNSCD";
+static const char* SERVER_NAME = TARTARUS_NSS_SERVER_NAME;
+static const char* SERVER_PATH = TARTARUS_NSS_SERVER_PATH;
+//static const char* PEER_TO_PEER_PATH = "unix:/var/run/tnscd/pipe";
 
 static DBus::BusDispatcher dispatcher;
 

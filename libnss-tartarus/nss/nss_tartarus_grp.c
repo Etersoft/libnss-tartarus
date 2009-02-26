@@ -5,17 +5,10 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
 #include <Debug.h>
-#include "nss_tartarus.h"
-
-typedef int bool;
-typedef enum nss_status nss_status;
-
-enum {
-    false = 0,
-    true = 1
-};
+#include "ClientDBus.h"
 
 static bool realloc_groups (long int **size, gid_t ***groups, long int limit)
 {
