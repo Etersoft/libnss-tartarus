@@ -50,6 +50,7 @@ static inline void fillGroup(
     ::DBus::UInt32& gid,
     ::DBus::String& name,
     ::DBus::String& passwd,
+    ::DBus::UInt32& users_size,
     std::vector< ::DBus::String >& users,
     const SysDB::UserSeq user_list)
 {
@@ -58,6 +59,7 @@ static inline void fillGroup(
     gid    = group.gid;
     name   = group.name;
     passwd = "x";
+    users_size = user_list.size();
 
     users.reserve(user_list.size());
     for_each(user_list.begin(), user_list.end(), inserter);
@@ -122,13 +124,14 @@ void ServerDBUS::getGroupById(
     ::DBus::UInt32& gid,
     ::DBus::String& name,
     ::DBus::String& passwd,
+    ::DBus::UInt32& users_size,
     std::vector< ::DBus::String >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getById(groupid);
         const SysDB::IdSeq ids = getGroupReader()->getUsers(groupid);
         const SysDB::UserSeq user_list = getUserReader()->getUsers(ids);
-        fillGroup(group, gid, name, passwd, users, user_list);
+        fillGroup(group, gid, name, passwd, users_size, users, user_list);
     } catch (const core::NotFoundError& error) {
         throw DBus::Error(notFoundError, (error.reason + " (" + error.response + ")").c_str());
     } catch (const core::Error& error) {
@@ -147,13 +150,14 @@ void ServerDBUS::getGroupByName(
     ::DBus::UInt32& gid,
     ::DBus::String& name,
     ::DBus::String& passwd,
+    ::DBus::UInt32& users_size,
     std::vector< ::DBus::String >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getByName(groupname);
         const SysDB::IdSeq ids = getGroupReader()->getUsers(group.gid);
         const SysDB::UserSeq user_list = getUserReader()->getUsers(ids);
-        fillGroup(group, gid, name, passwd, users, user_list);
+        fillGroup(group, gid, name, passwd, users_size, users, user_list);
     } catch (const core::NotFoundError& error) {
         throw DBus::Error(notFoundError, (error.reason + " (" + error.response + ")").c_str());
     } catch (const core::Error& error) {

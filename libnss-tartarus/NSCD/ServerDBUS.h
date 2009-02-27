@@ -38,12 +38,14 @@ public:
         ::DBus::UInt32& gid,
         ::DBus::String& name,
         ::DBus::String& passwd,
+        ::DBus::UInt32& users_size,
         std::vector< ::DBus::String >& users);
     void getGroupByName(
         const ::DBus::String& groupname,
         ::DBus::UInt32& gid,
         ::DBus::String& name,
         ::DBus::String& passwd,
+        ::DBus::UInt32& users_size,
         std::vector< ::DBus::String >& users);
     std::vector< ::DBus::UInt32 > getUserGroups(const ::DBus::String& username);
 };

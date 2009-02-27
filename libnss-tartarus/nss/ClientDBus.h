@@ -1,11 +1,12 @@
 #ifndef Tartarus_DBus_NSS_Client_h
 #define Tartarus_DBus_NSS_Client_h
 
-#include <sys/types.h>
+#include <string.h>
+#include <nss.h>
 #include <pwd.h>
 #include <grp.h>
 
-#include "nss_tartarus.h"
+typedef enum nss_status nss_status;
 
 nss_status client_dbus_init(void);
 void client_dbus_destroy(void);

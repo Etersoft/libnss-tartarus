@@ -27,6 +27,7 @@
       <arg type="u" name="gid" direction="out"/>
       <arg type="s" name="name" direction="out"/>
       <arg type="s" name="passwd" direction="out"/>
+      <arg type="u" name="users_size" direction="out"/>
       <arg type="as" name="users" direction="out"/>
     </method>
     <method name="getGroupByName">
@@ -34,6 +35,7 @@
       <arg type="u" name="gid" direction="out"/>
       <arg type="s" name="name" direction="out"/>
       <arg type="s" name="passwd" direction="out"/>
+      <arg type="u" name="users_size" direction="out"/>
       <arg type="as" name="users" direction="out"/>
     </method>
     <method name="getUserGroups">

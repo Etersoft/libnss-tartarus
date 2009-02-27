@@ -1,7 +1,7 @@
 include(FindPkgConfig)
 pkg_check_modules(DBUS REQUIRED dbus-1)
 
-set(sources "nss_tartarus.c" "ClientDBus.c" "nss_tartarus_pwd.c" "nss_tartarus_grp.c")
+set(sources "ClientDBus.c" "nss_tartarus_pwd.c" "nss_tartarus_grp.c")
 add_library(nss_tartarus SHARED ${sources})
 
 set_target_properties(nss_tartarus PROPERTIES SOVERSION 2)
