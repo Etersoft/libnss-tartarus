@@ -28,7 +28,6 @@ static inline const char * va(const char * format, ...)
 }
 
 #else
-
 static inline void debug(const char * msg)
 {
 }

@@ -66,60 +66,181 @@ static nss_status fill_user(
 
     if (!dbus_message_iter_init(msg, &args)) {
         debug (va("%s: %s", __FUNCTION__, "Message has no arguments"));
-        return false;
+        return NSS_STATUS_UNAVAIL;
     }
     else if (DBUS_TYPE_UINT32 != dbus_message_iter_get_arg_type(&args)) {
         debug (va("%s: %s", __FUNCTION__, "First argument is not uint32"));
-        return false;
+        return NSS_STATUS_UNAVAIL;
     }
     else
         dbus_message_iter_get_basic(&args, &pw->pw_uid);
 
     if (!dbus_message_iter_next(&args)) {
-        debug (va("%s: %s", __FUNCTION__, "Message has no second arguments"));
-        return false;
+        debug (va("%s: %s", __FUNCTION__, "Message has no second argument"));
+        return NSS_STATUS_UNAVAIL;
     }
     else if (DBUS_TYPE_UINT32 != dbus_message_iter_get_arg_type(&args)) {
         debug (va("%s: %s", __FUNCTION__, "Second argument is not uint32"));
-        return false;
+        return NSS_STATUS_UNAVAIL;
     }
     else
         dbus_message_iter_get_basic(&args, &pw->pw_gid);
 
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no third argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Third argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        debug (va("%s: %s: %s", __FUNCTION__, "Third argument", value));
+        pw->pw_name = fill_record (&buffer, &buflen, value);
+        if (pw->pw_name == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no forth argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Forth argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        pw->pw_gecos = fill_record (&buffer, &buflen, value);
+        if (pw->pw_gecos == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no fifth argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Fifth argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        pw->pw_dir = fill_record (&buffer, &buflen, value);
+        if (pw->pw_dir == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no sixth argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Sixth argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        pw->pw_shell = fill_record (&buffer, &buflen, value);
+        if (pw->pw_shell == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no seventh argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Seventh argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        pw->pw_passwd = fill_record (&buffer, &buflen, value);
+        if (pw->pw_passwd == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
     return NSS_STATUS_SUCCESS;
 }
 
-nss_status client_dbus_get_user_by_id(
-    uid_t user_id,
-    struct passwd *pw,
+static nss_status fill_group(
+    DBusMessage* msg,
+    struct group *gr,
     char *buffer,
-    size_t buflen,
-    int *errnop)
+    size_t buflen)
 {
-    DBusMessage* msg;
     DBusMessageIter args;
-    DBusPendingCall* pending;
+
+    if (!dbus_message_iter_init(msg, &args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no arguments"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_UINT32 != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "First argument is not uint32"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else
+        dbus_message_iter_get_basic(&args, &gr->gr_gid);
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no second argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Second argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        debug (va("%s: %s: %s", __FUNCTION__, "Third argument", value));
+        gr->gr_name = fill_record (&buffer, &buflen, value);
+        if (gr->gr_name == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    if (!dbus_message_iter_next(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Message has no third argument"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else if (DBUS_TYPE_STRING != dbus_message_iter_get_arg_type(&args)) {
+        debug (va("%s: %s", __FUNCTION__, "Third argument is not string"));
+        return NSS_STATUS_UNAVAIL;
+    }
+    else {
+        const char* value;
+        dbus_message_iter_get_basic(&args, &value);
+        debug (va("%s: %s: %s", __FUNCTION__, "Third argument", value));
+        gr->gr_passwd = fill_record (&buffer, &buflen, value);
+        if (gr->gr_passwd == NULL)
+            return NSS_STATUS_TRYAGAIN;
+    }
+
+    return NSS_STATUS_SUCCESS;
+}
+
+static inline DBusMessage* client_dbus_message_start(const char *method)
+{
+    return dbus_message_new_method_call(
+        TARTARUS_NSS_SERVER_NAME,
+        TARTARUS_NSS_SERVER_PATH,
+        TARTARUS_NSS_SERVER_IFACE,
+        method);
+}
+
+static DBusMessage* client_dbus_send_message(DBusMessage* msg)
+{
+    DBusConnection* conn = connection;
     DBusConnection* tmp_connection = NULL;
-    nss_status ret = NSS_STATUS_UNAVAIL;
-
-    pthread_mutex_lock (&mutex);
-
-    msg = dbus_message_new_method_call(TARTARUS_NSS_SERVER_NAME,
-                                       TARTARUS_NSS_SERVER_PATH,
-                                       TARTARUS_NSS_SERVER_IFACE,
-                                       "getUserByName");
-    if (NULL == msg) { 
-        debug (va("%s: %s", __FUNCTION__, "Message Null"));
-        goto err;
-    }
-
-    dbus_message_iter_init_append(msg, &args);
-    if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_UINT32, &user_id)) {
-    //if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_STRING, &user_name)) {
-        debug (va("%s: %s", __FUNCTION__, "Out Of Memory"));
-        dbus_message_unref(msg);
-        goto err;
-    }
+    DBusPendingCall* pending;
+    DBusMessage* ret;
 
     if (connection == NULL) {
         DBusError err;
@@ -131,48 +252,32 @@ nss_status client_dbus_get_user_by_id(
             debug (va("%s: %s", __FUNCTION__, err.message));
             dbus_error_free(&err);
             tmp_connection = NULL;
-            goto err;
+            goto send_err;
         }
+        conn = tmp_connection;
         dbus_error_free(&err);
     }
 
-    if (!dbus_connection_send_with_reply (tmp_connection ? tmp_connection : connection, msg, &pending, TARTARUS_NSS_CLIENT_TIMEOUT)) {
+    if (!dbus_connection_send_with_reply (conn, msg, &pending, TARTARUS_NSS_CLIENT_TIMEOUT)) {
         debug (va("%s: %s", __FUNCTION__, "Problem with Send"));
-        dbus_message_unref(msg);
-        goto err;
+        goto send_err;
     }
 
     if (pending == NULL) { 
         debug (va("%s: %s", __FUNCTION__, "Pending Call Null"));
-        dbus_message_unref(msg);
-        goto err;
+        goto send_err;
     }
-    dbus_connection_flush(connection);
-
-    dbus_message_unref(msg);
+    dbus_connection_flush(conn);
     dbus_pending_call_block(pending);
 
-    msg = dbus_pending_call_steal_reply(pending);
+    ret = dbus_pending_call_steal_reply(pending);
     dbus_pending_call_unref(pending);
-    if (msg == NULL) {
+    if (ret == NULL)
         debug (va("%s: %s", __FUNCTION__, "Reply Null"));
-        goto err;
-    }
 
-    ret = fill_user(msg, pw, buffer, buflen);
-
-    if (ret == NSS_STATUS_TRYAGAIN)
-        *errnop = errno = ERANGE;
-    else
-        *errnop = 0;
-
-    dbus_message_unref(msg);
-
-err:
+send_err:
     if (tmp_connection != NULL)
-        dbus_connection_unref(connection);
-
-    pthread_mutex_unlock (&mutex);
+        dbus_connection_unref(tmp_connection);
 
     return ret;
 }
@@ -181,34 +286,170 @@ nss_status client_dbus_get_user_by_name(
     const char *user_name,
     struct passwd *pw,
     char *buffer,
-    size_t buflen,
-    int *errnop)
+    size_t buflen)
 {
+    DBusMessage *msg, *reply;
+    DBusMessageIter args;
     nss_status ret = NSS_STATUS_UNAVAIL;
+
+    msg = client_dbus_message_start("getUserByName");
+    if (msg == NULL) { 
+        debug (va("%s: %s", __FUNCTION__, "Message Null"));
+        return ret;
+    }
+
+    dbus_message_iter_init_append(msg, &args);
+    if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_STRING, &user_name)) {
+        debug (va("%s: %s", __FUNCTION__, "Out Of Memory"));
+        dbus_message_unref(msg);
+        return ret;
+    }
+
+    pthread_mutex_lock (&mutex);
+
+    reply = client_dbus_send_message(msg);
+    dbus_message_unref(msg);
+
+    if (reply == NULL) {
+        debug (va("%s: %s", __FUNCTION__, "Send Message"));
+        goto err;
+    }
+
+    ret = fill_user(reply, pw, buffer, buflen);
+
+    dbus_message_unref(reply);
+
+err:
+    pthread_mutex_unlock (&mutex);
+
+    return ret;
+}
+
+nss_status client_dbus_get_user_by_id(
+    uid_t user_id,
+    struct passwd *pw,
+    char *buffer,
+    size_t buflen)
+{
+    DBusMessage *msg, *reply;
+    DBusMessageIter args;
+    nss_status ret = NSS_STATUS_UNAVAIL;
+
+    msg = client_dbus_message_start("getUserById");
+    if (msg == NULL) { 
+        debug (va("%s: %s", __FUNCTION__, "Message Null"));
+        return ret;
+    }
+
+    dbus_message_iter_init_append(msg, &args);
+    if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_UINT32, &user_id)) {
+        debug (va("%s: %s", __FUNCTION__, "Out Of Memory"));
+        dbus_message_unref(msg);
+        return ret;
+    }
+
+    pthread_mutex_lock (&mutex);
+
+    reply = client_dbus_send_message(msg);
+    dbus_message_unref(msg);
+
+    if (reply == NULL) {
+        debug (va("%s: %s", __FUNCTION__, "Send Message"));
+        goto err;
+    }
+
+    ret = fill_user(msg, pw, buffer, buflen);
+
+    dbus_message_unref(reply);
+
+err:
+    pthread_mutex_unlock (&mutex);
 
     return ret;
 }
 
 nss_status client_dbus_get_group_by_id(
-    uid_t user_id,
+    uid_t group_id,
     struct group *gr,
     char *buffer,
-    size_t buflen,
-    int *errnop)
+    size_t buflen)
 {
+    DBusMessage *msg, *reply;
+    DBusMessageIter args;
     nss_status ret = NSS_STATUS_UNAVAIL;
+
+    msg = client_dbus_message_start("getGroupById");
+    if (msg == NULL) { 
+        debug (va("%s: %s", __FUNCTION__, "Message Null"));
+        return ret;
+    }
+
+    dbus_message_iter_init_append(msg, &args);
+    if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_UINT32, &group_id)) {
+        debug (va("%s: %s", __FUNCTION__, "Out Of Memory"));
+        dbus_message_unref(msg);
+        return ret;
+    }
+
+    pthread_mutex_lock (&mutex);
+
+    reply = client_dbus_send_message(msg);
+    dbus_message_unref(msg);
+
+    if (reply == NULL) {
+        debug (va("%s: %s", __FUNCTION__, "Send Message"));
+        goto err;
+    }
+
+    ret = fill_group(reply, gr, buffer, buflen);
+
+    dbus_message_unref(reply);
+
+err:
+    pthread_mutex_unlock (&mutex);
 
     return ret;
 }
 
 nss_status client_dbus_get_group_by_name(
-    const char *user_name,
+    const char *group_name,
     struct group *gr,
     char *buffer,
-    size_t buflen,
-    int *errnop)
+    size_t buflen)
 {
+    DBusMessage *msg, *reply;
+    DBusMessageIter args;
     nss_status ret = NSS_STATUS_UNAVAIL;
+
+    msg = client_dbus_message_start("getGroupByName");
+    if (msg == NULL) { 
+        debug (va("%s: %s", __FUNCTION__, "Message Null"));
+        return ret;
+    }
+
+    dbus_message_iter_init_append(msg, &args);
+    if (!dbus_message_iter_append_basic(&args, DBUS_TYPE_STRING, &group_name)) {
+        debug (va("%s: %s", __FUNCTION__, "Out Of Memory"));
+        dbus_message_unref(msg);
+        return ret;
+    }
+
+    pthread_mutex_lock (&mutex);
+
+    reply = client_dbus_send_message(msg);
+    dbus_message_unref(msg);
+
+    if (reply == NULL) {
+        debug (va("%s: %s", __FUNCTION__, "Send Message"));
+        goto err;
+    }
+
+    ret = fill_group(reply, gr, buffer, buflen);
+
+    dbus_message_unref(reply);
+
+err:
+    pthread_mutex_unlock (&mutex);
 
     return ret;
 }
@@ -218,8 +459,7 @@ nss_status client_dbus_init_groups_for_user(
     long int *start,
     long int *size,
     gid_t **groups,
-    long int limit,
-    int *errnop)
+    long int limit)
 {
     nss_status ret = NSS_STATUS_UNAVAIL;
 

@@ -68,12 +68,12 @@ nss_status _nss_tartarus_getpwuid_r(uid_t uid, struct passwd *result, char *buff
 	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
 	{
-//		ret = fill_user (result, getUserReader().getUser(uid), &buffer, &buflen);
-//
-//		if (ret == NSS_STATUS_TRYAGAIN)
-//			*errnop = errno = ERANGE;
-//		else
-//			*errnop = 0;
+		ret = client_dbus_get_user_by_id (uid, result, buffer, buflen);
+
+		if (ret == NSS_STATUS_TRYAGAIN)
+			*errnop = errno = ERANGE;
+		else
+			*errnop = 0;
 	}
 	debug (va("%s: %s", __FUNCTION__, "end"));
 	return ret;
@@ -84,12 +84,12 @@ nss_status _nss_tartarus_getpwnam_r(const char *name, struct passwd *result, cha
 	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s", __FUNCTION__, "start"));
 	{
-//		ret = fill_user (result, getUserReader().getUser(name), &buffer, &buflen);
-//
-//		if (ret == NSS_STATUS_TRYAGAIN)
-//			*errnop = errno = ERANGE;
-//		else
-//			*errnop = 0;
+		ret = client_dbus_get_user_by_name (name, result, buffer, buflen);
+
+		if (ret == NSS_STATUS_TRYAGAIN)
+			*errnop = errno = ERANGE;
+		else
+			*errnop = 0;
 	}
 	debug (va("%s: %s", __FUNCTION__, "end"));
 	return ret;

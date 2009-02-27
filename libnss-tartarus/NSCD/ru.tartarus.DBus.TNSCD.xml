@@ -1,6 +1,6 @@
 <!DOCTYPE node PUBLIC "-//freedesktop//DTD D-BUS Object Introspection 1.0//EN"
  "http://www.freedesktop.org/standards/dbus/1.0/introspect.dtd">
-<node name="/ru/tartarus/libnss/TNSCD">
+<node name="/ru/tartarus/DBus/TNSCD">
   <interface name="ru.tartarus.DBus.TNSCD">
     <method name="getUserById">
       <arg type="u" name="userid" direction="in"/>
@@ -27,15 +27,13 @@
       <arg type="u" name="gid" direction="out"/>
       <arg type="s" name="name" direction="out"/>
       <arg type="s" name="passwd" direction="out"/>
+      <arg type="as" name="users" direction="out"/>
     </method>
     <method name="getGroupByName">
       <arg type="s" name="groupname" direction="in"/>
       <arg type="u" name="gid" direction="out"/>
       <arg type="s" name="name" direction="out"/>
       <arg type="s" name="passwd" direction="out"/>
-    </method>
-    <method name="getGroupUsers">
-      <arg type="i" name="groupid" direction="in"/>
       <arg type="as" name="users" direction="out"/>
     </method>
     <method name="getUserGroups">

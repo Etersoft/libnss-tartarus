@@ -2,6 +2,7 @@
 #include "SysDBClient.h"
 #include <Debug.h>
 #include <stdexcept>
+#include <string>
 #include <iostream>
 
 using namespace Tartarus;
@@ -30,15 +31,36 @@ static inline void fillUser(
     passwd = "x";
 }
 
+class UserNamesInserter
+{
+    typedef std::vector< ::DBus::String > UserNames;
+    UserNames& userNames;
+public:
+    UserNamesInserter(UserNames& userNamesRef):
+        userNames(userNamesRef) {
+        userNames.clear();
+    }
+    void operator() (const SysDB::UserRecord &user) {
+        userNames.push_back(user.name);
+    }
+};
+
 static inline void fillGroup(
     const SysDB::GroupRecord & group,
     ::DBus::UInt32& gid,
     ::DBus::String& name,
-    ::DBus::String& passwd)
+    ::DBus::String& passwd,
+    std::vector< ::DBus::String >& users,
+    const SysDB::UserSeq user_list)
 {
+    UserNamesInserter inserter(users);
+
     gid    = group.gid;
     name   = group.name;
     passwd = "x";
+
+    users.reserve(user_list.size());
+    for_each(user_list.begin(), user_list.end(), inserter);
 }
 
 
@@ -99,11 +121,14 @@ void ServerDBUS::getGroupById(
     const ::DBus::UInt32& groupid,
     ::DBus::UInt32& gid,
     ::DBus::String& name,
-    ::DBus::String& passwd)
+    ::DBus::String& passwd,
+    std::vector< ::DBus::String >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getById(groupid);
-        fillGroup(group, gid, name, passwd);
+        const SysDB::IdSeq ids = getGroupReader()->getUsers(groupid);
+        const SysDB::UserSeq user_list = getUserReader()->getUsers(ids);
+        fillGroup(group, gid, name, passwd, users, user_list);
     } catch (const core::NotFoundError& error) {
         throw DBus::Error(notFoundError, (error.reason + " (" + error.response + ")").c_str());
     } catch (const core::Error& error) {
@@ -121,33 +146,14 @@ void ServerDBUS::getGroupByName(
     const ::DBus::String& groupname,
     ::DBus::UInt32& gid,
     ::DBus::String& name,
-    ::DBus::String& passwd)
+    ::DBus::String& passwd,
+    std::vector< ::DBus::String >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getByName(groupname);
-        fillGroup(group, gid, name, passwd);
-    } catch (const core::NotFoundError& error) {
-        throw DBus::Error(notFoundError, (error.reason + " (" + error.response + ")").c_str());
-    } catch (const core::Error& error) {
-        throw DBus::Error(tartarusError, error.reason.c_str());
-    } catch (const Ice::Exception& error) {
-        setReaderReInit();
-        throw DBus::Error(iceError, error.ice_name().c_str());
-    } catch (const std::runtime_error& error) {
-        setReaderReInit();
-        throw DBus::Error(internalError, error.what());
-    }
-}
-
-std::vector< ::DBus::String > ServerDBUS::getGroupUsers(const ::DBus::Int32& groupid)
-{
-    try {
-        const SysDB::IdSeq ids = getGroupReader()->getUsers(groupid);
-        const SysDB::UserSeq users = getUserReader()->getUsers(ids);
-        std::vector<std::string> ret;
-        for(SysDB::UserSeq::const_iterator i = users.begin(); i != users.end(); ++i)
-            ret.push_back(i->name);
-        return ret;
+        const SysDB::IdSeq ids = getGroupReader()->getUsers(group.gid);
+        const SysDB::UserSeq user_list = getUserReader()->getUsers(ids);
+        fillGroup(group, gid, name, passwd, users, user_list);
     } catch (const core::NotFoundError& error) {
         throw DBus::Error(notFoundError, (error.reason + " (" + error.response + ")").c_str());
     } catch (const core::Error& error) {
