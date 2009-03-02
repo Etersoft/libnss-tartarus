@@ -30,7 +30,6 @@ nss_status _nss_tartarus_getgrgid_r (gid_t gid, struct group *result, char *buff
 {
 	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s: %d", __FUNCTION__, "start", gid));
-        return NSS_STATUS_UNAVAIL;
 	{
 		ret = client_dbus_get_group_by_id (gid, result, buffer, buflen);
 
@@ -69,7 +68,6 @@ nss_status _nss_tartarus_initgroups_dyn (char *user, gid_t main_group, long int 
 {
 	nss_status ret = NSS_STATUS_UNAVAIL;
 	debug (va("%s: %s: %s", __FUNCTION__, "start", user));
-	return NSS_STATUS_SUCCESS;
 	{
 		ret = client_dbus_init_groups_for_user(user, start, size, groups, limit);
 

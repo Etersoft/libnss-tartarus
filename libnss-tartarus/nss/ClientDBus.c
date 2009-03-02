@@ -10,9 +10,6 @@
 #include <stdlib.h>
 #include <errno.h>
 
-static const char* SERVER_NAME = TARTARUS_NSS_SERVER_NAME;
-static const char* SERVER_PATH = TARTARUS_NSS_SERVER_PATH;
-
 static pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
 
 static DBusConnection* connection = NULL;
@@ -392,6 +389,25 @@ send_err:
     return ret;
 }
 
+static nss_status client_dbus_check_reply(DBusMessage* msg)
+{
+    if (DBUS_MESSAGE_TYPE_ERROR == dbus_message_get_type(msg)) {
+        const char *err_name = dbus_message_get_error_name(msg);
+
+        if (dbus_message_is_error(msg, "ru.tartarus.DBus.TNSCD.ErrorNotFound"))
+            return NSS_STATUS_NOTFOUND;
+
+        if (!err_name)
+            err_name = "NONE";
+        debug (va("%s: %s: %s", __FUNCTION__, "Reply Error", err_name));
+
+        return NSS_STATUS_UNAVAIL;
+    }
+
+    return NSS_STATUS_SUCCESS;
+}
+
+
 nss_status client_dbus_get_user_by_name(
     const char *user_name,
     struct passwd *pw,
@@ -425,7 +441,9 @@ nss_status client_dbus_get_user_by_name(
         goto err;
     }
 
-    ret = fill_user(reply, pw, buffer, buflen);
+    ret = client_dbus_check_reply(reply);
+    if (ret == NSS_STATUS_SUCCESS)
+        ret = fill_user(reply, pw, buffer, buflen);
 
     dbus_message_unref(reply);
 
@@ -468,7 +486,9 @@ nss_status client_dbus_get_user_by_id(
         goto err;
     }
 
-    ret = fill_user(msg, pw, buffer, buflen);
+    ret = client_dbus_check_reply(reply);
+    if (ret == NSS_STATUS_SUCCESS)
+        ret = fill_user(reply, pw, buffer, buflen);
 
     dbus_message_unref(reply);
 
@@ -511,7 +531,9 @@ nss_status client_dbus_get_group_by_id(
         goto err;
     }
 
-    ret = fill_group(reply, gr, buffer, buflen);
+    ret = client_dbus_check_reply(reply);
+    if (ret == NSS_STATUS_SUCCESS)
+        ret = fill_group(reply, gr, buffer, buflen);
 
     dbus_message_unref(reply);
 
@@ -554,7 +576,9 @@ nss_status client_dbus_get_group_by_name(
         goto err;
     }
 
-    ret = fill_group(reply, gr, buffer, buflen);
+    ret = client_dbus_check_reply(reply);
+    if (ret == NSS_STATUS_SUCCESS)
+        ret = fill_group(reply, gr, buffer, buflen);
 
     dbus_message_unref(reply);
 
@@ -598,7 +622,11 @@ nss_status client_dbus_init_groups_for_user(
         goto err;
     }
 
-    if (!dbus_message_iter_init(msg, &args)) {
+    ret = client_dbus_check_reply(reply);
+    if (ret != NSS_STATUS_SUCCESS)
+        goto err2;
+
+    if (!dbus_message_iter_init(reply, &args)) {
         debug (va("%s: %s", __FUNCTION__, "Message has no arguments"));
     }
     else if (DBUS_TYPE_ARRAY != dbus_message_iter_get_arg_type(&args)) {
@@ -627,6 +655,7 @@ nss_status client_dbus_init_groups_for_user(
         ret = NSS_STATUS_SUCCESS;
     }
 
+err2:
     dbus_message_unref(reply);
 
 err:
