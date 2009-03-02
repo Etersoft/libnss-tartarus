@@ -8,6 +8,5 @@ set_target_properties(nss_tartarus PROPERTIES SOVERSION 2)
 target_link_libraries(nss_tartarus ${DBUS_LDFLAGS})
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${DBUS_INCLUDE_DIRS})
 
-install(TARGETS nss_tartarus LIBRARY DESTINATION lib${LIB_SUFFIX})
-
-set(CMAKE_C_FLAGS "-O2")
+set(CMAKE_C_FLAGS "-DDEBUG")
+install(TARGETS nss_tartarus LIBRARY DESTINATION /lib${LIB_SUFFIX})

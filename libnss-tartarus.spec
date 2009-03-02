@@ -1,7 +1,7 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.0.6
+Version: 0.1.0
 Release: alt1
 
 Summary: NSS library module for Tartarus
@@ -23,7 +23,7 @@ Requires(postun): chrooted >= 0.3.5-alt1 sed
 
 BuildRequires: boost-asio-devel boost-filesystem-devel
 BuildRequires: libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel
-BuildRequires: gcc-c++ scons
+BuildRequires: gcc-c++ cmake
 
 BuildRequires(pre): rpm-build-licenses
 
@@ -45,22 +45,26 @@ Authorization proxy and cache daemon for Tartarus
 %setup -q
 
 %build
-scons
+mkdir build
+cd build
+cmake ../ \
+        -DCMAKE_INSTALL_PREFIX=/usr \
+%if %_lib == lib64
+        -DLIB_SUFFIX=64 \
+%endif
+        -DCMAKE_BUILD_TYPE="Release"
+
+%make_build VERBOSE=1
 
 %install
-scons install \
-    --install-sandbox=%buildroot \
-    --libdir=%_libdir \
-    --libsysdir=/%_lib \
-    --localstatedir=%_localstatedir
-mkdir -p %buildroot%_sysconfdir/Tartarus/clients
-cp tnscd.config %buildroot%_sysconfdir/Tartarus/clients/
+cd build
+%makeinstall DESTDIR=%buildroot
 
+mkdir -p %buildroot%_localstatedir/tnscd
 mkdir -p %buildroot%_initdir
 cp %SOURCE1 %buildroot%_initdir/tnscd
 
 %post
-%post_ldconfig
 if [ "$1" = "1" ]; then
     cp %nsswitch %nsswitch.rpmorig
     grep -q '^passwd:[[:blank:]].\+tartarus' %nsswitch || \
@@ -76,7 +80,6 @@ fi
 update_chrooted all
 
 %postun
-%postun_ldconfig
 if [ "$1" = "0" ]; then
     sed -i -e 's/ tartarus//g' %nsswitch
 fi
@@ -98,6 +101,10 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Mon Mar 02 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt1
+- Replace service exchange protocol from JSON to DBus
+- Replace build system from SCons to CMake
+
 * Wed Jan 28 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.6-alt1
 - Add communicator reinitialization support with kinit
 

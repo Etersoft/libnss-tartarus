@@ -26,3 +26,4 @@ link_directories (${tartarus-rpc_BINARY_DIR}/tartarus-rpc)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_BINARY_DIR} ${DBUSCXX_INCLUDE_DIRS})
 
 install(TARGETS tnscd DESTINATION sbin)
+install(FILES "tnscd.config" DESTINATION "/etc/Tartarus/clients")
