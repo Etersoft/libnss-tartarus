@@ -12,7 +12,6 @@ Group: System/Libraries
 Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 
 Source: %name-%version.tar
-Source1: tnscd.init.%_vendor
 
 Requires: libnss-role
 Requires: nss-tartarus-daemon = %version-%release
@@ -61,8 +60,6 @@ cd build
 %makeinstall DESTDIR=%buildroot
 
 mkdir -p %buildroot%_localstatedir/tnscd
-mkdir -p %buildroot%_initdir
-cp %SOURCE1 %buildroot%_initdir/tnscd
 
 %post
 if [ "$1" = "1" ]; then
@@ -96,7 +93,8 @@ update_chrooted all
 
 %files -n nss-tartarus-daemon
 %_sbindir/*
-%_initdir/*
+%_datadir/dbus-1/system-services/ru.tartarus.DBus.TNSCD.service
+%_sysconfdir/dbus-1/system.d/ru.tartarus.DBus.TNSCD.conf
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 %dir %_localstatedir/tnscd
 
@@ -104,6 +102,7 @@ update_chrooted all
 * Mon Mar 02 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt1
 - Replace service exchange protocol from JSON to DBus
 - Replace build system from SCons to CMake
+- Removed SysV initscript for service
 
 * Wed Jan 28 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.6-alt1
 - Add communicator reinitialization support with kinit

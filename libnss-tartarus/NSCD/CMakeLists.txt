@@ -3,7 +3,7 @@ pkg_check_modules(KRB5USER REQUIRED krb5user)
 pkg_check_modules(DBUSCXX REQUIRED dbus-c++-1)
 
 set(SLICE_DIR "/usr/share/Tartarus/slice")
-set(SLICE_HEADER_DIR "${CMAKE_CURRENT_BINARY_DIR}")
+set(SLICE_HEADER_DIR ${CMAKE_CURRENT_BINARY_DIR})
 include_directories(${SLICE_HEADER_DIR})
 
 file(GLOB core_slices "${SLICE_DIR}/core/*.ice")
@@ -25,5 +25,7 @@ target_link_libraries(tnscd Ice tartarus-rpc boost_system-mt boost_filesystem-mt
 link_directories (${tartarus-rpc_BINARY_DIR}/tartarus-rpc)
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_BINARY_DIR} ${DBUSCXX_INCLUDE_DIRS})
 
-install(TARGETS tnscd DESTINATION sbin)
-install(FILES "tnscd.config" DESTINATION "/etc/Tartarus/clients")
+install(TARGETS tnscd DESTINATION ${SBINDIR})
+install(FILES "tnscd.config" DESTINATION ${TARTARUS_CONFIG_DIR})
+install(FILES "ru.tartarus.DBus.TNSCD.conf" DESTINATION ${DBUS_CONFIG_DIR})
+install(FILES "ru.tartarus.DBus.TNSCD.service" DESTINATION ${DBUS_SERVICES_DIR})

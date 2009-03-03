@@ -74,7 +74,6 @@ nss_status client_dbus_init(void)
         connection = dbus_bus_get(DBUS_BUS_SYSTEM, &err);
         if (dbus_error_is_set(&err)) { 
             debug (va("%s: %s", __FUNCTION__, err.message));
-            dbus_error_free(&err);
             connection = NULL;
         }
         dbus_error_free(&err);
@@ -347,7 +346,7 @@ static DBusMessage* client_dbus_send_message(DBusMessage* msg)
     DBusConnection* conn = connection;
     DBusConnection* tmp_connection = NULL;
     DBusPendingCall* pending;
-    DBusMessage* ret;
+    DBusMessage* ret = NULL;
 
     if (connection == NULL) {
         DBusError err;

@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 2.6)
 
 project (libnss-tartarus)
 
+include(cmake/define.cmake)
 include(cmake/slice2cpp.cmake)
 include(cmake/dbusxx-xml2cpp.cmake)
 

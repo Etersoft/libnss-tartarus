@@ -51,7 +51,9 @@ int main()
 //            s.init();
 //        }
 
-        dispatcher.enter();
+        do {
+            dispatcher.do_iteration();
+        } while (conn.connected());
 
     } catch (const std::exception &error)
     {
