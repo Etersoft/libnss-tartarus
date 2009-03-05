@@ -7,7 +7,7 @@
 namespace Tartarus {
 
 class ServerDBUS
-: public ru::tartarus::DBus::TNSCD,
+: public ru::tartarus::DBus::TNSCD_adaptor,
 //  public DBus::IntrospectableAdaptor,
   public DBus::ObjectAdaptor
 {
@@ -16,38 +16,38 @@ public:
         DBus::ObjectAdaptor(connection, server_path) {}
 
     void getUserById(
-        const ::DBus::UInt32& userid, 
-        ::DBus::UInt32& uid,
-        ::DBus::UInt32& gid,
-        ::DBus::String& name,
-        ::DBus::String& gecos,
-        ::DBus::String& home,
-        ::DBus::String& shell,
-        ::DBus::String& passwd);
+        const uint32_t& userid, 
+        uint32_t& uid,
+        uint32_t& gid,
+        std::string& name,
+        std::string& gecos,
+        std::string& home,
+        std::string& shell,
+        std::string& passwd);
     void getUserByName(
-        const ::DBus::String& username,
-        ::DBus::UInt32& uid,
-        ::DBus::UInt32& gid,
-        ::DBus::String& name,
-        ::DBus::String& gecos,
-        ::DBus::String& home,
-        ::DBus::String& shell,
-        ::DBus::String& passwd);
+        const std::string& username,
+        uint32_t& uid,
+        uint32_t& gid,
+        std::string& name,
+        std::string& gecos,
+        std::string& home,
+        std::string& shell,
+        std::string& passwd);
     void getGroupById(
-        const ::DBus::UInt32& groupid,
-        ::DBus::UInt32& gid,
-        ::DBus::String& name,
-        ::DBus::String& passwd,
-        ::DBus::UInt32& users_size,
-        std::vector< ::DBus::String >& users);
+        const uint32_t& groupid,
+        uint32_t& gid,
+        std::string& name,
+        std::string& passwd,
+        uint32_t& users_size,
+        std::vector< std::string >& users);
     void getGroupByName(
-        const ::DBus::String& groupname,
-        ::DBus::UInt32& gid,
-        ::DBus::String& name,
-        ::DBus::String& passwd,
-        ::DBus::UInt32& users_size,
-        std::vector< ::DBus::String >& users);
-    std::vector< ::DBus::UInt32 > getUserGroups(const ::DBus::String& username);
+        const std::string& groupname,
+        uint32_t& gid,
+        std::string& name,
+        std::string& passwd,
+        uint32_t& users_size,
+        std::vector< std::string >& users);
+    std::vector< uint32_t > getUserGroups(const std::string& username);
 };
 
 }

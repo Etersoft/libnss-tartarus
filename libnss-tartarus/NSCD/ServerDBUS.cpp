@@ -14,13 +14,13 @@ static const char* internalError = "ru.tartarus.DBus.TNSCD.ErrorInternal";
 
 static inline void fillUser(
     const SysDB::UserRecord & user,
-    ::DBus::UInt32& uid,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& gecos,
-    ::DBus::String& home,
-    ::DBus::String& shell,
-    ::DBus::String& passwd)
+    uint32_t& uid,
+    uint32_t& gid,
+    std::string& name,
+    std::string& gecos,
+    std::string& home,
+    std::string& shell,
+    std::string& passwd)
 {
     uid    = user.uid;
     gid    = user.gid;
@@ -33,7 +33,7 @@ static inline void fillUser(
 
 class UserNamesInserter
 {
-    typedef std::vector< ::DBus::String > UserNames;
+    typedef std::vector< std::string > UserNames;
     UserNames& userNames;
 public:
     UserNamesInserter(UserNames& userNamesRef):
@@ -47,11 +47,11 @@ public:
 
 static inline void fillGroup(
     const SysDB::GroupRecord & group,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& passwd,
-    ::DBus::UInt32& users_size,
-    std::vector< ::DBus::String >& users,
+    uint32_t& gid,
+    std::string& name,
+    std::string& passwd,
+    uint32_t& users_size,
+    std::vector< std::string >& users,
     const SysDB::UserSeq user_list)
 {
     UserNamesInserter inserter(users);
@@ -67,14 +67,14 @@ static inline void fillGroup(
 
 
 void ServerDBUS::getUserById(
-    const ::DBus::UInt32& userid, 
-    ::DBus::UInt32& uid,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& gecos,
-    ::DBus::String& home,
-    ::DBus::String& shell,
-    ::DBus::String& passwd)
+    const uint32_t& userid, 
+    uint32_t& uid,
+    uint32_t& gid,
+    std::string& name,
+    std::string& gecos,
+    std::string& home,
+    std::string& shell,
+    std::string& passwd)
 {
     try {
         SysDB::UserRecord user = getUserReader()->getById(userid);
@@ -93,14 +93,14 @@ void ServerDBUS::getUserById(
 }
 
 void ServerDBUS::getUserByName(
-    const ::DBus::String& username,
-    ::DBus::UInt32& uid,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& gecos,
-    ::DBus::String& home,
-    ::DBus::String& shell,
-    ::DBus::String& passwd)
+    const std::string& username,
+    uint32_t& uid,
+    uint32_t& gid,
+    std::string& name,
+    std::string& gecos,
+    std::string& home,
+    std::string& shell,
+    std::string& passwd)
 {
     std::cerr << "getUserByName " << username << std::endl;
     try {
@@ -120,12 +120,12 @@ void ServerDBUS::getUserByName(
 }
 
 void ServerDBUS::getGroupById(
-    const ::DBus::UInt32& groupid,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& passwd,
-    ::DBus::UInt32& users_size,
-    std::vector< ::DBus::String >& users)
+    const uint32_t& groupid,
+    uint32_t& gid,
+    std::string& name,
+    std::string& passwd,
+    uint32_t& users_size,
+    std::vector< std::string >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getById(groupid);
@@ -146,12 +146,12 @@ void ServerDBUS::getGroupById(
 }
 
 void ServerDBUS::getGroupByName(
-    const ::DBus::String& groupname,
-    ::DBus::UInt32& gid,
-    ::DBus::String& name,
-    ::DBus::String& passwd,
-    ::DBus::UInt32& users_size,
-    std::vector< ::DBus::String >& users)
+    const std::string& groupname,
+    uint32_t& gid,
+    std::string& name,
+    std::string& passwd,
+    uint32_t& users_size,
+    std::vector< std::string >& users)
 {
     try {
         SysDB::GroupRecord group = getGroupReader()->getByName(groupname);
@@ -171,7 +171,7 @@ void ServerDBUS::getGroupByName(
     }
 }
 
-std::vector< ::DBus::UInt32 > ServerDBUS::getUserGroups(const ::DBus::String& username)
+std::vector< uint32_t > ServerDBUS::getUserGroups(const std::string& username)
 {
     try {
         SysDB::IdSeq ids = getGroupReader()->getGroupsForUserName(username);
