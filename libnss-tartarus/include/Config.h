@@ -19,5 +19,8 @@
 #ifndef TARTARUS_NSS_CLIENT_TIMEOUT
 #define TARTARUS_NSS_CLIENT_TIMEOUT 500
 #endif
+#ifndef TARTARUS_NSS_PEER_TO_PEER_PATH
+#define TARTARUS_NSS_PEER_TO_PEER_PATH "unix:path=/var/run/tnscd/pipe"
+#endif
 
 #endif /* Tartarus_DBUS_Config_h */

@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.1.0
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -12,6 +12,7 @@ Group: System/Libraries
 Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 
 Source: %name-%version.tar
+Source1: tnscd.init.%_vendor
 
 Requires: libnss-role
 Requires: nss-tartarus-daemon = %version-%release
@@ -20,7 +21,8 @@ Requires: libice-ssl-krb
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
-BuildRequires: boost-asio-devel boost-filesystem-devel
+BuildRequires: libdbus-c++-etersoft-devel
+BuildRequires: boost-devel boost-filesystem-devel
 BuildRequires: libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel
 BuildRequires: gcc-c++ cmake
 
@@ -60,6 +62,8 @@ cd build
 %makeinstall DESTDIR=%buildroot
 
 mkdir -p %buildroot%_localstatedir/tnscd
+mkdir -p %buildroot%_initdir
+cp %SOURCE1 %buildroot%_initdir/tnscd
 
 %post
 if [ "$1" = "1" ]; then
@@ -93,16 +97,20 @@ update_chrooted all
 
 %files -n nss-tartarus-daemon
 %_sbindir/*
+%_initdir/*
 %_datadir/dbus-1/system-services/ru.tartarus.DBus.TNSCD.service
 %_sysconfdir/dbus-1/system.d/ru.tartarus.DBus.TNSCD.conf
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
 %dir %_localstatedir/tnscd
 
 %changelog
+* Tue Mar 31 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt2
+- Fix problems with single thread messagebus service
+- Build with new patched version of dbus-c++
+
 * Mon Mar 02 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt1
 - Replace service exchange protocol from JSON to DBus
 - Replace build system from SCons to CMake
-- Removed SysV initscript for service
 
 * Wed Jan 28 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.0.6-alt1
 - Add communicator reinitialization support with kinit

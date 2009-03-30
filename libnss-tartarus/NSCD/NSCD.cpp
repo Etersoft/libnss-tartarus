@@ -4,7 +4,7 @@
 #include <stdexcept>
 #include <iostream>
 #include <memory>
-//#include <pthread.h>
+#include <boost/shared_ptr.hpp>
 
 #include "ServerDBUS.h"
 #include "Signal.h"
@@ -14,34 +14,63 @@ using namespace Tartarus;
 
 static const char* SERVER_NAME = TARTARUS_NSS_SERVER_NAME;
 static const char* SERVER_PATH = TARTARUS_NSS_SERVER_PATH;
-//static const char* PEER_TO_PEER_PATH = "unix:/var/run/tnscd/pipe";
-static const char* PEER_TO_PEER_PATH = "unix:path=tnscd_bus";
-
-static bool running = true;
-static DBus::BusDispatcher dispatcher;
-
-static void termination_handler(int signum)
-{
-    dispatcher.leave();
-    running = false;
-}
-
-//void* connection_thread (void* x)
-//{
-//}
+static const char* PEER_TO_PEER_PATH = TARTARUS_NSS_PEER_TO_PEER_PATH;
+//static const char* PEER_TO_PEER_PATH = "unix:path=/tmp/tnscd_bus";
 
 class Server: public DBus::Server
 {
+    typedef boost::shared_ptr<ServerDBUS> ServerDBUSPtr;
+    typedef std::list<ServerDBUSPtr> ObjectList;
+
 public:
     Server(const char* address): DBus::Server(address){}
+
+    void clean_objects() {
+//        std::cerr<<"clean_objects: " << objects.size() <<std::endl;
+        for(ObjectList::iterator i = objects.begin(); i != objects.end();) {
+            ObjectList::iterator n = i++;
+            if (!(*n)->conn().connected())
+                objects.erase(n);
+        }
+    }
 
 protected:
     virtual void on_new_connection(DBus::Connection& c)
     {
-        std::cerr << "on_new_connection" << std::endl;
-        ServerDBUS *x = new ServerDBUS(c, SERVER_PATH);
-//        DBus::ObjectAdaptor *o = new DBus::ObjectAdaptor(c, SERVER_PATH);
-        std::cerr << "on_new_connection end" << std::endl;
+//        std::cerr<<"on_new_connection: " << objects.size() <<std::endl;
+        objects.push_back(ServerDBUSPtr(new ServerDBUS(c, SERVER_PATH)));
+    }
+//    virtual bool on_user_auth(unsigned long uid) {}
+
+private:
+    ObjectList objects;
+};
+
+class Termination
+{
+public:
+    static void init(DBus::BusDispatcher &disp)
+    {
+        DBus::default_dispatcher = &disp;
+
+        BlockSignals(false, SIGINT);
+        BlockSignals(false, SIGQUIT);
+        BlockSignals(false, SIGTERM);
+        BlockSignals(false, SIGHUP);
+
+        CatchSignal(SIGINT, Termination::handler);
+        CatchSignal(SIGQUIT, Termination::handler);
+        CatchSignal(SIGTERM, Termination::handler);
+        CatchSignal(SIGPIPE, SIG_IGN);
+
+        DBus::_init_threading();
+    }
+
+    static void handler(int signum)
+    {
+        if (DBus::default_dispatcher)
+            DBus::default_dispatcher->leave();
+//        std::cerr<<"handler "<<signum<<std::endl;
     }
 };
 
@@ -49,40 +78,38 @@ int main()
 {
     int error_code = 0;
 
-    BlockSignals(false, SIGINT);
-    BlockSignals(false, SIGQUIT);
-    BlockSignals(false, SIGTERM);
-    BlockSignals(false, SIGHUP);
-
-    CatchSignal(SIGINT, termination_handler);
-    CatchSignal(SIGQUIT, termination_handler);
-    CatchSignal(SIGTERM, termination_handler);
-    CatchSignal(SIGPIPE, SIG_IGN);
-
     try {
-//        CheckDirectories();
+        DBus::BusDispatcher dispatcher;
+        Termination::init(dispatcher);
 
-        DBus::default_dispatcher = &dispatcher;
+        DBus::Connection conn = DBus::Connection::SystemBus();
 
-//        DBus::Connection conn = DBus::Connection::SessionBus();
-//        DBus::Connection conn = DBus::Connection::SystemBus();
-//        DBus::Connection conn = DBus::Connection(PEER_TO_PEER_PATH);
-//        conn.register_bus();
-//        conn.request_name(SERVER_NAME);
-
-//        ServerDBUS server(conn, SERVER_PATH);
+        conn.request_name(SERVER_NAME);
+        ServerDBUS iface(conn, SERVER_PATH);
 
 //        {
 //            Umask m;
 //            s.init();
 //        }
         Server server(PEER_TO_PEER_PATH);
+        server.enable_auth(true);
 
-        dispatcher.enter();
-//        do {
-//            dispatcher.do_iteration();
-//        } while (dispatcher.is_running() && conn.connected());
-
+//        dispatcher.enter();
+        dispatcher.run();
+        int i=0;
+        do {
+            std::cerr<<"do interation "<<++i<<std::endl;
+            try {
+                dispatcher.do_iteration();
+            }
+            catch(DBus::Error error)
+            {
+                std::cerr << error;
+            }
+            std::cerr<<"interation done"<<std::endl;
+            server.clean_objects();
+        } while (dispatcher.is_running());
+        std::cerr<<"interation end("<<dispatcher.is_running()<<")"<<std::endl;
 
     } catch (const std::exception &error)
     {

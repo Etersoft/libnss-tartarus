@@ -71,7 +71,7 @@ nss_status client_dbus_init(void)
     pthread_mutex_lock (&mutex);
 
     if (connection == NULL) {
-        connection = dbus_bus_get(DBUS_BUS_SYSTEM, &err);
+        connection = dbus_connection_open (TARTARUS_NSS_PEER_TO_PEER_PATH, &err);
         if (dbus_error_is_set(&err)) { 
             debug (va("%s: %s", __FUNCTION__, err.message));
             connection = NULL;
@@ -353,7 +353,7 @@ static DBusMessage* client_dbus_send_message(DBusMessage* msg)
 
         dbus_error_init(&err);
 
-        tmp_connection = dbus_bus_get(DBUS_BUS_SYSTEM, &err);
+        tmp_connection = dbus_connection_open (TARTARUS_NSS_PEER_TO_PEER_PATH, &err);
         if (dbus_error_is_set(&err)) { 
             debug (va("%s: %s", __FUNCTION__, err.message));
             dbus_error_free(&err);
