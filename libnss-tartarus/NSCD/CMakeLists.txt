@@ -21,8 +21,7 @@ set_source_files_properties(${sources} PROPERTIES OBJECT_DEPENDS ${adaptor_heade
 
 add_executable(tnscd ${sources} ${core_sources} ${sysdb_sources})
 
-target_link_libraries(tnscd Ice tartarus-rpc boost_system-mt boost_filesystem-mt boost_thread-mt ${KRB5USER_LDFLAGS} ${DBUSCXX_LDFLAGS})
-link_directories (${tartarus-rpc_BINARY_DIR}/tartarus-rpc)
+target_link_libraries(tnscd Ice boost_system-mt boost_filesystem-mt boost_thread-mt ${KRB5USER_LDFLAGS} ${DBUSCXX_LDFLAGS})
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_BINARY_DIR} ${DBUSCXX_INCLUDE_DIRS})
 
 install(TARGETS tnscd DESTINATION ${SBINDIR})
