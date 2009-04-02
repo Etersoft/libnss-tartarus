@@ -25,6 +25,7 @@ target_link_libraries(tnscd Ice boost_system-mt boost_filesystem-mt boost_thread
 include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_BINARY_DIR} ${DBUSCXX_INCLUDE_DIRS})
 
 install(TARGETS tnscd DESTINATION ${SBINDIR})
+install(PROGRAMS "tnscd.runner" DESTINATION ${SBINDIR})
 install(FILES "tnscd.config" DESTINATION ${TARTARUS_CONFIG_DIR})
 install(FILES "ru.tartarus.DBus.TNSCD.conf" DESTINATION ${DBUS_CONFIG_DIR})
 install(FILES "ru.tartarus.DBus.TNSCD.service" DESTINATION ${DBUS_SERVICES_DIR})

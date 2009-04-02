@@ -1,0 +1,8 @@
+#!/bin/sh
+/sbin/start-stop-daemon \
+    --stop --test \
+    --pidfile /var/run/tnscd.pid \
+    --name tnscd >/dev/null && exit 0
+
+echo $$ > /var/run/tnscd.pid
+exec /usr/sbin/tnscd

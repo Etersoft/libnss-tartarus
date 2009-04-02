@@ -1,4 +1,4 @@
 [D-BUS Service]
 Name=ru.tartarus.DBus.TNSCD
-Exec=/usr/sbin/tnscd
+Exec=/usr/sbin/tnscd.runner
 User=root
