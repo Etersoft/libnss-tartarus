@@ -92,13 +92,13 @@ int main()
 //            s.init();
 //        }
         Server server(PEER_TO_PEER_PATH);
-        server.enable_auth(true);
+        server.enable_anon(true);
 
 //        dispatcher.enter();
         dispatcher.run();
         int i=0;
         do {
-            std::cerr<<"do interation "<<++i<<std::endl;
+//            std::cerr<<"do interation "<<++i<<std::endl;
             try {
                 dispatcher.do_iteration();
             }
@@ -106,10 +106,10 @@ int main()
             {
                 std::cerr << error;
             }
-            std::cerr<<"interation done"<<std::endl;
+//            std::cerr<<"interation done"<<std::endl;
             server.clean_objects();
         } while (dispatcher.is_running());
-        std::cerr<<"interation end("<<dispatcher.is_running()<<")"<<std::endl;
+//        std::cerr<<"interation end("<<dispatcher.is_running()<<")"<<std::endl;
 
     } catch (const std::exception &error)
     {

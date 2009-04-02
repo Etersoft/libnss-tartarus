@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.1.0
-Release: alt2
+Release: alt3
 
 Summary: NSS library module for Tartarus
 
@@ -21,7 +21,7 @@ Requires: libice-ssl-krb
 Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
-BuildRequires: libdbus-c++-etersoft-devel
+BuildRequires: libdbus-c++-etersoft-devel >= 0.5.0-alt9
 BuildRequires: boost-devel boost-filesystem-devel
 BuildRequires: libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel
 BuildRequires: gcc-c++ cmake
@@ -104,6 +104,10 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Thu Apr 02 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt3
+- Fix problem when service call it self due authentification
+- Service use anonymous mechanism only
+
 * Tue Mar 31 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt2
 - Fix problems with single thread messagebus service
 - Build with new patched version of dbus-c++
