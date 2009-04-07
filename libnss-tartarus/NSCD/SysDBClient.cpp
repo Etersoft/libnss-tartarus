@@ -23,6 +23,10 @@ static const Ice::CommunicatorPtr& getIceCommunicator()
 		init.properties = Ice::createProperties();
 		init.properties->load("/etc/Tartarus/clients/all.config");
 		init.properties->load("/etc/Tartarus/clients/tnscd.config");
+
+		if (ic)
+			ic->destroy();
+
 		ic = Ice::initialize(init);
 	}
 

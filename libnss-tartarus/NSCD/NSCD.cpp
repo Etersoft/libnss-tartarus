@@ -6,6 +6,7 @@
 #include <memory>
 #include <boost/shared_ptr.hpp>
 
+#include "SysDBClient.h"
 #include "ServerDBUS.h"
 #include "Signal.h"
 //#include "Prepare.h"
@@ -57,11 +58,13 @@ public:
         BlockSignals(false, SIGQUIT);
         BlockSignals(false, SIGTERM);
         BlockSignals(false, SIGHUP);
+        BlockSignals(false, SIGUSR1);
 
         CatchSignal(SIGINT, Termination::handler);
         CatchSignal(SIGQUIT, Termination::handler);
         CatchSignal(SIGTERM, Termination::handler);
         CatchSignal(SIGPIPE, SIG_IGN);
+        CatchSignal(SIGUSR1, Termination::reinit);
 
         DBus::_init_threading();
     }
@@ -70,6 +73,11 @@ public:
     {
         if (DBus::default_dispatcher)
             DBus::default_dispatcher->leave();
+//        std::cerr<<"handler "<<signum<<std::endl;
+    }
+    static void reinit(int signum)
+    {
+        setReaderReInit();
 //        std::cerr<<"handler "<<signum<<std::endl;
     }
 };
