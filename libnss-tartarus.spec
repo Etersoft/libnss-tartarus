@@ -1,8 +1,8 @@
 %define nsswitch %_sysconfdir/nsswitch.conf
 
 Name: libnss-tartarus
-Version: 0.1.0
-Release: alt4
+Version: 0.1.1
+Release: alt1
 
 Summary: NSS library module for Tartarus
 
@@ -104,6 +104,9 @@ update_chrooted all
 %dir %_localstatedir/tnscd
 
 %changelog
+* Tue Apr 07 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.1-alt1
+- Fix communictor reinit memory leak
+
 * Thu Apr 02 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.0-alt4
 - Add tnscd runner for dbus service
 - Clean code
