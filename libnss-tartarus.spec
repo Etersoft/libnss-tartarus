@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.1.1
-Release: alt1
+Release: alt2
 
 Summary: NSS library module for Tartarus
 
@@ -61,7 +61,7 @@ cmake ../ \
 cd build
 %makeinstall DESTDIR=%buildroot
 
-mkdir -p %buildroot%_localstatedir/tnscd
+mkdir -p %buildroot%_var/run/tnscd
 mkdir -p %buildroot%_initdir
 cp %SOURCE1 %buildroot%_initdir/tnscd
 
@@ -101,9 +101,12 @@ update_chrooted all
 %_datadir/dbus-1/system-services/ru.tartarus.DBus.TNSCD.service
 %_sysconfdir/dbus-1/system.d/ru.tartarus.DBus.TNSCD.conf
 %config(noreplace) %_sysconfdir/Tartarus/clients/*
-%dir %_localstatedir/tnscd
+%dir %_var/run/tnscd
 
 %changelog
+* Wed Apr 29 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.1-alt2
+- Fix tnscd rundir creation
+
 * Tue Apr 07 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.1-alt1
 - Fix communictor reinit memory leak
 
