@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.1.1
-Release: alt2
+Release: alt3
 
 Summary: NSS library module for Tartarus
 
@@ -22,6 +22,7 @@ Requires(pre): chrooted >= 0.3.5-alt1 chrooted-resolv sed
 Requires(postun): chrooted >= 0.3.5-alt1 sed
 
 BuildRequires: libdbus-c++-etersoft-devel >= 0.5.0-alt9
+BuildRequires: boost-devel >= 1:1.39.0
 BuildRequires: boost-devel boost-filesystem-devel
 BuildRequires: libcom_err-devel libice-devel libjson_spirit-devel libkrb5user-devel
 BuildRequires: gcc-c++ cmake
@@ -104,6 +105,9 @@ update_chrooted all
 %dir %_var/run/tnscd
 
 %changelog
+* Fri Jul 10 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.1-alt3
+- Rebuild with boost-1.39.0
+
 * Wed Apr 29 2009 Evgeny Sinelnikov <sin@altlinux.ru> 0.1.1-alt2
 - Fix tnscd rundir creation
 
