@@ -2,7 +2,7 @@
 
 Name: libnss-tartarus
 Version: 0.1.1
-Release: alt3.1
+Release: alt3.2
 
 Summary: NSS library module for Tartarus
 
@@ -13,6 +13,7 @@ Packager: Evgeny Sinelnikov <sin@altlinux.ru>
 
 Source: %name-%version.tar
 Source1: tnscd.init.%_vendor
+Patch: libnss-tartarus-0.1.1-alt-DSO.patch
 
 Requires: libnss-role
 Requires: nss-tartarus-daemon = %version-%release
@@ -45,6 +46,7 @@ Authorization proxy and cache daemon for Tartarus
 
 %prep
 %setup -q
+%patch -p2
 
 %build
 mkdir build
@@ -105,6 +107,9 @@ update_chrooted all
 %dir %_var/run/tnscd
 
 %changelog
+* Wed Jun 13 2012 Eugeny A. Rostovtsev (REAL) <real at altlinux.org> 0.1.1-alt3.2
+- Fixed build
+
 * Wed Dec 08 2010 Igor Vlasenko <viy@altlinux.ru> 0.1.1-alt3.1
 - rebuild with new openssl and/or boost by request of git.alt administrator
 

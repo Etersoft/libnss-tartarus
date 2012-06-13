@@ -1,2 +1,3 @@
 tar: libnss-tartarus
 copy: tnscd.init.*
+copy: *.patch
