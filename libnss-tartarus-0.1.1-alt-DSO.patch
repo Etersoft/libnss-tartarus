@@ -7,7 +7,7 @@ index 2c42d6f..1608a99 100644
  add_executable(tnscd ${sources} ${core_sources} ${sysdb_sources})
  
 -target_link_libraries(tnscd Ice boost_system-mt boost_filesystem-mt boost_thread-mt ${KRB5USER_LDFLAGS} ${DBUSCXX_LDFLAGS})
-+target_link_libraries(tnscd Ice boost_system-mt boost_filesystem-mt boost_thread-mt ${KRB5USER_LDFLAGS} ${DBUSCXX_LDFLAGS} IceUtil)
++target_link_libraries(tnscd Ice boost_system-mt boost_filesystem-mt boost_thread-mt ${KRB5USER_LDFLAGS} ${DBUSCXX_LDFLAGS} IceUtil pthread)
  include_directories (${CMAKE_CURRENT_SOURCE_DIR}/../include ${CMAKE_CURRENT_BINARY_DIR} ${DBUSCXX_INCLUDE_DIRS})
  
  install(TARGETS tnscd DESTINATION ${SBINDIR})

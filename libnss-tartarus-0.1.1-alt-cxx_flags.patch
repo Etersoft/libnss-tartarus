@@ -1,0 +1,12 @@
+diff --git a/libnss-tartarus/CMakeLists.txt b/libnss-tartarus/CMakeLists.txt
+index 732c105..10c8041 100644
+--- a/libnss-tartarus/CMakeLists.txt
++++ b/libnss-tartarus/CMakeLists.txt
+@@ -7,7 +7,6 @@ include(cmake/slice2cpp.cmake)
+ include(cmake/dbusxx-xml2cpp.cmake)
+ 
+ include_directories (${libnss-tartarus_SOURCE_DIR})
+-set(CMAKE_CXX_FLAGS "-O2")
+ 
+ add_subdirectory (NSCD)
+ add_subdirectory (nss)
